@@ -1,6 +1,7 @@
 (()=>{
 'use strict';
-const APP_VERSION='1.0.0';
+const APP_VERSION='1.1.0';
+const DEL_HASH='a5b432ee0307be7fa23aa00461f54eee34ba9d45251b5504567d37a8da339dff';
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -18,7 +19,7 @@ const app=$('#app');
 let db,cur=null,evMap={},settings={company:'',auditor:''},deferredPrompt=null;
 const urls=new Map();
 
-function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2600);}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2800);}
 function debounce(f,ms){let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>f(...a),ms);};}
 
 /* ---------- Banco de dados (IndexedDB) ---------- */
@@ -52,6 +53,11 @@ function createAudit(data){const year=new Date().getFullYear();
 
 const addLog=(a,action,detail='')=>a.log.push({ts:nowISO(),user:a.auditor||settings.auditor||'',action,detail});
 
+/* ---------- Orientação por requisito ---------- */
+const guide=it=>{const g=(window.GUIDE||{})[it.id]||{};return{i:it.i||g.i||'',e:it.e||g.e||''};};
+function guideHTML(it){const g=guide(it);if(!g.i&&!g.e)return'';
+ return`<div class="guide"><div class="gh">Orientação do app – não é texto da norma</div>${g.i?`<div class="gb"><b>Interpretação do requisito</b><p>${esc(g.i)}</p></div>`:''}${g.e?`<div class="gb"><b>Exemplos de evidência de atendimento</b><p>${esc(g.e)}</p></div>`:''}</div>`;}
+
 /* ---------- Cálculos ---------- */
 const blank=()=>({C:0,NCMAIOR:0,NCMENOR:0,OBS:0,OFI:0,NA:0,pend:0});
 const pct=o=>{const d=o.C+o.NCMAIOR+o.NCMENOR;return d?Math.round(o.C/d*1000)/10:null;};
@@ -76,13 +82,48 @@ function parseCSV(txt){txt=txt.replace(/^\uFEFF/,'');const first=txt.split(/\r?\
 const blobToDataURL=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b);});
 const dataURLToBlob=async u=>(await fetch(u)).blob();
 const sizeTxt=n=>n>1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB';
-async function sha256(file){try{if(!crypto||!crypto.subtle)return'';const h=await crypto.subtle.digest('SHA-256',await file.arrayBuffer());return[...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('');}catch{return'';}}
+const hex=buf=>[...new Uint8Array(buf)].map(x=>x.toString(16).padStart(2,'0')).join('');
+async function sha256(file){try{if(!crypto||!crypto.subtle)return'';return hex(await crypto.subtle.digest('SHA-256',await file.arrayBuffer()));}catch{return'';}}
+async function sha256Str(s){if(!crypto||!crypto.subtle)return'';return hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)));}
 async function shrink(file){if(!file.type.startsWith('image/')||file.type==='image/gif')return file;
  try{const bmp=await createImageBitmap(file);const s=Math.min(1,1800/Math.max(bmp.width,bmp.height));if(s===1&&file.size<1.5e6)return file;
   const c=document.createElement('canvas');c.width=Math.round(bmp.width*s);c.height=Math.round(bmp.height*s);c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
   const b=await new Promise(r=>c.toBlob(r,'image/jpeg',.85));
   return b&&b.size<file.size?new File([b],file.name.replace(/\.\w+$/,'')+'.jpg',{type:'image/jpeg'}):file;}catch{return file;}}
 const urlOf=e=>{if(!urls.has(e.id))urls.set(e.id,URL.createObjectURL(e.blob));return urls.get(e.id);};
+
+/* ---------- Exclusão protegida por senha ---------- */
+function askPassword(number){return new Promise(res=>{const m=document.createElement('div');m.className='modal';
+ m.innerHTML=`<div class="mbox"><h2>Excluir ${esc(number)}</h2><p>Esta ação apaga a auditoria e todas as evidências anexadas, e não pode ser desfeita. Digite a senha para confirmar.</p><input type="password" id="pw" autocomplete="off" placeholder="Senha"><p class="err" id="pe"></p><div class="actions"><button type="button" class="btn" id="pc">Cancelar</button><button type="button" class="btn danger" id="po">Excluir</button></div></div>`;
+ document.body.appendChild(m);const pw=$('#pw',m);pw.focus();
+ const close=v=>{m.remove();res(v);};
+ $('#pc',m).onclick=()=>close(null);$('#po',m).onclick=()=>close(pw.value);
+ pw.onkeydown=e=>{if(e.key==='Enter')close(pw.value);if(e.key==='Escape')close(null);};
+ m.addEventListener('click',e=>{if(e.target===m)close(null);});});}
+async function deleteAudit(number){
+ const a=await getAudit(number);if(!a)return;
+ const pw=await askPassword(number);if(pw===null)return;
+ const h=await sha256Str(pw);
+ if(!h)return toast('Abra o app pelo endereço https para validar a senha');
+ if(h!==DEL_HASH)return toast('Senha incorreta. Nada foi excluído.');
+ for(const e of await getEvs(number))await delEv(e.id);
+ await p(tx('audits','readwrite').objectStore('audits').delete(number));
+ const dl=(await getMeta('deletedAudits'))||[];
+ dl.push({number,deletedAt:nowISO(),deletedBy:settings.auditor||'',status:a.status,process:a.process,auditor:a.auditor,createdAt:a.createdAt});
+ await setMeta('deletedAudits',dl);
+ toast(number+' excluída');route();}
+
+/* ---------- Menu de opções (⋮) ---------- */
+document.addEventListener('click',async e=>{
+ const dots=e.target.closest('.dots');
+ $$('.mpop').forEach(x=>{if(!dots||x.parentElement!==dots.parentElement)x.hidden=true;});
+ if(dots){const pop=$('.mpop',dots.parentElement);pop.hidden=!pop.hidden;e.preventDefault();return;}
+ const b=e.target.closest('.mpop button');if(!b)return;
+ const n=b.closest('.row').dataset.n;b.closest('.mpop').hidden=true;
+ if(b.dataset.a==='open')location.hash='#/audit/'+encodeURIComponent(n);
+ if(b.dataset.a==='json')exportJSON([n],true);
+ if(b.dataset.a==='csv'){const a=await getAudit(n);if(a)exportAuditCSV(a);}
+ if(b.dataset.a==='del')deleteAudit(n);});
 
 /* ---------- Roteamento ---------- */
 window.addEventListener('hashchange',route);
@@ -104,9 +145,10 @@ async function route(){
 }
 
 /* ---------- Início ---------- */
-function rowHTML(a){const c=calc(a);
- return`<a class="row" href="#/audit/${encodeURIComponent(a.number)}"><div><b>${esc(a.number)}</b> <span class="st ${a.status==='Concluída'?'done':'prog'}">${esc(a.status)}</span><div class="sub">${esc(a.process||a.scope||'')} · ${esc(a.area||'')} · ${fmtD(a.date)}</div><div class="sub">Auditor: ${esc(a.auditor)} · Auditado: ${esc(a.auditee||'–')}</div></div>
- <div class="rt"><b>${pctTxt(c.pct)}</b><div class="sub">${c.tot.NCMAIOR+c.tot.NCMENOR} NC · ${c.answered}/${c.total}</div></div></a>`;}
+function rowHTML(a){const c=calc(a);const n=encodeURIComponent(a.number);
+ return`<div class="row" data-n="${esc(a.number)}"><a class="rl" href="#/audit/${n}"><div><b>${esc(a.number)}</b> <span class="st ${a.status==='Concluída'?'done':'prog'}">${esc(a.status)}</span><div class="sub">${esc(a.process||a.scope||'')} · ${esc(a.area||'')} · ${fmtD(a.date)}</div><div class="sub">Auditor: ${esc(a.auditor)} · Auditado: ${esc(a.auditee||'–')}</div></div>
+ <div class="rt"><b>${pctTxt(c.pct)}</b><div class="sub">${c.tot.NCMAIOR+c.tot.NCMENOR} NC · ${c.answered}/${c.total}</div></div></a>
+ <div class="menu"><button type="button" class="dots" aria-label="Opções da auditoria" title="Opções">⋮</button><div class="mpop" hidden><button type="button" data-a="open">Abrir</button><button type="button" data-a="csv">Exportar CSV</button><button type="button" data-a="json">Exportar JSON</button><button type="button" class="del" data-a="del">Excluir…</button></div></div></div>`;}
 async function viewHome(){const list=(await allAudits()).sort((x,y)=>y.createdAt.localeCompare(x.createdAt));
  const andamento=list.filter(a=>a.status!=='Concluída').length;const conc=list.length-andamento;
  const nc=list.reduce((s,a)=>{const c=calc(a);return s+c.tot.NCMAIOR+c.tot.NCMENOR;},0);
@@ -146,7 +188,7 @@ const evHTML=id=>{const l=evMap[id]||[];
  ${locked()?'':'<label class="btn small addev">📎 Anexar evidência<input type="file" class="fi" multiple accept="image/*,application/pdf" hidden></label>'}`;};
 function cardHTML(it){const d=cur.items[it.id]||{};const st=d.status;const L=locked();const n=(evMap[it.id]||[]).length;
  return`<details class="item" data-id="${esc(it.id)}"><summary><span class="cl">${esc(it.id)}</span><span class="tt">${esc(it.t)}</span>${it.u?'<span class="flag" title="Trecho não lido integralmente no PDF – conferir texto da norma">conferir</span>':''}<span class="evc">${n?'📎'+n:''}</span><span class="badge ${st?STATUS[st].k:'pend'}">${st?STATUS[st].l:'Pendente'}</span></summary>
- <div class="body"><p class="q">${esc(it.q)}</p>
+ <div class="body"><p class="q">${esc(it.q)}</p>${guideHTML(it)}
  <div class="chips">${Object.entries(STATUS).map(([k,v])=>`<button type="button" class="chip ${v.k} ${st===k?'on':''}" data-st="${k}" ${L?'disabled':''}>${v.l}</button>`).join('')}</div>
  <label>Comentários / constatação<textarea rows="3" class="cm" ${L?'disabled':''} placeholder="Descreva a evidência objetiva observada…">${esc(d.comment||'')}</textarea></label>
  <div class="act grid2 ${ACT.includes(st)?'':'hide'}"><label>Responsável pela ação<input class="resp" value="${esc(d.resp||'')}" ${L?'disabled':''}></label><label>Prazo<input type="date" class="prazo" value="${esc(d.prazo||'')}" ${L?'disabled':''}></label></div>
@@ -243,7 +285,7 @@ function tabData(){const a=cur,L=locked();const t=a.trace;
  <div class="grid2"><label>Auditor<input name="auditor" value="${esc(a.auditor)}" ${L?'disabled':''}></label><label>Auditado<input name="auditee" value="${esc(a.auditee||'')}" ${L?'disabled':''}></label></div>
  <label>Data<input type="date" name="date" value="${esc(a.date)}" ${L?'disabled':''}></label><label>Observações<textarea name="notes" rows="2" ${L?'disabled':''}>${esc(a.notes||'')}</textarea></label>
  ${L?'':'<button class="btn primary">Salvar alterações</button>'}</form>
- <div class="card"><h2>Rastreabilidade</h2><dl class="dl"><dt>Número</dt><dd>${esc(a.number)}</dd><dt>Norma</dt><dd>${esc(t.standard)}</dd><dt>Aberta em</dt><dd>${fmt(t.createdAt)}</dd><dt>Aberta por</dt><dd>${esc(t.createdBy)}</dd><dt>Última alteração</dt><dd>${fmt(a.updatedAt)}</dd><dt>Checklist</dt><dd>${esc(a.checklistVersion)} (${a.checklist.length} itens)</dd><dt>Versão do app</dt><dd>${esc(t.appVersion)}</dd><dt>Fuso horário</dt><dd>${esc(t.timezone)}</dd><dt>Dispositivo</dt><dd class="wrap">${esc(t.platform)} – ${esc(t.device)}</dd><dt>Origem</dt><dd class="wrap">${esc(t.origin)}</dd></dl></div>
+ <div class="card"><h2>Rastreabilidade</h2><dl class="dl"><dt>Número</dt><dd>${esc(a.number)}</dd><dt>Norma</dt><dd>${esc(t.standard)}</dd><dt>Aberta em</dt><dd>${fmt(t.createdAt)}</dd><dt>Aberta por</dt><dd>${esc(t.createdBy)}</dd><dt>Última alteração</dt><dd>${fmt(a.updatedAt)}</dd><dt>Checklist</dt><dd>${esc(a.checklistVersion)} (${a.checklist.length} itens)</dd><dt>Versão do app (abertura)</dt><dd>${esc(t.appVersion)}</dd><dt>Fuso horário</dt><dd>${esc(t.timezone)}</dd><dt>Dispositivo</dt><dd class="wrap">${esc(t.platform)} – ${esc(t.device)}</dd><dt>Origem</dt><dd class="wrap">${esc(t.origin)}</dd></dl></div>
  <div class="card"><h2>Registro de alterações (${a.log.length})</h2><div class="tw logbox"><table><thead><tr><th>Data/hora</th><th>Usuário</th><th>Ação</th><th>Detalhe</th></tr></thead><tbody>${[...a.log].reverse().map(l=>`<tr><td>${fmt(l.ts)}</td><td>${esc(l.user)}</td><td>${esc(l.action)}</td><td>${esc(l.detail)}</td></tr>`).join('')}</tbody></table></div></div>`;
  $('#df').onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));const ch=[];
   for(const k in d)if((a[k]||'')!==d[k]){ch.push(`${k}: "${a[k]||''}" → "${d[k]}"`);a[k]=d[k];}
@@ -259,9 +301,9 @@ async function viewHistory(){const list=(await allAudits()).sort((x,y)=>y.create
 
 /* ---------- Exportar / Importar ---------- */
 async function exportAuditCSV(a){const evs=await getEvs(a.number);
- const rows=[['Auditoria','Cláusula','Título','Pergunta','Situação','Comentário','Responsável ação','Prazo','Nº evidências','Evidências','Atualizado em','Atualizado por']];
- for(const it of a.checklist){const d=a.items[it.id]||{};const ev=evs.filter(e=>e.itemId===it.id);
-  rows.push([a.number,it.id,it.t,it.q,d.status?STATUS[d.status].l:'Pendente',d.comment||'',d.resp||'',d.prazo||'',ev.length,ev.map(e=>e.name).join(' | '),d.updatedAt||'',d.updatedBy||'']);}
+ const rows=[['Auditoria','Cláusula','Título','Pergunta','Interpretação','Exemplos de evidência','Situação','Comentário','Responsável ação','Prazo','Nº evidências','Evidências','Atualizado em','Atualizado por']];
+ for(const it of a.checklist){const d=a.items[it.id]||{};const ev=evs.filter(e=>e.itemId===it.id);const g=guide(it);
+  rows.push([a.number,it.id,it.t,it.q,g.i,g.e,d.status?STATUS[d.status].l:'Pendente',d.comment||'',d.resp||'',d.prazo||'',ev.length,ev.map(e=>e.name).join(' | '),d.updatedAt||'',d.updatedBy||'']);}
  download(a.number+'.csv',new Blob([toCSV(rows)],{type:'text/csv;charset=utf-8'}));}
 async function exportSummaryCSV(){const l=(await allAudits()).sort((x,y)=>x.createdAt.localeCompare(y.createdAt));
  const rows=[['Número','Data','Tipo','Processo','Setor','Turno','Auditor','Auditado','Status','Conformidade %','Conforme','NC maior','NC menor','Observação','OFI','N/A','Pendentes','Criada em','Concluída em']];
@@ -296,18 +338,18 @@ async function viewExport(){const list=(await allAudits()).sort((x,y)=>y.created
  $('#imp').onchange=async e=>{if(e.target.files[0]){await importJSON(e.target.files[0]);viewExport();}};}
 
 /* ---------- Configurações ---------- */
-async function viewSettings(){const cl=await activeChecklist();const custom=!!(await getMeta('customChecklist'));
+async function viewSettings(){const cl=await activeChecklist();const custom=!!(await getMeta('customChecklist'));const del=(await getMeta('deletedAudits'))||[];
  app.innerHTML=`<h1>Configurações</h1>
  <form id="sf" class="card form"><h2>Empresa e usuário</h2><label>Nome da empresa<input name="company" value="${esc(settings.company)}"></label><label>Auditor padrão<input name="auditor" value="${esc(settings.auditor)}"></label><button class="btn primary">Salvar</button></form>
  <div class="card form"><h2>Checklist</h2><p>Ativo: <b>${esc(cl.version)}</b> · ${cl.items.length} itens ${custom?'(personalizado)':'(base)'}</p>
- <p class="muted small">Itens marcados como “conferir” não foram lidos integralmente no PDF da norma; revise-os. Para ajustar perguntas ou incluir requisitos específicos do cliente (CSR), baixe o modelo, edite no Excel e importe (colunas: clausula;titulo;pergunta). Auditorias já abertas mantêm o checklist com que foram criadas.</p>
+ <p class="muted small">Itens marcados como “conferir” não foram lidos integralmente no PDF da norma; revise-os. Para ajustar perguntas, interpretações e exemplos, ou incluir requisitos específicos do cliente (CSR), baixe o modelo, edite no Excel e importe (colunas: clausula;titulo;pergunta;interpretacao;exemplos). Auditorias já abertas mantêm o checklist com que foram criadas.</p>
  <div class="actions"><button class="btn" id="ckdl">Baixar checklist atual (CSV)</button><label class="btn">Importar CSV<input type="file" id="ckup" accept=".csv,text/csv" hidden></label>${custom?'<button class="btn" id="ckrs">Restaurar base</button>':''}</div></div>
- <div class="card form"><h2>Aplicativo</h2><p class="muted small">Versão ${APP_VERSION}. Os dados ficam armazenados neste aparelho (IndexedDB). Faça exportações periódicas como backup.</p><button class="btn" id="persist">Solicitar armazenamento persistente</button></div>`;
+ <div class="card form"><h2>Aplicativo</h2><p class="muted small">Versão ${APP_VERSION}. Os dados ficam armazenados neste aparelho (IndexedDB). Faça exportações periódicas como backup. Auditorias excluídas: ${del.length}${del.length?' (último: '+esc(del[del.length-1].number)+' em '+fmt(del[del.length-1].deletedAt)+')':''}.</p><button class="btn" id="persist">Solicitar armazenamento persistente</button></div>`;
  $('#sf').onsubmit=async e=>{e.preventDefault();settings={...settings,...Object.fromEntries(new FormData(e.target))};await setMeta('settings',settings);renderBrand();toast('Configurações salvas');};
- $('#ckdl').onclick=()=>download('checklist-iatf.csv',new Blob([toCSV([['clausula','titulo','pergunta'],...cl.items.map(i=>[i.id,i.t,i.q])])],{type:'text/csv;charset=utf-8'}));
+ $('#ckdl').onclick=()=>download('checklist-iatf.csv',new Blob([toCSV([['clausula','titulo','pergunta','interpretacao','exemplos'],...cl.items.map(i=>{const g=guide(i);return[i.id,i.t,i.q,g.i,g.e];})])],{type:'text/csv;charset=utf-8'}));
  $('#ckup').onchange=async e=>{const f=e.target.files[0];if(!f)return;const rows=parseCSV(await f.text());
-  const items=rows.slice(1).filter(r=>r[0]&&r[2]).map(r=>({id:r[0].trim(),t:(r[1]||'').trim(),q:r[2].trim()}));
-  if(!items.length)return toast('Nenhum item válido (use: clausula;titulo;pergunta)');
+  const items=rows.slice(1).filter(r=>r[0]&&r[2]).map(r=>({id:r[0].trim(),t:(r[1]||'').trim(),q:r[2].trim(),i:(r[3]||'').trim(),e:(r[4]||'').trim()}));
+  if(!items.length)return toast('Nenhum item válido (use: clausula;titulo;pergunta;interpretacao;exemplos)');
   await setMeta('customChecklist',{version:'custom-'+today(),items});toast(items.length+' itens importados');viewSettings();};
  const rs=$('#ckrs');if(rs)rs.onclick=async()=>{if(confirm('Voltar ao checklist base?')){await p(tx('meta','readwrite').objectStore('meta').delete('customChecklist'));viewSettings();}};
  $('#persist').onclick=async()=>{const ok=navigator.storage&&navigator.storage.persist?await navigator.storage.persist():false;toast(ok?'Armazenamento persistente ativo':'Não concedido pelo navegador');};}
