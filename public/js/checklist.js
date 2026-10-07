@@ -1,868 +1,176 @@
-window.BASE_VERSION="IATF16949-2016-base-1.0";
+window.BASE_VERSION="IATF16949-2016-base-2.0";
+/* Texto integral extraído do PDF da norma (cláusulas 4 a 10 e Anexo A).
+   Campos: id, t (título), s (seção), g (subgrupo), a (1=IATF, 2=ISO+IATF),
+   b (blocos): k = p parágrafo | l alínea | n nota | h subtítulo; m = marcador; d = nível; i = 1 itálico (exigência automotiva IATF); x = texto. */
 window.CHECKLIST=[
-{
-"id": "4.1",
-"t": "Contexto da organização",
-"q": "As questões externas e internas relevantes para o SGQ estão determinadas, monitoradas e analisadas criticamente?"
-},
-{
-"id": "4.2",
-"t": "Partes interessadas",
-"q": "As partes interessadas pertinentes e seus requisitos estão determinados e são analisados criticamente?"
-},
-{
-"id": "4.3",
-"t": "Escopo do SGQ",
-"q": "O escopo está documentado, com tipos de produtos/serviços e justificativa para qualquer requisito não aplicável?"
-},
-{
-"id": "4.3.1",
-"t": "Escopo – suplemento",
-"q": "Funções de suporte (no site ou remotas) estão no escopo? A única exclusão é a de projeto de produto (8.3), justificada e documentada, sem excluir o projeto do processo de manufatura?"
-},
-{
-"id": "4.3.2",
-"t": "Requisitos específicos do cliente (CSR)",
-"q": "Os CSR foram avaliados e incluídos no escopo do SGQ?"
-},
-{
-"id": "4.4.1",
-"t": "SGQ e seus processos",
-"q": "Entradas, saídas, sequência, interação, critérios, indicadores, recursos, responsabilidades e riscos de cada processo estão definidos, avaliados e melhorados?"
-},
-{
-"id": "4.4.1.1",
-"t": "Conformidade de produtos e processos",
-"q": "Há garantia de conformidade de todos os produtos e processos (inclusive peças de serviço e terceirizados) com requisitos do cliente, estatutários e regulamentares?"
-},
-{
-"id": "4.4.1.2",
-"t": "Segurança do produto",
-"q": "Existe processo documentado de segurança do produto cobrindo requisitos legais, características de segurança, aprovações especiais (FMEA/plano de controle), plano de reação, escalonamento, treinamento, mudanças, cadeia de fornecimento, rastreabilidade por lote e lições aprendidas?"
-},
-{
-"id": "4.4.2",
-"t": "Informação documentada dos processos",
-"q": "Informação documentada é mantida para apoiar a operação e retida como evidência de que os processos ocorrem conforme planejado?"
-},
-{
-"id": "5.1.1",
-"t": "Liderança e comprometimento",
-"q": "A alta direção demonstra responsabilidade pela eficácia do SGQ, integra requisitos aos processos de negócio, provê recursos e promove abordagem de processo, risco e melhoria?"
-},
-{
-"id": "5.1.1.1",
-"t": "Responsabilidade corporativa",
-"q": "Existem política antissuborno, código de conduta dos colaboradores e política de escalonamento ético (denúncia), definidas e implementadas?"
-},
-{
-"id": "5.1.1.2",
-"t": "Eficácia e eficiência do processo",
-"q": "A alta direção analisa criticamente os processos de realização e de suporte, e os resultados alimentam a análise crítica da direção?"
-},
-{
-"id": "5.1.1.3",
-"t": "Donos dos processos",
-"q": "Os donos dos processos estão identificados, entendem seus papéis e são competentes?"
-},
-{
-"id": "5.1.2",
-"t": "Foco no cliente",
-"q": "Requisitos do cliente e legais são determinados e atendidos, riscos e oportunidades tratados e o foco na satisfação é mantido?"
-},
-{
-"id": "5.2.1",
-"t": "Política da qualidade",
-"q": "A política é adequada ao contexto, oferece estrutura para objetivos e inclui compromisso com requisitos e melhoria contínua?"
-},
-{
-"id": "5.2.2",
-"t": "Comunicação da política",
-"q": "A política está documentada, é comunicada, entendida e aplicada, e disponível às partes interessadas pertinentes?"
-},
-{
-"id": "5.3",
-"t": "Papéis, responsabilidades e autoridades",
-"q": "Responsabilidades e autoridades pelo SGQ, desempenho dos processos, relato à direção, foco no cliente e integridade em mudanças estão atribuídas e comunicadas?"
-},
-{
-"id": "5.3.1",
-"t": "Papéis – suplemento",
-"q": "Há pessoal designado e documentado para características especiais, objetivos e treinamento, ações corretivas/preventivas, projeto, análise de capacidade, logística, indicadores e portais do cliente?"
-},
-{
-"id": "5.3.2",
-"t": "Autoridade sobre produto e ação corretiva",
-"q": "O pessoal de qualidade tem autoridade para parar expedição e produção? Responsáveis por ação corretiva são prontamente informados e todos os turnos são supervisionados?"
-},
-{
-"id": "6.1.1",
-"t": "Riscos e oportunidades – determinação",
-"q": "Riscos e oportunidades considerando contexto e partes interessadas estão determinados?"
-},
-{
-"id": "6.1.2",
-"t": "Riscos e oportunidades – ações",
-"q": "As ações são planejadas, integradas aos processos, proporcionais ao impacto e com eficácia avaliada?"
-},
-{
-"id": "6.1.2.1",
-"t": "Análise de risco",
-"q": "A análise de risco considera no mínimo recalls, auditorias de produto, retornos de campo, reclamações, sucata e retrabalho, com informação documentada?"
-},
-{
-"id": "6.1.2.2",
-"t": "Ação preventiva",
-"q": "Existe processo para eliminar causas de não conformidades potenciais, com verificação de eficácia e uso de lições aprendidas?"
-},
-{
-"id": "6.1.2.3",
-"t": "Planos de contingência",
-"q": "Há planos para falha de equipamento-chave, fornecedores, desastres, utilidades, mão de obra e infraestrutura, com notificação ao cliente, testes periódicos, revisão anual multidisciplinar e validação do produto após reinício?"
-},
-{
-"id": "6.2.1",
-"t": "Objetivos da qualidade",
-"q": "Objetivos são coerentes com a política, mensuráveis, monitorados, comunicados, atualizados e documentados?"
-},
-{
-"id": "6.2.2",
-"t": "Planejamento dos objetivos",
-"q": "Está definido o que será feito, recursos, responsável, prazo e forma de avaliação?"
-},
-{
-"id": "6.2.2.1",
-"t": "Objetivos – suplemento",
-"q": "Os objetivos e metas de desempenho consideram as partes interessadas e são estabelecidos no mínimo anualmente?"
-},
-{
-"id": "6.3",
-"t": "Planejamento de mudanças",
-"q": "Mudanças no SGQ são planejadas considerando propósito, integridade, recursos e responsabilidades?"
-},
-{
-"id": "7.1.1",
-"t": "Recursos – generalidades",
-"q": "Recursos necessários ao SGQ são determinados e providos, considerando capacidade interna e provedores externos?"
-},
-{
-"id": "7.1.2",
-"t": "Pessoas",
-"q": "As pessoas necessárias à operação e controle dos processos estão disponíveis?"
-},
-{
-"id": "7.1.3",
-"t": "Infraestrutura",
-"q": "Edificações, equipamentos, software, transporte e TIC necessários são providos e mantidos?"
-},
-{
-"id": "7.1.3.1",
-"t": "Planejamento da planta e equipamentos",
-"q": "Há abordagem multidisciplinar com análise de risco para layout, fluxo de materiais, viabilidade de manufatura e planejamento de capacidade, com entrada para análise crítica da direção?"
-},
-{
-"id": "7.1.4",
-"t": "Ambiente para operação dos processos",
-"q": "O ambiente necessário (social, psicológico e físico) é determinado, provido e mantido?"
-},
-{
-"id": "7.1.4.1",
-"t": "Ambiente – suplemento",
-"q": "As instalações são mantidas em estado de ordem, limpeza e reparo compatível com produto e processo?"
-},
-{
-"id": "7.1.5.1",
-"t": "Recursos de monitoramento e medição",
-"q": "Os recursos de medição são adequados ao uso, mantidos, e há informação documentada como evidência?"
-},
-{
-"id": "7.1.5.1.1",
-"t": "Análise do sistema de medição (MSA)",
-"q": "Há estudos estatísticos para cada sistema de medição do plano de controle, com métodos e critérios conforme manuais de referência ou aprovados pelo cliente?"
-},
-{
-"id": "7.1.5.2",
-"t": "Rastreabilidade de medição",
-"q": "Equipamentos são calibrados/verificados em intervalos contra padrões rastreáveis, identificados, protegidos, e a validade de medições anteriores é avaliada quando fora de uso adequado?"
-},
-{
-"id": "7.1.5.2.1",
-"t": "Registros de calibração/verificação",
-"q": "Existe processo documentado de registros de calibração incluindo leituras fora de especificação, avaliação de risco, validade de medições anteriores, notificação ao cliente, declaração de conformidade e verificação de software?"
-},
-{
-"id": "7.1.5.3.1",
-"t": "Laboratório interno",
-"q": "O laboratório interno tem escopo definido, procedimentos adequados, pessoal competente, rastreabilidade a normas e análise crítica de registros?"
-},
-{
-"id": "7.1.5.3.2",
-"t": "Laboratório externo",
-"q": "Laboratórios externos são acreditados ISO/IEC 17025 com o serviço no escopo, ou aceitos pelo cliente, e a calibração por fabricante atende aos requisitos de laboratório?"
-},
-{
-"id": "7.1.6",
-"t": "Conhecimento organizacional",
-"q": "O conhecimento necessário aos processos é determinado, mantido e disponibilizado, e há forma de adquirir novo conhecimento?"
-},
-{
-"id": "7.2",
-"t": "Competência",
-"q": "A competência necessária é determinada, assegurada por educação/treinamento/experiência e há registros?"
-},
-{
-"id": "7.2.1",
-"t": "Competência – suplemento",
-"q": "Há processo documentado para identificar necessidades de treinamento e alcançar competência do pessoal que afeta a conformidade?"
-},
-{
-"id": "7.2.2",
-"t": "Treinamento no local de trabalho",
-"q": "Pessoal em função nova ou modificada (inclusive terceiros) recebe treinamento no local, incluindo requisitos do cliente e consequências da não conformidade?"
-},
-{
-"id": "7.2.3",
-"t": "Competência do auditor interno",
-"q": "Há processo documentado e lista de auditores internos qualificados (SGQ, processo e produto), com competências mínimas e manutenção por número mínimo de auditorias anuais?"
-},
-{
-"id": "7.2.4",
-"t": "Competência do auditor de segunda parte",
-"q": "A competência dos auditores de segunda parte está demonstrada conforme CSR e competências-chave?"
-},
-{
-"id": "7.3",
-"t": "Conscientização",
-"q": "As pessoas conhecem a política, objetivos pertinentes, sua contribuição e as implicações de não conformidade?"
-},
-{
-"id": "7.3.1",
-"t": "Conscientização – suplemento",
-"q": "Há informação documentada de que todos estão cientes do impacto na qualidade, dos requisitos do cliente e dos riscos de produto não conforme?"
-},
-{
-"id": "7.3.2",
-"t": "Motivação e empowerment",
-"q": "Existe processo documentado para motivar pessoas a atingir objetivos, melhorar continuamente e promover inovação?"
-},
-{
-"id": "7.4",
-"t": "Comunicação",
-"q": "Comunicações internas e externas estão definidas (o quê, quando, com quem, como, quem)?"
-},
-{
-"id": "7.5.1",
-"t": "Informação documentada – generalidades",
-"q": "O SGQ inclui a informação documentada exigida pela norma e a determinada como necessária pela organização?"
-},
-{
-"id": "7.5.1.1",
-"t": "Documentação do SGQ (manual)",
-"q": "Existe manual da qualidade (ou conjunto de documentos) com escopo e exclusões, processos documentados, interações, controle de terceirizados e matriz de CSR?"
-},
-{
-"id": "7.5.2",
-"t": "Criação e atualização",
-"q": "Documentos têm identificação, formato adequado, análise crítica e aprovação?"
-},
-{
-"id": "7.5.3.1",
-"t": "Controle de informação documentada – disponibilidade",
-"q": "A informação está disponível onde necessária e protegida contra perda de confidencialidade, uso impróprio e integridade?"
-},
-{
-"id": "7.5.3.2",
-"t": "Controle de informação documentada – atividades",
-"q": "Distribuição, armazenamento, controle de alterações/versões, retenção e disposição são controlados, inclusive documentos externos?"
-},
-{
-"id": "7.5.3.2.1",
-"t": "Retenção de registros",
-"q": "Há política de retenção; aprovações de peça, registros de ferramental, projeto e contratos são retidos pela vida ativa do produto mais um ano calendário (salvo exigência diferente)?"
-},
-{
-"id": "7.5.3.2.2",
-"t": "Especificações de engenharia",
-"q": "Existe processo documentado de análise, distribuição e implementação de normas/especificações do cliente, com registro da data de implementação e análise crítica prevista em até 10 dias úteis?"
-},
-{
-"id": "8.1",
-"t": "Planejamento e controle operacionais",
-"q": "Os processos de realização são planejados com requisitos, critérios, recursos, controle e informação documentada; mudanças e terceirizados são controlados?"
-},
-{
-"id": "8.1.1",
-"t": "Planejamento operacional – suplemento",
-"q": "O planejamento inclui requisitos e especificações do cliente, logística, viabilidade de manufatura, planejamento do projeto e critérios de aceitação?"
-},
-{
-"id": "8.1.2",
-"t": "Confidencialidade",
-"q": "Produtos e projetos do cliente em desenvolvimento e informações relacionadas têm confidencialidade assegurada?"
-},
-{
-"id": "8.2.1",
-"t": "Comunicação com o cliente",
-"q": "A comunicação cobre informação, consultas/pedidos/mudanças, retroalimentação e reclamações, propriedade do cliente e ações de contingência?"
-},
-{
-"id": "8.2.1.1",
-"t": "Comunicação – suplemento",
-"q": "A comunicação ocorre no idioma e formato de dados (ex.: CAD, EDI) acordados com o cliente?"
-},
-{
-"id": "8.2.2",
-"t": "Determinação de requisitos",
-"q": "Requisitos de produtos e serviços, inclusive legais, estão definidos e a organização consegue atendê-los?"
-},
-{
-"id": "8.2.2.1",
-"t": "Requisitos – suplemento",
-"q": "Os requisitos incluem reciclagem, impacto ambiental e regulamentos de segurança e meio ambiente aplicáveis a aquisição, manuseio, armazenamento e disposição de materiais?"
-},
-{
-"id": "8.2.3.1",
-"t": "Análise crítica de requisitos",
-"q": "Antes de se comprometer, a organização analisa requisitos do cliente, não declarados, próprios, legais e divergências de pedido?"
-},
-{
-"id": "8.2.3.1.1",
-"t": "Análise crítica – suplemento",
-"q": "Existe evidência de derrogação autorizada pelo cliente quando a análise formal é dispensada?"
-},
-{
-"id": "8.2.3.1.2",
-"t": "Características especiais do cliente",
-"q": "Designação, aprovação documentada e controle das características especiais atendem aos requisitos do cliente?"
-},
-{
-"id": "8.2.3.1.3",
-"t": "Viabilidade de manufatura",
-"q": "Estudo multidisciplinar de viabilidade é feito para novos produtos/tecnologias e mudanças, e a capacidade é validada (corridas de produção, benchmarking etc.)?"
-},
-{
-"id": "8.2.3.2",
-"t": "Registros da análise crítica",
-"q": "Resultados da análise e novos requisitos são retidos como informação documentada?"
-},
-{
-"id": "8.2.4",
-"t": "Mudanças nos requisitos",
-"q": "Documentos e pessoas pertinentes são atualizados/alertados quando requisitos mudam?"
-},
-{
-"id": "8.3.1",
-"t": "Projeto e desenvolvimento – generalidades",
-"q": "Existe processo de projeto e desenvolvimento apropriado?"
-},
-{
-"id": "8.3.1.1",
-"t": "Projeto e desenvolvimento – suplemento",
-"q": "O processo documentado se aplica a produto e processo de manufatura, com foco em prevenção de erros mais que detecção?"
-},
-{
-"id": "8.3.2",
-"t": "Planejamento do projeto",
-"q": "Estágios, análises críticas, verificação/validação, responsabilidades, recursos, interfaces e informação documentada estão planejados?"
-},
-{
-"id": "8.3.2.1",
-"t": "Planejamento – suplemento",
-"q": "O planejamento envolve abordagem multidisciplinar (APQP/VDA-RGA, DFM/DFA, FMEA, fluxograma, plano de controle, trabalho padrão) e a cadeia de fornecimento?"
-},
-{
-"id": "8.3.2.2",
-"t": "Habilidades para projeto do produto",
-"q": "Responsáveis pelo projeto são competentes e hábeis nas ferramentas e técnicas aplicáveis?"
-},
-{
-"id": "8.3.2.3",
-"t": "Produtos com software embarcado",
-"q": "Há processo de qualidade de software e autoavaliação de capacidade de desenvolvimento, incluída no programa de auditoria interna?"
-},
-{
-"id": "8.3.3",
-"t": "Entradas de projeto",
-"q": "Entradas (funcionais, legais, normas, lições anteriores, consequências de falha) são completas, sem conflitos e documentadas?"
-},
-{
-"id": "8.3.3.1",
-"t": "Entradas de projeto do produto",
-"q": "Entradas do produto cobrem especificações e características especiais, interfaces, rastreabilidade, alternativas, riscos, metas de confiabilidade/durabilidade, requisitos legais do país de destino e software embarcado, com desdobramento de lições aprendidas?"
-},
-{
-"id": "8.3.3.2",
-"t": "Entradas do processo de manufatura",
-"q": "Entradas do processo cobrem saídas do produto, produtividade, capacidade, tecnologias, ergonomia, DFM/DFA e uso de prova de erro proporcional ao risco?"
-},
-{
-"id": "8.3.3.3",
-"t": "Características especiais",
-"q": "Há processo multidisciplinar que identifica e cascateia características especiais em desenhos, FMEA, plano de controle e instruções, com estratégias de controle, aprovações e tabela de símbolos?"
-},
-{
-"id": "8.3.4",
-"t": "Controles de projeto",
-"q": "Resultados definidos, análises críticas, verificação, validação, ações e registros são aplicados?"
-},
-{
-"id": "8.3.4.1",
-"t": "Monitoramento do projeto",
-"q": "Medições em estágios definidos são analisadas, reportadas à direção e ao cliente quando requerido?"
-},
-{
-"id": "8.3.4.2",
-"t": "Validação do projeto e desenvolvimento",
-"q": "A validação segue requisitos do cliente e normas regulatórias, com prazo alinhado ao cliente e avaliação de interação com software embarcado quando acordado?"
-},
-{
-"id": "8.3.4.3",
-"t": "Programas de protótipo",
-"q": "Quando requerido, há programa e plano de controle de protótipo com mesmos fornecedores/ferramental/processos da produção, e testes monitorados quanto a prazo e requisitos?"
-},
-{
-"id": "8.3.4.4",
-"t": "Processo de aprovação do produto",
-"q": "Existe processo de aprovação de produto e manufatura conforme o cliente, com produtos externos aprovados antes da submissão e registro da aprovação?"
-},
-{
-"id": "8.3.5",
-"t": "Saídas de projeto",
-"q": "Saídas atendem às entradas, são adequadas aos processos seguintes, incluem critérios de aceitação e características essenciais?"
-},
-{
-"id": "8.3.5.1",
-"t": "Saídas do produto – suplemento",
-"q": "Saídas incluem FMEA de projeto, confiabilidade, características especiais, prova de erro, modelos/desenhos/GD&T, análises críticas, diretrizes de serviço, peças de serviço e embalagem/rotulagem?"
-},
-{
-"id": "8.3.5.2",
-"t": "Saídas do processo de manufatura",
-"q": "Saídas incluem especificações, características especiais, variáveis de entrada, ferramental, fluxograma/layout, capacidade, PFMEA, manutenção, plano de controle, trabalho padrão, critérios de aceitação, prova de erro e detecção rápida?"
-},
-{
-"id": "8.3.6",
-"t": "Mudanças de projeto",
-"q": "Mudanças são identificadas, analisadas, autorizadas e registradas?"
-},
-{
-"id": "8.3.6.1",
-"t": "Mudanças – suplemento",
-"q": "Impacto em ajuste, forma, função, desempenho e durabilidade é avaliado, mudanças validadas e aprovadas internamente e pelo cliente quando requerido, com nível de revisão de software/hardware registrado?"
-},
-{
-"id": "8.4.1",
-"t": "Provedores externos – generalidades",
-"q": "Há critérios de avaliação, seleção, monitoramento e reavaliação de provedores externos, com registros?"
-},
-{
-"id": "8.4.1.1",
-"t": "Provedores externos – suplemento",
-"q": "Serviços como submontagem, sequenciamento, seleção, retrabalho e calibração estão no escopo de produtos/serviços providos externamente?"
-},
-{
-"id": "8.4.1.2",
-"t": "Seleção de fornecedor",
-"q": "O processo documentado inclui avaliação de risco, desempenho, avaliação do SGQ do fornecedor, decisão multidisciplinar e capacidade de software?"
-},
-{
-"id": "8.4.1.3",
-"t": "Fontes direcionadas pelo cliente",
-"q": "Fontes direcionadas pelo cliente são adquiridas e controladas conforme a seção 8.4 (exceto 8.4.1.2)?"
-},
-{
-"id": "8.4.2",
-"t": "Tipo e extensão do controle",
-"q": "Controles sobre provedores e saídas estão definidos considerando impacto e eficácia, e verificação assegura conformidade?"
-},
-{
-"id": "8.4.2.1",
-"t": "Tipo e extensão – suplemento",
-"q": "Há processo documentado para identificar terceirizados e aumentar/reduzir controles conforme desempenho e risco?"
-},
-{
-"id": "8.4.2.2",
-"t": "Requisitos legais e regulamentares",
-"q": "Compras estão em conformidade com requisitos legais dos países de recebimento, expedição e destino, inclusive controles especiais do cliente?"
-},
-{
-"id": "8.4.2.3",
-"t": "Desenvolvimento do SGQ do fornecedor",
-"q": "Fornecedores automotivos são desenvolvidos conforme a sequência ISO 9001 → IATF 16949 (ou conforme o cliente)?"
-},
-{
-"id": "8.4.2.3.1",
-"t": "Software de fornecedores",
-"q": "Fornecedores de software automotivo mantêm processo de garantia de qualidade e autoavaliação de capacidade?"
-},
-{
-"id": "8.4.2.4",
-"t": "Monitoramento do fornecedor",
-"q": "Há processo e critérios para monitorar conformidade de entrega, rupturas no cliente, prazos, fretes especiais e, quando fornecidos, situações especiais e retornos de campo?"
-},
-{
-"id": "8.4.2.4.1",
-"t": "Auditorias de segunda parte",
-"q": "Existe processo de auditoria de segunda parte com critérios documentados de necessidade, tipo, frequência e escopo, e registros retidos?"
-},
-{
-"id": "8.4.2.5",
-"t": "Desenvolvimento do fornecedor",
-"q": "Prioridade, tipo, extensão e prazo das ações de desenvolvimento consideram desempenho, auditorias, certificação e risco?"
-},
-{
-"id": "8.4.3",
-"t": "Informação para provedores externos",
-"q": "Requisitos de processo/produto, aprovações, competência, interações, monitoramento e verificações são comunicados com suficiência?"
-},
-{
-"id": "8.4.3.1",
-"t": "Informação – suplemento",
-"q": "Requisitos legais e características especiais são repassados e cascateados na cadeia de fornecimento?"
-},
-{
-"id": "8.5.1",
-"t": "Controle de produção e serviço",
-"q": "A produção ocorre sob condições controladas (informação documentada, recursos de medição, monitoramento, infraestrutura, competência, validação, prevenção de erro humano, liberação)?"
-},
-{
-"id": "8.5.1.1",
-"t": "Plano de controle",
-"q": "Há planos de controle por nível aplicável (inclusive pré-lançamento e produção) ligados a FMEA e fluxograma, com set-up, primeira/última peça, características especiais, plano de reação e revisão em eventos definidos?"
-},
-{
-"id": "8.5.1.2",
-"t": "Trabalho padronizado e padrões visuais",
-"q": "Instruções são comunicadas, legíveis, no idioma adequado, acessíveis e incluem regras de segurança do operador?"
-},
-{
-"id": "8.5.1.3",
-"t": "Verificação de set-up",
-"q": "Set-ups são verificados (corrida inicial, troca de material/trabalho), com validação de primeira/última peça e registros de aprovação?"
-},
-{
-"id": "8.5.1.4",
-"t": "Verificação após parada",
-"q": "Existem ações para assegurar conformidade do produto após paradas planejadas ou não?"
-},
-{
-"id": "8.5.1.5",
-"t": "Manutenção produtiva total (TPM)",
-"q": "O sistema documentado de TPM cobre equipamentos, peças de reposição, recursos, preservação de ferramental, objetivos (OEE, MTBF, MTTR, conformidade da preventiva), preditiva e plano de ação?"
-},
-{
-"id": "8.5.1.6",
-"t": "Gestão de ferramental",
-"q": "Há sistema para ferramental de produção e de teste/inspeção (manutenção, armazenamento, set-up, vida útil, modificações, identificação, situação, propriedade e localização), com marcação de itens do cliente?"
-},
-{
-"id": "8.5.1.7",
-"t": "Programação da produção",
-"q": "A produção é programada conforme pedidos do cliente e sustentada por informação de planejamento (demanda, prazo, capacidade, estoque, manutenção, calibração)?"
-},
-{
-"id": "8.5.2",
-"t": "Identificação e rastreabilidade",
-"q": "Saídas e sua situação de inspeção são identificadas e a rastreabilidade é assegurada quando requerida?"
-},
-{
-"id": "8.5.2.1",
-"t": "Rastreabilidade – suplemento",
-"q": "Há plano de rastreabilidade baseado em risco que permita identificar, segregar e responder no prazo, com registros acessíveis e serialização quando exigida?"
-},
-{
-"id": "8.5.3",
-"t": "Propriedade do cliente ou de provedores",
-"q": "Propriedade de terceiros é identificada, verificada, protegida, e perdas/danos são reportados?"
-},
-{
-"id": "8.5.4",
-"t": "Preservação",
-"q": "As saídas são preservadas (identificação, manuseio, contaminação, embalagem, armazenamento, transporte)?"
-},
-{
-"id": "8.5.4.1",
-"t": "Preservação – suplemento",
-"q": "O estoque é avaliado em intervalos, há gestão tipo FIFO, produto obsoleto é controlado e requisitos de embalagem/rotulagem do cliente são seguidos?"
-},
-{
-"id": "8.5.5",
-"t": "Atividades pós-entrega",
-"q": "Atividades pós-entrega consideram requisitos legais, consequências, vida útil e retroalimentação do cliente?"
-},
-{
-"id": "8.5.5.1",
-"t": "Realimentação de informação de serviço",
-"q": "Existe processo para comunicar preocupações de serviço a manufatura, logística, engenharia e projeto?"
-},
-{
-"id": "8.5.5.2",
-"t": "Contrato de serviço com o cliente",
-"q": "Quando aplicável, centros de serviço, ferramentas especiais e treinamento do pessoal de serviço são verificados?"
-},
-{
-"id": "8.5.6",
-"t": "Controle de mudanças",
-"q": "Mudanças de produção são analisadas, autorizadas e registradas?"
-},
-{
-"id": "8.5.6.1",
-"t": "Controle de mudanças – suplemento",
-"q": "Processo documentado avalia efeitos, define verificação/validação, valida antes de implementar, usa corrida piloto e notifica/obtém aprovação do cliente quando requerido?"
-},
-{
-"id": "8.5.6.1.1",
-"t": "Mudança temporária nos controles",
-"q": "Há lista de controles primários e alternativos aprovados, com processo baseado em risco (severidade) e aprovações internas?"
-},
-{
-"id": "8.6",
-"t": "Liberação de produtos e serviços",
-"q": "A liberação só ocorre após arranjos planejados cumpridos, com evidência de conformidade e rastreabilidade a quem autorizou?"
-},
-{
-"id": "8.6.1",
-"t": "Liberação – suplemento",
-"q": "Os arranjos de verificação constam no plano de controle e a aprovação do produto ocorre na liberação inicial e após mudanças?"
-},
-{
-"id": "8.6.2",
-"t": "Inspeção de layout e teste funcional",
-"q": "Inspeção dimensional completa e verificação funcional são feitas conforme plano de controle e disponíveis ao cliente?"
-},
-{
-"id": "8.6.3",
-"t": "Itens de aparência",
-"q": "Para itens de aparência há iluminação, padrões, controle dos padrões e avaliadores qualificados?"
-},
-{
-"id": "8.6.4",
-"t": "Verificação de itens providos externamente",
-"q": "Há processo de aceitação (dados estatísticos, inspeção de recebimento, auditorias, laboratório designado etc.)?"
-},
-{
-"id": "8.6.5",
-"t": "Conformidade legal de itens externos",
-"q": "Antes da liberação, há evidência de conformidade legal dos itens externos nos países de manufatura e destino?"
-},
-{
-"id": "8.6.6",
-"t": "Critério de aceitação",
-"q": "Critérios são definidos e aprovados pelo cliente quando necessário, com zero defeito em amostragem por atributos?"
-},
-{
-"id": "8.7.1",
-"t": "Controle de saídas não conformes",
-"q": "Saídas não conformes são identificadas e controladas (correção, segregação, contenção, informação ao cliente, concessão) e reverificadas?"
-},
-{
-"id": "8.7.1.1",
-"t": "Autorização de concessão do cliente",
-"q": "Concessão/desvio é obtido antes de processar produto diferente do aprovado e antes de usar como está/retrabalhar, com registro de validade e identificação nos contêineres?"
-},
-{
-"id": "8.7.1.2",
-"t": "Controle de produto não conforme – suplemento",
-"q": "Existe processo documentado de controle de produto não conforme, inclusive provido externamente?",
-"u": 1
-},
-{
-"id": "8.7.1.3",
-"t": "Produto suspeito ou não conforme",
-"q": "Produto não identificado ou suspeito é classificado e controlado como não conforme?",
-"u": 1
-},
-{
-"id": "8.7.1.4",
-"t": "Controle de produto retrabalhado",
-"q": "Há análise de risco, instruções de retrabalho e confirmação (reinspeção) antes de retrabalhar produto?",
-"u": 1
-},
-{
-"id": "8.7.1.5",
-"t": "Controle de produto reparado",
-"q": "Reparo é precedido de análise de risco (FMEA), aprovação do cliente, instruções, reinspeção, rastreabilidade e registro da disposição?"
-},
-{
-"id": "8.7.1.6",
-"t": "Notificação ao cliente",
-"q": "Em caso de expedição de produto não conforme, o cliente é notificado imediatamente com documentação detalhada?"
-},
-{
-"id": "8.7.1.7",
-"t": "Disposição de produto não conforme",
-"q": "Há processo para sucata inutilizada antes do descarte e proibição de desviar produto NC para serviço sem aprovação do cliente?"
-},
-{
-"id": "8.7.2",
-"t": "Registros de não conformidades",
-"q": "Registros descrevem a não conformidade, ações, concessões e a autoridade que decidiu?"
-},
-{
-"id": "9.1.1",
-"t": "Monitoramento e medição – generalidades",
-"q": "Está definido o que, como, quando monitorar/medir e analisar, e o desempenho do SGQ é avaliado e registrado?"
-},
-{
-"id": "9.1.1.1",
-"t": "Monitoramento de processos de manufatura",
-"q": "Estudos de capacidade em novos processos são feitos e mantidos; fluxograma, PFMEA e plano de controle são verificados (medição, amostragem, critérios, registros, reação, escalonamento)?"
-},
-{
-"id": "9.1.1.2",
-"t": "Identificação de ferramentas estatísticas",
-"q": "Ferramentas estatísticas estão determinadas no planejamento da qualidade e incluídas no plano de controle?",
-"u": 1
-},
-{
-"id": "9.1.1.3",
-"t": "Aplicação de conceitos estatísticos",
-"q": "O pessoal conhece e aplica conceitos de variação, controle, capacidade e sobreajuste?",
-"u": 1
-},
-{
-"id": "9.1.2",
-"t": "Satisfação do cliente",
-"q": "A percepção do cliente sobre o atendimento às necessidades é monitorada?",
-"u": 1
-},
-{
-"id": "9.1.2.1",
-"t": "Satisfação do cliente – suplemento",
-"q": "Há indicadores de desempenho (qualidade entregue, interrupções, entregas, fretes especiais, situações especiais, scorecards) monitorados?",
-"u": 1
-},
-{
-"id": "9.1.3",
-"t": "Análise e avaliação",
-"q": "Dados são analisados para avaliar conformidade, satisfação, desempenho, planejamento, riscos, fornecedores e melhorias?",
-"u": 1
-},
-{
-"id": "9.1.3.1",
-"t": "Priorização",
-"q": "Tendências de qualidade, eficiência operacional e satisfação são priorizadas para ações de melhoria?",
-"u": 1
-},
-{
-"id": "9.2.1",
-"t": "Auditoria interna – generalidades",
-"q": "Auditorias internas ocorrem em intervalos planejados para verificar conformidade e implementação eficaz?",
-"u": 1
-},
-{
-"id": "9.2.2",
-"t": "Programa de auditoria",
-"q": "Programa define frequência, métodos, responsabilidades, critérios, escopo, imparcialidade e relato dos resultados?",
-"u": 1
-},
-{
-"id": "9.2.2.1",
-"t": "Programa de auditoria interna",
-"q": "Existe processo documentado e programa que cobre SGQ, processo de manufatura e produto, priorizado por risco/tendência, com frequência analisada e eficácia analisada pela direção?"
-},
-{
-"id": "9.2.2.2",
-"t": "Auditoria do SGQ",
-"q": "Todos os processos do SGQ são auditados a cada três anos calendário com abordagem de processo, incluindo amostragem de CSR?"
-},
-{
-"id": "9.2.2.3",
-"t": "Auditoria de processo de manufatura",
-"q": "Todos os processos de manufatura são auditados a cada três anos calendário, usando abordagem do cliente ou definida pela organização?"
-},
-{
-"id": "9.2.2.4",
-"t": "Auditoria de produto",
-"q": "Produtos são auditados em estágios apropriados de produção e entrega para verificar conformidade com requisitos?",
-"u": 1
-},
-{
-"id": "9.3.1",
-"t": "Análise crítica pela direção",
-"q": "A alta direção analisa o SGQ em intervalos planejados quanto a adequação, eficácia e alinhamento estratégico?",
-"u": 1
-},
-{
-"id": "9.3.1.1",
-"t": "Análise crítica – suplemento",
-"q": "A análise ocorre no mínimo anualmente (com frequência maior se houver mudanças/desempenho ruim) e é registrada?",
-"u": 1
-},
-{
-"id": "9.3.2.1",
-"t": "Entradas da análise crítica",
-"q": "As entradas incluem custo da má qualidade, eficácia/eficiência de processos, viabilidade de manufatura, satisfação do cliente, manutenção, objetivos, fornecedores, garantia, riscos e ações anteriores?",
-"u": 1
-},
-{
-"id": "9.3.3.1",
-"t": "Saídas da análise crítica",
-"q": "Decisões e ações sobre melhoria, mudanças do SGQ, recursos e plano de ação são registradas e acompanhadas?",
-"u": 1
-},
-{
-"id": "10.1",
-"t": "Melhoria – generalidades",
-"q": "Oportunidades de melhoria são determinadas e implementadas para atender requisitos e aumentar a satisfação?"
-},
-{
-"id": "10.2.1",
-"t": "Não conformidade e ação corretiva",
-"q": "A organização reage, controla e corrige não conformidades, avalia causas, implementa ações e verifica a eficácia, atualizando riscos e SGQ quando necessário?"
-},
-{
-"id": "10.2.2",
-"t": "Registros de ação corretiva",
-"q": "A natureza das não conformidades, ações e resultados são retidos como informação documentada?"
-},
-{
-"id": "10.2.3",
-"t": "Solução de problemas",
-"q": "Há processo documentado de solução de problemas com contenção, causa raiz, ações sistêmicas, verificação de eficácia e atualização de PFMEA/plano de controle, usando ferramentas do cliente quando prescritas?"
-},
-{
-"id": "10.2.4",
-"t": "Prova de erro",
-"q": "Existe processo para uso de prova de erro, com método no PFMEA, frequência de teste no plano de controle, teste com falha simulada, controle de peças-mestre e plano de reação?"
-},
-{
-"id": "10.2.5",
-"t": "Gestão da garantia",
-"q": "Quando aplicável, há processo de gestão de garantia, incluindo análise de peças (NTF) e requisitos do cliente?"
-},
-{
-"id": "10.2.6",
-"t": "Reclamações do cliente e falhas de campo",
-"q": "Reclamações e falhas de campo (inclusive peças devolvidas) são analisadas, com solução de problemas, ação corretiva e comunicação dos resultados?"
-},
-{
-"id": "10.3",
-"t": "Melhoria contínua",
-"q": "A adequação, suficiência e eficácia do SGQ são melhoradas considerando resultados de análise e da análise crítica da direção?"
-},
-{
-"id": "10.3.1",
-"t": "Melhoria contínua – suplemento",
-"q": "Existe processo documentado de melhoria contínua (métodos, planos de ação, redução de variação/desperdício)?",
-"u": 1
-},
-{
-"id": "A.1",
-"t": "Anexo A – Fases do plano de controle",
-"q": "Existem planos de controle para protótipo, pré-lançamento e produção, conforme aplicável?",
-"u": 1
-},
-{
-"id": "A.2",
-"t": "Anexo A – Conteúdo do plano de controle",
-"q": "O plano contém informações gerais, de produto, de processo (características, especiais), métodos de controle e frequência?",
-"u": 1
-},
-{
-"id": "A.3",
-"t": "Anexo A – Plano de reação",
-"q": "O plano de reação está especificado para produto não conforme, processo instável ou não capaz?",
-"u": 1
-}
+{"id":"4.1","t":"Entendendo a Organização e seu Contexto","s":"4.1 Entendendo a Organização e seu Contexto","b":[{"k":"p","x":"A organização deve determinar questões externas e internas que sejam pertinentes para o seu propósito e para seu direcionamento estratégico e que afetem sua capacidade de alcançar o(s) resultado(s) pretendido(s) de seu sistema de gestão da qualidade."},{"k":"p","x":"A organização deve monitorar e analisar criticamente informação sobre essas questões externas e internas."},{"k":"n","x":"NOTA 1. Questões podem incluir fatores ou condições positivos e negativos para consideração."},{"k":"n","x":"NOTA 2. O entendimento do contexto externo, pode ser facilitado pela consideração de questões provenientes dos ambientes legal, tecnológico, competitivo, de mercado, cultural, social e econômico, tanto internacionais, quanto nacionais, regionais ou locais."},{"k":"n","x":"NOTA 3. O entendimento do contexto interno pode ser facilitado pela consideração de questões relativas a valores, cultura, conhecimento e desempenho da organização."}]},
+{"id":"4.2","t":"Entendendo as Necessidades e Expectativas de Partes Interessadas","s":"4.2 Entendendo as Necessidades e Expectativas de Partes Interessadas","b":[{"k":"p","x":"Devido ao seu efeito ou potencial efeito sobre a capacidade da organização para prover consistentemente produtos e serviços que atendam aos requisitos do cliente e aos requisitos estatutários e regulamentares aplicáveis, a organização deve determinar:"},{"k":"l","x":"as partes interessadas que sejam pertinentes para o sistema de gestão da qualidade;","m":"a)"},{"k":"l","x":"os requisitos dessas partes interessadas que sejam pertinentes para o sistema de gestão da qualidade;","m":"b)"},{"k":"p","x":"A organização deve monitorar e analisar criticamente informação sobre as partes interessadas e seus requisitos pertinentes."}]},
+{"id":"4.3","t":"Determinando o Escopo do Sistema de Gestão da Qualidade","s":"4.3 Determinando o Escopo do Sistema de Gestão da Qualidade","b":[{"k":"p","x":"A organização deve determinar os limites e aplicabilidade do sistema de gestão da qualidade para estabelecer o seu escopo."},{"k":"p","x":"Ao determinar esse escopo, a organização deve considerar:"},{"k":"l","x":"as questões externas e internas referidas em 4.1;","m":"a)"},{"k":"l","x":"os requisitos das partes externas e internas referidos em 4.2;","m":"b)"},{"k":"l","x":"os produtos e serviços da organização.","m":"c)"},{"k":"p","x":"A organização deve aplicar todos os requisitos desta Norma, se eles forem aplicáveis no escopo determinado do sistema de gestão da qualidade."},{"k":"p","x":"O escopo do sistema de gestão da qualidade da organização deve estar disponível e ser mantido como informação documentada. O escopo deve declarar os tipos de produtos e serviços cobertos e prover justificativa para qualquer requisito desta Norma que a organização determinar que não seja aplicável ao escopo do seu sistema de gestão da qualidade."},{"k":"p","x":"A conformidade com esta Norma só pode ser alegada se os requisitos determinados como não aplicáveis não afetarem a capacidade ou a responsabilidade da organização de assegurar a conformidade dos seus produtos e serviços e o aumento da satisfação do cliente."}]},
+{"id":"4.3.1","t":"Determinando o escopo do sistema de gestão da qualidade – suplemento","s":"4.3 Determinando o Escopo do Sistema de Gestão da Qualidade","a":1,"b":[{"k":"p","x":"Funções de suporte sejam no site ou remotas (tais como centros de projeto, sedes corporativas e centros de distribuição) devem ser incluídas no escopo do Sistema de Gestão da Qualidade (SGQ).","i":1},{"k":"p","x":"A única exclusão permitida para esta Norma de SGQ Automotiva relaciona-se com os requisitos de projeto e desenvolvimento do produto da ISO 9001, Seção 8.3. A exclusão deve ser justificada e mantida como informação documentada (ver ISO 9001, Seção 7.5).","i":1},{"k":"p","x":"As exclusões permitidas não incluem o projeto do processo de manufatura.","i":1}]},
+{"id":"4.3.2","t":"Requisitos específicos do cliente","s":"4.3 Determinando o Escopo do Sistema de Gestão da Qualidade","a":1,"b":[{"k":"p","x":"Os requisitos específicos do cliente devem ser avaliados e incluídos no escopo do sistema de gestão da qualidade da organização.","i":1}]},
+{"id":"4.4.1","t":"","s":"4.4 Sistema de Gestão da Qualidade e seus Processos","b":[{"k":"p","x":"A organização deve estabelecer, implementar, manter e melhorar continuamente um sistema de gestão da qualidade, incluindo os processos necessários e suas interações, de acordo com os requisitos desta Norma."},{"k":"p","x":"A organização deve determinar os processos necessários para o sistema de gestão da qualidade e sua aplicação na organização, e deve:"},{"k":"l","x":"determinar as entradas requeridas e as saídas esperadas desses processos;","m":"a)"},{"k":"l","x":"determinar a sequência e interação desses processos;","m":"b)"},{"k":"l","x":"determinar e aplicar os critérios e métodos (incluindo monitoramento, medições e indicadores de desempenho relacionados) necessários para assegurar a operação e controle eficazes desses processos;","m":"c)"},{"k":"l","x":"determinar os recursos necessários desses processos e assegurar sua disponibilidade;","m":"d)"},{"k":"l","x":"atribuir as responsabilidades e autoridades para esses processos;","m":"e)"},{"k":"l","x":"abordar os riscos e oportunidades conforme determinados de acordo com os requisitos de 6.1;","m":"f)"},{"k":"l","x":"avaliar esses processos e implementar quaisquer mudanças necessárias para assegurar que esses processos alcancem os resultados pretendidos;","m":"g)"},{"k":"l","x":"melhorar os processos e o sistema de gestão da qualidade.","m":"h)"}]},
+{"id":"4.4.1.1","t":"Conformidade de produtos e processos","s":"4.4 Sistema de Gestão da Qualidade e seus Processos","a":1,"b":[{"k":"p","x":"A organização deve assegurar a conformidade de todos os produtos e processos, incluindo peças para serviço e aqueles que são terceirizados, com todos os requisitos aplicáveis do cliente, estatutários, e regulamentares (ver Seção 8.4.2.2).","i":1}]},
+{"id":"4.4.1.2","t":"Segurança do produto","s":"4.4 Sistema de Gestão da Qualidade e seus Processos","a":1,"b":[{"k":"p","x":"A organização deve ter processos documentados para a gestão da segurança do produto relacionados a produtos e processos de manufatura, que devem incluir, mas não se limitar ao seguinte, onde aplicável:","i":1},{"k":"l","x":"identificação pela organização dos requisitos estatutários e regulamentares de segurança dos produtos;","i":1,"m":"a)"},{"k":"l","x":"notificação do cliente dos requisitos no item a);","i":1,"m":"b)"},{"k":"l","x":"aprovações especiais para FMEA de projeto;","i":1,"m":"c)"},{"k":"l","x":"identificação das características de segurança relacionadas ao produto;","i":1,"m":"d)"},{"k":"l","x":"identificação e controles das características de segurança relacionadas com o produto e no ponto de manufatura;","i":1,"m":"e)"},{"k":"l","x":"aprovação especial de planos de controle e FMEAs de processo;","i":1,"m":"f)"},{"k":"l","x":"planos de reação (ver Seção 9.1.1.1);","i":1,"m":"g)"},{"k":"l","x":"responsabilidades definidas, definição de processo de escalonamento e fluxo de informação, incluindo a alta direção e a notificação ao cliente;","i":1,"m":"h)"},{"k":"l","x":"treinamento identificado pela organização ou pelo cliente para o pessoal envolvido na segurança do produto relacionados a produtos e aos processos de manufatura associados;","i":1,"m":"i)"},{"k":"l","x":"mudanças de produto ou processo devem ser aprovadas antes da implementação, incluindo a avaliação dos efeitos potenciais na segurança do produto a partir de mudanças de processo e produto (ver ISO 9001, Seção 8.3.6);","i":1,"m":"j)"},{"k":"l","x":"transferência de requisitos relacionados a segurança do produto ao longo de toda a cadeia de fornecimento, incluindo fontes designadas pelo cliente (ver Seção 8.4.3.1);","i":1,"m":"k)"},{"k":"l","x":"rastreabilidade de produto por lote manufaturado (no mínimo) ao longo da cadeia de fornecimento (ver Seção 8.5.2.1);","i":1,"m":"l)"},{"k":"l","x":"lições aprendidas para introdução de novos produtos","i":1,"m":"m)"},{"k":"n","x":"NOTA: Aprovação especial é uma aprovação adicional pela função (tipicamente o cliente) que é responsável por aprovar tais documentos com conteúdo relacionado à segurança.","i":1}]},
+{"id":"4.4.2","t":"","s":"4.4 Sistema de Gestão da Qualidade e seus Processos","b":[{"k":"p","x":"Na extensão necessária, a organização deve:"},{"k":"l","x":"manter informação documentada para apoiar a operação de seus processos;","m":"a)"},{"k":"l","x":"reter informação documentada para ter confiança em que os processos sejam realizados conforme planejado.","m":"b)"}]},
+{"id":"5.1.1","t":"Generalidades","s":"5.1 Liderança e Comprometimento","b":[{"k":"p","x":"A Alta Direção deve demonstrar liderança e comprometimento com relação ao sistema de gestão da qualidade:"},{"k":"l","x":"responsabilizando-se por prestar contas pela eficácia do sistema de gestão da qualidade;","m":"a)"},{"k":"n","x":"NOTA BRASILEIRA: A expressão “responsabilidade por prestar conta” foi usada como tradução do termo “taking accountability”"},{"k":"l","x":"assegurando que a política da qualidade e os objetivos da qualidade sejam estabelecidos para o sistema de gestão da qualidade e que sejam compatíveis com o contexto e a direção estratégica da organização;","m":"b)"},{"k":"l","x":"assegurando a integração dos requisitos do sistema de gestão da qualidade nos processos de negócio da organização;","m":"c)"},{"k":"l","x":"promovendo o uso da abordagem de processos e da mentalidade de risco;","m":"d)"},{"k":"l","x":"assegurando que os recursos necessários para o sistema de gestão da qualidade estejam disponíveis;","m":"e)"},{"k":"l","x":"comunicando a importância de uma gestão da qualidade eficaz e de estar conforme com os requisitos do sistema de gestão da qualidade;","m":"f)"},{"k":"l","x":"assegurando que o sistema de gestão da qualidade alcance os resultados pretendidos","m":"g)"},{"k":"l","x":"engajando, dirigindo e apoiando pessoas a contribuir para a eficácia do sistema de gestão da qualidade;","m":"h)"},{"k":"l","x":"promovendo melhoria;","m":"i)"},{"k":"l","x":"apoiando outros papéis pertinentes da gestão a demonstrar como sua liderança se aplica às áreas sob sua responsabilidade.","m":"j)"},{"k":"n","x":"NOTA A referência a “negócio” nesta Norma pode ser interpretada, de modo amplo, como aquelas atividades centrais para os propósitos da existência da organização, seja ela pública, privada, voltada para o lucro ou sem finalidade lucrativa."}]},
+{"id":"5.1.1.1","t":"Responsabilidade corporativa","s":"5.1 Liderança e Comprometimento","a":1,"b":[{"k":"p","x":"A organização deve definir e implementar políticas de responsabilidade corporativa, incluindo, no mínimo, uma política antissuborno, um código de conduta dos colaboradores e uma política de escalação sobre ética (“política de delação”).","i":1}]},
+{"id":"5.1.1.2","t":"Eficácia e eficiência do processo","s":"5.1 Liderança e Comprometimento","a":1,"b":[{"k":"p","x":"A alta direção deve analisar criticamente os processos de realização do produto e os processos de suporte para avaliar e melhorar as suas eficácia e eficiência. Os resultados das atividades de análise crítica do processo devem ser incluídos como entrada para a análise crítica da direção (ver Seção 9.3.2.1).","i":1}]},
+{"id":"5.1.1.3","t":"Donos dos processos","s":"5.1 Liderança e Comprometimento","a":1,"b":[{"k":"p","x":"A alta direção deve identificar os donos dos processos que são responsáveis pelo gerenciamento dos processos da organização e as saídas relacionadas. Os donos dos processos devem entender seus papéis e serem competentes para realizar seus papéis (ver ISO 9001, Seção 7.2).","i":1}]},
+{"id":"5.1.2","t":"Foco no Cliente","s":"5.1 Liderança e Comprometimento","b":[{"k":"p","x":"A alta direção deve demonstrar liderança e comprometimento com relação ao foco no cliente, assegurando que:"},{"k":"l","x":"os requisitos do cliente e os requisitos estatutários e regulamentares pertinentes sejam determinados, entendidos e atendidos consistentemente;","m":"a)"},{"k":"l","x":"os riscos e oportunidades que possam afetar a conformidade de produtos e serviços e a capacidade de aumentar a satisfação do cliente sejam determinados e abordados;","m":"b)"},{"k":"l","x":"o foco no aumento da satisfação do cliente seja mantido.","m":"c)"}]},
+{"id":"5.2.1","t":"Desenvolvendo a Política da Qualidade","s":"5.2 Política","b":[{"k":"p","x":"A Alta Direção deve estabelecer, implementar e manter uma política da qualidade que:"},{"k":"l","x":"seja apropriada ao propósito e ao contexto da organização e apoie seu direcionamento estratégico;","m":"a)"},{"k":"l","x":"proveja uma estrutura para o estabelecimento dos objetivos da qualidade;","m":"b)"},{"k":"l","x":"inclua um comprometimento em satisfazer requisitos aplicáveis;","m":"c)"},{"k":"l","x":"inclua um comprometimento com a melhoria contínua do sistema de gestão da qualidade.","m":"d)"}]},
+{"id":"5.2.2","t":"Comunicando a Política da Qualidade","s":"5.2 Política","b":[{"k":"p","x":"A política da qualidade deve:"},{"k":"l","x":"estar disponível e ser mantida como uma informação documentada;","m":"a)"},{"k":"l","x":"ser comunicada, entendida e aplicada na organização;","m":"b)"},{"k":"l","x":"estar disponível para partes interessadas pertinentes, como apropriado.","m":"c)"}]},
+{"id":"5.3","t":"Papéis, Responsabilidades e Autoridades Organizacionais","s":"5.3 Papéis, Responsabilidades e Autoridades Organizacionais","b":[{"k":"p","x":"A Alta Direção deve assegurar que as responsabilidades e autoridades para papéis pertinentes sejam atribuídas, comunicadas e entendidas na organização."},{"k":"p","x":"A Alta Direção deve atribuir a responsabilidade e autoridade para:"},{"k":"l","x":"assegurar que o sistema de gestão da qualidade esteja conforme com os requisitos desta Norma ;","m":"a)"},{"k":"l","x":"assegurar que os processos entreguem suas saídas pretendidas;","m":"b)"},{"k":"l","x":"relatar o desempenho do sistema de gestão da qualidade e as oportunidades para melhoria (ver 10.1), em particular para a Alta Direção.","m":"c)"},{"k":"l","x":"assegurar a promoção do foco no cliente na organização;","m":"d)"},{"k":"l","x":"assegurar que a integridade do sistema de gestão da qualidade seja mantida quando forem planejadas e implementadas mudanças no sistema de gestão da qualidade.","m":"e)"}]},
+{"id":"5.3.1","t":"Papéis, responsabilidades e autoridades organizacionais – suplemento","s":"5.3 Papéis, Responsabilidades e Autoridades Organizacionais","a":1,"b":[{"k":"p","x":"A alta direção deve designar pessoal com a responsabilidade e autoridade para assegurar o atendimento dos requisitos do cliente. Estas atribuições devem ser documentadas, isto inclui, mas não se limita a: seleção de características especiais, definição dos objetivos da qualidade e treinamento relacionado, ações corretivas e preventivas, projeto e desenvolvimento do produto, análise de capacidade, informação de logística, indicadores do cliente e portais do cliente.","i":1}]},
+{"id":"5.3.2","t":"Responsabilidade e autoridade pelos requisitos do produto e ações corretivas","s":"5.3 Papéis, Responsabilidades e Autoridades Organizacionais","a":1,"b":[{"k":"p","x":"A alta direção deve assegurar que:","i":1},{"k":"l","x":"pessoal responsável pela conformidade aos requisitos do produto tenham autoridade para parar a expedição e parar a produção para corrigir problemas de qualidade;","i":1,"m":"a)"},{"k":"n","x":"NOTA: Devido ao projeto do processo em algumas indústrias, pode ser que não seja sempre possível parar a produção imediatamente. Neste caso, o lote alterado deve ser contido e a expedição ao cliente impedida.","i":1},{"k":"l","x":"pessoal com autoridade e responsabilidade por ações corretivas seja prontamente informado sobre produtos ou processos que não estejam em conformidade com os requisitos, para assegurar que produto não conforme não seja expedido para o cliente e que todo produto potencialmente não conforme seja identificado e contido;","i":1,"m":"b)"},{"k":"l","x":"as operações de produção em todos os turnos sejam supervisionadas com o pessoal encarregado por, ou com responsabilidade delegada para, garantir a conformidade com os requisitos do produto.","i":1,"m":"c)"}]},
+{"id":"6.1.1","t":"","s":"6.1 Ações para Abordar Riscos e Oportunidades","b":[{"k":"p","x":"Ao planejar o sistema de gestão da qualidade, a organização deve considerar as questões referidas em 4.1 e os requisitos referidos em 4.2, e determinar os riscos e oportunidades que precisam ser abordados para:"},{"k":"l","x":"assegurar que o sistema de gestão da qualidade, possa alcançar seus resultados pretendidos;","m":"a)"},{"k":"l","x":"aumentar efeitos desejáveis;","m":"b)"},{"k":"l","x":"prevenir, ou reduzir, efeitos indesejáveis;","m":"c)"},{"k":"l","x":"alcançar melhoria.","m":"d)"}]},
+{"id":"6.1.2","t":"","s":"6.1 Ações para Abordar Riscos e Oportunidades","b":[{"k":"p","x":"A organização deve planejar:"},{"k":"l","x":"ações para abordar esses riscos e oportunidades;","m":"a)"},{"k":"l","x":"como:","m":"b)"},{"k":"l","x":"integrar e implementar as ações nos processos do seu sistema de gestão da qualidade (ver 4.4);","m":"1)","d":1},{"k":"l","x":"avaliar a eficácia dessas ações.","m":"2)","d":1},{"k":"p","x":"Ações tomadas para abordar riscos e oportunidades devem ser apropriadas ao impacto potencial sobre a conformidade de produtos e serviços."},{"k":"n","x":"NOTA 1 Opções para abordar os riscos podem incluir evitar o risco, assumir o risco para perseguir uma oportunidade, eliminar a fonte de risco, mudar a probabilidade ou as consequências, compartilhar o risco ou decidir, com base em informação, reter o risco."},{"k":"n","x":"NOTA 2 Oportunidades podem levar à adoção de novas práticas, lançamento de novos produtos, abertura de novos mercados, abordagem de novos clientes, construção de parcerias, uso de novas tecnologias e outras possibilidades desejáveis e viáveis para abordar as necessidades da organização ou de seus clientes."}]},
+{"id":"6.1.2.1","t":"Análise de risco","s":"6.1 Ações para Abordar Riscos e Oportunidades","a":1,"b":[{"k":"p","x":"A organização deve incluir na sua análise de risco, no mínimo, as lições aprendidas com o recall de produto, auditorias de produto, reparos e retornos de campo, reclamações, sucata e retrabalho.","i":1},{"k":"p","x":"A organização deve reter informações documentadas como evidência dos resultados da análise de risco.","i":1}]},
+{"id":"6.1.2.2","t":"Ação preventiva","s":"6.1 Ações para Abordar Riscos e Oportunidades","a":1,"b":[{"k":"p","x":"A organização deve determinar e implementar ações para eliminar as causas de não conformidades potenciais, a fim de evitar a sua ocorrência. As ações preventivas devem ser apropriadas à severidade dos problemas potenciais.","i":1},{"k":"p","x":"A organização deve estabelecer um processo para diminuir o impacto dos efeitos negativos do risco, incluindo o seguinte:","i":1},{"k":"l","x":"determinação de não conformidades potenciais e suas causas;","i":1,"m":"a)"},{"k":"l","x":"avaliação da necessidade de ações para impedir a ocorrência de não conformidades;","i":1,"m":"b)"},{"k":"l","x":"determinação e implementação de ações necessárias;","i":1,"m":"c)"},{"k":"l","x":"informação documentada das ações tomadas;","i":1,"m":"d)"},{"k":"l","x":"análise crítica da eficácia das ações preventivas tomadas;","i":1,"m":"e)"},{"k":"l","x":"utilização das lições aprendidas para impedir a recorrência em processos similares (ver ISO 9001, Seção 7.1.6).","i":1,"m":"f)"}]},
+{"id":"6.1.2.3","t":"Planos de contingência","s":"6.1 Ações para Abordar Riscos e Oportunidades","a":1,"b":[{"k":"p","x":"A organização deve:","i":1},{"k":"l","x":"identificar e avaliar os riscos internos e externos para todos os processos de manufatura e equipamentos de infraestrutura essenciais para manter as saídas da produção e assegurar que os requisitos do cliente sejam atendidos;","i":1,"m":"a)"},{"k":"l","x":"definir planos de contingência de acordo com o risco e o impacto ao cliente;","i":1,"m":"b)"},{"k":"l","x":"preparar planos de contingência para continuidade do fornecimento em caso de qualquer um dos seguintes eventos: falhas em equipamentos chave (ver Seção 8.5.6.1.1); interrupção dos produtos, processos e serviços providos externamente; desastres naturais recorrentes; fogo; interrupções das utilidades; falta de mão de obra; ou rupturas na infraestrutura;","i":1,"m":"c)"},{"k":"l","x":"incluir, como um suplemento para os planos de contingência, um processo de notificação ao cliente e outras partes interessadas da extensão e da duração de qualquer situação que impacte as operações do cliente;","i":1,"m":"d)"},{"k":"l","x":"testar periodicamente os planos de contingência em relação a sua eficácia (por exemplo, simulações, conforme apropriado);","i":1,"m":"e)"},{"k":"l","x":"conduzir análise crítica do plano de contingência (no mínimo anualmente) usando uma equipe multidisciplinar incluindo a alta direção e atualizar conforme necessário;","i":1,"m":"f)"},{"k":"l","x":"documentar os planos de contingência e reter informações documentadas descrevendo quaisquer revisões, incluindo a(o) pessoa(l) que autorizou a(s) mudança(s).","i":1,"m":"g)"},{"k":"p","x":"Os planos de contingência devem incluir disposições para validar que o produto manufaturado continua a atender as especificações do cliente após o reinício da produção seguida de uma emergência em que a produção foi interrompida e se os processos normais de parada não foram seguidos.","i":1}]},
+{"id":"6.2.1","t":"","s":"6.2 Objetivos da Qualidade e Planejamento para Alcançá-los","b":[{"k":"p","x":"A organização deve estabelecer objetivos da qualidade nas funções, níveis e processos pertinentes necessários para o sistema de gestão da qualidade."},{"k":"p","x":"Os objetivos da qualidade devem:"},{"k":"l","x":"ser coerentes com a política da qualidade;","m":"a)"},{"k":"l","x":"ser mensuráveis;","m":"b)"},{"k":"l","x":"levar em conta os requisitos aplicáveis;","m":"c)"},{"k":"l","x":"ser pertinentes para a conformidade de produtos e serviços e para aumentar a satisfação do cliente;","m":"d)"},{"k":"l","x":"ser monitorados;","m":"e)"},{"k":"l","x":"ser comunicados;","m":"f)"},{"k":"l","x":"ser atualizados como apropriado.","m":"g)"},{"k":"p","x":"A organização deve manter informação documentada sobre os objetivos da qualidade."}]},
+{"id":"6.2.2","t":"","s":"6.2 Objetivos da Qualidade e Planejamento para Alcançá-los","b":[{"k":"p","x":"Ao planejar como alcançar seus objetivos da qualidade, a organização deve determinar:"},{"k":"l","x":"o que será feito;","m":"a)"},{"k":"l","x":"quais recursos serão requeridos;","m":"b)"},{"k":"l","x":"quem será o responsável;","m":"c)"},{"k":"l","x":"quando isso será concluído;","m":"d)"},{"k":"l","x":"como os resultados serão avaliados.","m":"e)"}]},
+{"id":"6.2.2.1","t":"Objetivos da qualidade e o planejamento para alcançá-los – suplemento","s":"6.2 Objetivos da Qualidade e Planejamento para Alcançá-los","a":1,"b":[{"k":"p","x":"A alta direção deve assegurar que os objetivos da qualidade para atender os requisitos do cliente estão definidos, estabelecidos e mantidos para funções, processos e níveis relevantes para toda a organização.","i":1},{"k":"p","x":"Os resultados da análise crítica da organização relacionados às partes interessadas e seus requisitos relevantes devem ser considerados quando a organização estabelecer seus objetivos da qualidade anualmente (no mínimo) e as metas de desempenho relacionadas (internas e externas).","i":1}]},
+{"id":"6.3","t":"Planejamento de Mudanças","s":"6.3 Planejamento de Mudanças","b":[{"k":"p","x":"Quando a organização determina a necessidade de mudanças no sistema de gestão da qualidade, as mudanças devem ser realizadas de uma maneira planejada e sistemática (ver 4.4)."},{"k":"p","x":"A organização deve considerar:"},{"k":"l","x":"o propósito das mudanças e suas consequências;","m":"a)"},{"k":"l","x":"a integridade do sistema de gestão da qualidade;","m":"b)"},{"k":"l","x":"a disponibilidade dos recursos;","m":"c)"},{"k":"l","x":"a alocação ou realocação de responsabilidades e autoridades.","m":"d)"}]},
+{"id":"7.1.1","t":"Generalidades","s":"7.1 Recursos","b":[{"k":"p","x":"A organização deve determinar e prover os recursos necessários para estabelecimento, implementação, manutenção e melhoria contínua do sistema de gestão da qualidade."},{"k":"p","x":"A organização deve considerar:"},{"k":"l","x":"as capacidades e restrições de recursos internos existentes;","m":"a)"},{"k":"l","x":"o que precisa ser obtido de provedores externos.","m":"b)"}]},
+{"id":"7.1.2","t":"Pessoas","s":"7.1 Recursos","b":[{"k":"p","x":"A organização deve determinar e prover as pessoas necessárias para a implementação eficaz do seu sistema de gestão da qualidade e para a operação e controle de seus processos."}]},
+{"id":"7.1.3","t":"Infraestrutura","s":"7.1 Recursos","b":[{"k":"p","x":"A organização deve determinar, prover e manter a infraestrutura necessária para a operação dos seus processos e para alcançar a conformidade de produtos e serviços."},{"k":"n","x":"NOTA Infraestrutura pode incluir:"},{"k":"l","x":"edifícios e instalações associadas;","m":"a)"},{"k":"l","x":"equipamentos, incluindo materiais, máquinas, ferramentas, etc. e software;","m":"b)"},{"k":"n","x":"NOTA BRASILEIRA 1 O termo “hardware” foi traduzido por materiais, máquinas, ferramentas, etc."},{"k":"n","x":"NOTA BRASILEIRA 2 Em edições anteriores, software foi traduzido por “programa de computador”. Nesta edição preferiu-se manter o termo em inglês devido à falta de um termo adequado para designar as diversas novas formas que a palavra software vem adquirindo ao longo do tempo, como programas para aparelhos celulares, tablets; instruções em forma de tecnologia embarcada, instruções de operação etc."},{"k":"l","x":"recursos para transporte;","m":"c)"},{"k":"l","x":"tecnologia de informação e comunicação.","m":"d)"}]},
+{"id":"7.1.3.1","t":"Planejamento da planta, instalação e equipamentos","s":"7.1 Recursos","a":1,"b":[{"k":"p","x":"A organização deve usar uma abordagem multidisciplinar, incluindo a identificação de riscos e métodos de mitigação do risco para desenvolver e melhorar os planos da planta, instalações e equipamentos. Ao projetar os layouts da planta, a organização deve:","i":1},{"k":"l","x":"otimizar o fluxo de material, manuseio de material e o uso com valor agregado do espaço físico, incluindo o controle de produto não conforme; e","i":1,"m":"a)"},{"k":"l","x":"facilitar o fluxo sincronizado dos materiais, conforme aplicável.","i":1,"m":"b)"},{"k":"p","x":"Métodos devem ser desenvolvidos e implementados para avaliar a viabilidade de manufatura de novos produtos ou novas operações. As avaliações da viabilidade de manufatura devem incluir o planejamento da capacidade. Estes métodos também devem ser aplicáveis para avaliar as mudanças propostas das operações existentes.","i":1},{"k":"p","x":"A organização deve manter a eficácia do processo, incluindo a reavaliação periódica em relação ao risco, para incorporar quaisquer mudanças feitas durante a aprovação do processo, manutenção do plano de controle (ver a Seção 8.5.1.1) e verificação das preparações para o trabalho (set-ups) (ver a Seção 8.5.1.3).","i":1},{"k":"p","x":"As avaliações de viabilidade de manufatura e avaliação do planejamento de capacidade devem ser entradas para a análise crítica da direção (ver ISO 9001, Seção 9.3).","i":1},{"k":"n","x":"NOTA 1: Estes requisitos deveriam incluir a aplicação de princípios de manufatura enxuta.","i":1},{"k":"n","x":"NOTA 2: Estes requisitos deveriam ser aplicáveis às atividades do fornecedor no site, conforme aplicável.","i":1}]},
+{"id":"7.1.4","t":"Ambiente para a Operação dos Processos","s":"7.1 Recursos","a":2,"b":[{"k":"p","x":"A organização deve determinar, prover e manter o ambiente necessário para a operação de seus processos e para alcançar a conformidade de produtos e serviços."},{"k":"n","x":"NOTA Um ambiente adequado pode ser a combinação de fatores humanos e físicos, como:"},{"k":"l","x":"social (por exemplo: não-discriminatório, calmo, não-confrontante);","m":"a)"},{"k":"l","x":"psicológico (por exemplo, redutor de estresse, preventivo quanto à exaustão, emocionalmente protetor);","m":"b)"},{"k":"l","x":"físico (por exemplo, temperatura, calor, umidade, luz, fluxo de ar, higiene, ruído).","m":"c)"},{"k":"p","x":"Esses fatores podem diferir substancialmente dependendo dos produtos e serviços providos."},{"k":"n","x":"NOTA: Onde a certificação de terceira parte na ISO 45001 (ou equivalente) for reconhecida, esta pode ser usada para demonstrar a conformidade da organização aos aspectos de segurança pessoa deste requisito.","i":1}]},
+{"id":"7.1.4.1","t":"Ambiente para a operação dos processos – suplemento","s":"7.1 Recursos","a":1,"b":[{"k":"p","x":"A organização deve manter suas instalações em um estado de ordem, limpeza e reparo consistentes com as necessidades do produto e do processo de manufatura.","i":1}]},
+{"id":"7.1.5.1","t":"Generalidades","s":"7.1 Recursos","g":"7.1.5 Recursos de Monitoramento e Medição","b":[{"k":"p","x":"A organização deve determinar e prover os recursos necessários para assegurar resultados válidos e confiáveis quando monitoramento ou medição for usado para verificar a conformidade de produtos e serviços com requisitos."},{"k":"p","x":"A organização deve assegurar que os recursos providos:"},{"k":"l","x":"sejam adequados para o tipo específico de atividades de monitoramento e medição assumidas;","m":"a)"},{"k":"l","x":"sejam mantidos para assegurar que estejam continuamente apropriados aos seus propósitos.","m":"b)"},{"k":"p","x":"A organização deve reter a informação documentada apropriada como evidência de que os recursos de monitoramento e medição sejam apropriados para os seus propósitos."}]},
+{"id":"7.1.5.1.1","t":"Análise do sistema de medição","s":"7.1 Recursos","a":1,"b":[{"k":"p","x":"Estudos estatísticos devem ser conduzidos para analisar a variação presente nos resultados de cada tipo de sistema de inspeção, medição e de equipamento teste identificado no plano de controle. Os métodos analíticos e os critérios de aceitação usados devem estar em conformidade com aqueles dos manuais de referência de análise dos sistemas de medição. Outros métodos analíticos e os critérios de aceitação podem ser usados se aprovado pelo cliente.","i":1},{"k":"p","x":"Registros de aceitação do cliente de métodos alternativos devem ser retidos juntamente com os resultados das análises alternativas dos sistemas de medição (ver Seção 9.1.1.1).","i":1},{"k":"n","x":"NOTA: Priorização dos estudos de MAS deveria focar em características críticas ou especiais do produto ou processo.","i":1}]},
+{"id":"7.1.5.2","t":"Rastreabilidade de Medição","s":"7.1 Recursos","a":2,"b":[{"k":"p","x":"Quando a rastreabilidade de medição for um requisito, ou for considerada pela organização uma parte essencial da provisão de confiança na validade de resultados de medição, os equipamentos de medição devem ser:"},{"k":"l","x":"verificados ou calibrados, ou ambos, a intervalos especificados, ou antes do uso, contra padrões de medição rastreáveis a padrões de medição internacionais ou nacionais; quando tais padrões não existirem, a base usada para calibração ou verificação deve ser retida como informação documentada;","m":"a)"},{"k":"l","x":"identificados para determinar sua situação;","m":"b)"},{"k":"l","x":"salvaguardados contra ajustes, danos ou deterioração que invalidariam a situação de calibração e resultados de medições subsequentes.","m":"c)"},{"k":"p","x":"A organização deve determinar se a validade de resultados de medições anteriores foi adversamente afetada quando o equipamento de medição for constatado inapropriado para seu propósito pretendido, e deve tomar ação apropriada, como necessário."},{"k":"n","x":"NOTA: Um número ou outro identificador rastreável ao registro de calibração do dispositivo atende a intenção dos requisitos da ISO 9001:2015.","i":1}]},
+{"id":"7.1.5.2.1","t":"Registros de calibração/verificação","s":"7.1 Recursos","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado para o gerenciamento dos registros de calibração/verificação. Devem ser retidos os registros das atividades de calibração/verificação para todos os dispositivos de medição e equipamentos de medição e teste (incluindo equipamentos relevantes de propriedade dos empregados para medição, equipamentos de propriedade do cliente ou equipamentos de propriedade do fornecedor no site) necessários para fornecer evidências de conformidade com os requisitos internos, requisitos legais e regulamentares e requisitos definidos pelo cliente.","i":1},{"k":"p","x":"A organização deve assegurar que as atividades de calibração/verificação e registros devem incluir os seguintes detalhes:","i":1},{"k":"l","x":"revisões posteriores às mudanças de engenharia que impactam os sistemas de medição;","i":1,"m":"a)"},{"k":"l","x":"qualquer leitura fora das especificações, conforme recebido para calibração/verificação;","i":1,"m":"b)"},{"k":"l","x":"uma avaliação do risco do uso pretendido do produto, causado pela condição fora das especificações;","i":1,"m":"c)"},{"k":"l","x":"quando uma parte do equipamento de inspeção, medição e teste for encontrada fora de calibração ou defeituosa durante sua verificação ou calibração planejada ou durante seu uso, a informação documentada sobre a validade dos resultados das medições anteriores obtidas com esta parte do equipamento de inspeção, medição e teste devem ser retidas, incluindo a última data padrão de calibração associada e a próxima data no relatório de calibração;","i":1,"m":"d)"},{"k":"l","x":"notificação ao cliente se produto ou material suspeito foi expedido;","i":1,"m":"e)"},{"k":"l","x":"declarações de conformidade com a especificação após a calibração/verificação;","i":1,"m":"f)"},{"k":"l","x":"verificação de que a versão do software usada para controle do produto e processo está como especificado;","i":1,"m":"g)"},{"k":"l","x":"registros das atividades de calibração e manutenção para todos os dispositivos de medição (incluindo equipamentos de propriedade dos empregados, equipamentos de propriedade do cliente ou equipamentos de propriedade do fornecedor no site);","i":1,"m":"h)"},{"k":"l","x":"verificação de software relacionado à produção usado para o controle de produto e processo (incluindo o software instalado nos equipamentos de propriedade dos empregados, equipamentos de propriedade do cliente ou equipamentos de propriedade do fornecedor no site).","i":1,"m":"i)"}]},
+{"id":"7.1.5.3.1","t":"Laboratório interno","s":"7.1 Recursos","g":"7.1.5.3 Requisitos de laboratório","a":1,"b":[{"k":"p","x":"As instalações de laboratório interno da organização devem ter um escopo definido que inclua sua capacidade (capability) para realizar os serviços de inspeção, teste ou calibração necessários. Este escopo de laboratório deve estar incluído na documentação do sistema de gestão da qualidade. O laboratório deve especificar e implementar, no mínimo, os requisitos para:","i":1},{"k":"l","x":"a adequação dos procedimentos técnicos de laboratório;","i":1,"m":"a)"},{"k":"l","x":"a competência do pessoal do laboratório;","i":1,"m":"b)"},{"k":"l","x":"o teste do produto;","i":1,"m":"c)"},{"k":"l","x":"a capacidade (capability) para realizar estes serviços corretamente, rastreáveis as normas relevantes do processo (tais como ASTM, EM, etc.); quando não houver normas nacionais ou internacionais disponíveis, a organização deve definir e implementar uma metodologia para verificar a capacidade (capability) do sistema de medição;","i":1,"m":"d)"},{"k":"l","x":"os requisitos do cliente, se houver;","i":1,"m":"e)"},{"k":"l","x":"a análise crítica dos registros relacionados.","i":1,"m":"f)"},{"k":"n","x":"NOTA: A acreditação de terceira parte na ISO/IEC 17025 (ou equivalente) pode ser utilizada para demonstrar a conformidade do laboratório interno da organização a este requisito.","i":1}]},
+{"id":"7.1.5.3.2","t":"Laboratório externo","s":"7.1 Recursos","a":1,"b":[{"k":"p","x":"As instalações do laboratório externo/comercial/independente, usadas para os serviços de inspeção, teste ou calibração pela organização, devem ter o escopo do laboratório definido que inclua a capacidade (capability) para realizar a requerida inspeção, teste, ou calibração e também:","i":1},{"k":"p","x":"− o laboratório deve ser acreditado na ISO/IEC 17025 ou equivalente nacional e incluir o serviço de calibração, teste ou inspeção relevante no escopo de acreditação (certificado); o certificado de calibração ou relatório de teste deve incluir a marca de um organismo de acreditação nacional; ou − deve haver evidências de que o laboratório externo é aceitável para o cliente.","i":1},{"k":"n","x":"NOTA: Esta evidência pode ser demonstrada, por exemplo, pela avaliação do cliente, ou por uma avaliação de segunda parte aprovada pelo cliente que o laboratório atende a intenção da ISO/IEC 17025 ou equivalente nacional. A avaliação de segunda parte pode ser realizada pela organização avaliando o laboratório, usando um método de avaliação aprovado pelo cliente.","i":1},{"k":"p","x":"Os serviços de calibração podem ser realizados pelo fabricante do equipamento, quando um laboratório qualificado não estiver disponível para uma determinada parte do equipamento. Em tais casos, a organização deve assegurar que foram cumpridos os requisitos listados na Seção 7.1.5.3.1.","i":1},{"k":"p","x":"O uso de serviços de calibração em laboratórios não qualificados (ou não aceitos pelo cliente) pode estar sujeito a confirmação regulamentar do governo, se requerido.","i":1}]},
+{"id":"7.1.6","t":"Conhecimento Organizacional","s":"7.1 Recursos","b":[{"k":"p","x":"A organização deve determinar o conhecimento necessário para a operação de seus processos e para alcançar a conformidade de produtos e serviços."},{"k":"p","x":"Esse conhecimento deve ser mantido e estar disponível na extensão necessária."},{"k":"p","x":"Ao abordar necessidades e tendências de mudanças, a organização deve considerar seu conhecimento no momento e determinar como adquirir ou acessar qualquer conhecimento adicional necessário e atualizações requeridas."},{"k":"n","x":"NOTA 1 Conhecimento organizacional é conhecimento específico para a organização; ele é obtido por experiência."},{"k":"p","x":"Ele é a informação que é usada e compartilhada para alcançar os objetivos da organização."},{"k":"n","x":"NOTA 2 Conhecimento organizacional pode ser baseado em:"},{"k":"l","x":"fontes internas (por exemplo: propriedade intelectual, conhecimento obtido de experiência; lições aprendidas de falhas e de projetos bem-sucedidos; captura e compartilhamento de conhecimento e experiência não documentados; os resultados de melhorias em processos, produtos e serviços);","m":"a)"},{"k":"l","x":"fontes externas (por exemplo: normas, academia, conferências, compilação de conhecimentos de clientes ou provedores externos).","m":"b)"}]},
+{"id":"7.2","t":"Competência","s":"7.2 Competência","b":[{"k":"p","x":"A organização deve:"},{"k":"l","x":"determinar a competência necessária de pessoa(s) que realize(m) trabalho sob o seu controle que afete o desempenho e a eficácia do sistema de gestão da qualidade;","m":"a)"},{"k":"l","x":"assegurar que essas pessoas sejam competentes, com base na educação, treinamento ou experiência apropriados;","m":"b)"},{"k":"l","x":"onde aplicável, tomar ações para adquirir a competência necessária e avaliar a eficácia das ações tomadas;","m":"c)"},{"k":"l","x":"reter informação documentada apropriada, como evidência de competência.","m":"d)"},{"k":"n","x":"NOTA Ações aplicáveis podem incluir, por exemplo, a provisão de treinamento, o mentoreamento ou a mudança de atribuições de pessoas empregadas no momento; ou empregar ou contratar pessoas competentes."},{"k":"n","x":"NOTA BRASILEIRA “Empregar ou contratar”, do termo em inglês – hiring or contracting, significa a contratação temporária ou por tempo indeterminado de pessoal próprio ou de terceiros."}]},
+{"id":"7.2.1","t":"Competência – suplemento","s":"7.2 Competência","a":1,"b":[{"k":"p","x":"A organização deve estabelecer e manter processo(s) documentado(s) para identificar as necessidades de treinamento, incluindo a conscientização (ver Seção 7.3.1) e alcançar a competência de todo o pessoal que realiza atividades que afetam a conformidade aos requisitos do produto e processo. O pessoal que realiza tarefas específicas designadas deve ser qualificado, conforme necessário, com especial atenção para a satisfação de requisitos do cliente.","i":1}]},
+{"id":"7.2.2","t":"Competência – treinamento no local de trabalho","s":"7.2 Competência","a":1,"b":[{"k":"p","x":"A organização deve fornecer treinamento no local de trabalho (que deve incluir treinamento de requisitos do cliente) para o pessoal em qualquer responsabilidade nova ou modificada que afeta a conformidade aos requisitos da qualidade, requisitos internos, requisitos regulamentares ou legislativos, isto deve incluir o pessoal por contrato ou de agência. O nível de detalhe requerido para o treinamento no local de trabalho deve ser proporcional ao nível de educação que o pessoal possui e a complexidade da(s) tarefa(s) que eles são requeridos a realizar em seu trabalho diário. As pessoas cujos trabalhos possam afetar a qualidade devem estar informadas sobre as consequências da não conformidade aos requisitos do cliente.","i":1}]},
+{"id":"7.2.3","t":"Competência do auditor interno","s":"7.2 Competência","a":1,"b":[{"k":"p","x":"A organização deve ter um processo(s) documentado(s) para verificar se os auditores internos são competentes, levando em consideração quaisquer requisitos específicos do cliente. Para diretriz adicional de competências de auditor, consulte a ISO 19011. A organização deve manter uma lista de auditores internos qualificados.","i":1},{"k":"p","x":"Os auditores de sistema de gestão da qualidade, auditores de processo de manufatura, e auditores de produto devem ser capazes de demonstrar as seguintes competências mínimas:","i":1},{"k":"l","x":"entendimento da abordagem de processo automotiva para auditoria, incluindo o pensamento baseado em risco;","i":1,"m":"a)"},{"k":"l","x":"entendimento dos requisitos específicos do cliente aplicáveis;","i":1,"m":"b)"},{"k":"l","x":"entendimento dos requisitos aplicáveis da ISO 9001 e IATF 16949 relacionados ao escopo da auditoria;","i":1,"m":"c)"},{"k":"l","x":"entendimento dos requisitos dos core tools aplicáveis relacionados ao escopo da auditoria;","i":1,"m":"d)"},{"k":"l","x":"entendimento de como planejar, conduzir, relatar e fechar constatações da auditoria.","i":1,"m":"e)"},{"k":"p","x":"Adicionalmente, os auditores de processo de manufatura devem demonstrar entendimento técnico do(s) processo(s) de manufatura relevante(s) a ser(em) auditado(s), incluindo a análise de risco do processo (tais como PFMEA) e o plano de controle. Os auditores de produto devem demonstrar competência no entendimento dos requisitos do produto e o uso de equipamentos de medição e teste relevantes para verificar a conformidade do produto.","i":1},{"k":"p","x":"Onde o treinamento for disponibilizado para alcançar a competência, informações documentadas devem ser retidas para demonstrar a competência do instrutor com os requisitos acima.","i":1},{"k":"p","x":"A manutenção e melhoria da competência do auditor interno devem ser demonstradas através de:","i":1},{"k":"l","x":"execução de um número mínimo de auditorias por ano, conforme definido pela organização; e","i":1,"m":"f)"},{"k":"l","x":"manutenção do conhecimento dos requisitos relevantes com base em mudanças internas (por exemplo, tecnologia de processo, tecnologia de produto) e mudanças externas (por exemplo, ISO 9001, IATF 16949, core tools e requisitos específicos do cliente).","i":1,"m":"g)"}]},
+{"id":"7.2.4","t":"Competência do auditor de segunda parte","s":"7.2 Competência","a":1,"b":[{"k":"p","x":"A organização deve demonstrar a competência dos auditores que realizam as auditorias de segunda parte. Os auditores de segunda parte devem atender aos requisitos específicos do cliente para a qualificação de auditor e demonstrar no mínimo as seguintes competências chaves, incluindo o entendimento:","i":1},{"k":"l","x":"da abordagem de processo automotiva para auditoria, incluindo o pensamento baseado em riscos;","i":1,"m":"a)"},{"k":"l","x":"dos requisitos específicos do cliente e da organização aplicáveis;","i":1,"m":"b)"},{"k":"l","x":"dos requisitos aplicáveis da ISO 9001 e IATF 16949 relacionados ao escopo da auditoria;","i":1,"m":"c)"},{"k":"l","x":"do(s) processo(s) de manufatura aplicável(is) a ser(em) auditado(s), incluindo o PFMEA e o plano de controle;","i":1,"m":"d)"},{"k":"l","x":"dos requisitos de core tools aplicáveis relacionados ao escopo da auditoria;","i":1,"m":"e)"},{"k":"l","x":"como planejar, conduzir, elaborar relatórios de auditoria e fechar constatações de auditoria.","i":1,"m":"f)"}]},
+{"id":"7.3","t":"Conscientização","s":"7.3 Conscientização","b":[{"k":"p","x":"A organização deve assegurar que pessoas que realizam trabalho sob o controle da organização, estejam conscientes:"},{"k":"l","x":"da política da qualidade;","m":"a)"},{"k":"l","x":"dos objetivos da qualidade pertinentes;","m":"b)"},{"k":"l","x":"da sua contribuição para a eficácia do sistema de gestão da qualidade, incluindo os benefícios de desempenho melhorado;","m":"c)"},{"k":"l","x":"das implicações de não estar conforme com os requisitos do sistema de gestão da qualidade.","m":"d)"}]},
+{"id":"7.3.1","t":"Conscientização – suplemento","s":"7.3 Conscientização","a":1,"b":[{"k":"p","x":"A organização deve manter informação documentada que demonstre que todos os colaboradores estão conscientes de seus impactos na qualidade do produto e a importância de suas atividades no atingimento, manutenção, e melhoria da qualidade, incluindo os requisitos do cliente e os riscos envolvidos para o cliente com produtos não conformes.","i":1}]},
+{"id":"7.3.2","t":"Motivação e empowerment de seus funcionários","s":"7.3 Conscientização","a":1,"b":[{"k":"p","x":"A organização deve manter processo(s) documentado(s) para motivar os colaboradores a alcançar os objetivos da qualidade, para fazer melhorias contínuas e para criar um ambiente que promova a inovação. O processo deve incluir a promoção da qualidade e a conscientização tecnológica por toda a organização.","i":1}]},
+{"id":"7.4","t":"Comunicação","s":"7.4 Comunicação","b":[{"k":"p","x":"A organização deve determinar as comunicações internas e externas pertinentes para o sistema de gestão da qualidade, incluindo:"},{"k":"l","x":"sobre o que comunicar;","m":"a)"},{"k":"l","x":"quando se comunicar;","m":"b)"},{"k":"l","x":"com quem se comunicar;","m":"c)"},{"k":"l","x":"como comunicar;","m":"d)"},{"k":"l","x":"quem comunica.","m":"e)"}]},
+{"id":"7.5.1","t":"Generalidades","s":"7.5 Informação Documentada","b":[{"k":"p","x":"O sistema de gestão da qualidade da organização deve incluir:"},{"k":"l","x":"informação documentada requerida por esta Norma ;","m":"a)"},{"k":"l","x":"informação documentada determinada pela organização como sendo necessária para a eficácia do sistema de gestão da qualidade;","m":"b)"},{"k":"n","x":"NOTA A extensão da informação documentada para um sistema de gestão da qualidade pode diferir de uma organização para outra devido:"},{"k":"l","x":"ao porte da organização e seu tipo de atividades, processos, produtos e serviços;","m":"•"},{"k":"l","x":"à complexidade dos processos e suas interações;","m":"•"},{"k":"l","x":"à competência de pessoas.","m":"•"}]},
+{"id":"7.5.1.1","t":"Documentação do sistema de gestão da qualidade","s":"7.5 Informação Documentada","a":1,"b":[{"k":"p","x":"O sistema de gestão da qualidade da organização deve ser documentado e incluir um manual da qualidade, o qual pode ser uma série de documentos (cópia eletrônica ou física).","i":1},{"k":"p","x":"O formato e a estrutura do manual da qualidade são a critério da organização e irá depender do tamanho, da cultura e da complexidade da organização. Se for usada uma série de documentos, então deve ser retida uma lista dos documentos que compõem o manual da qualidade para a organização.","i":1},{"k":"p","x":"O manual da qualidade deve incluir, no mínimo, o seguinte:","i":1},{"k":"l","x":"o escopo do sistema de gestão da qualidade, incluindo detalhes e justificativas para quaisquer exclusões;","i":1,"m":"a)"},{"k":"l","x":"os processos documentados estabelecidos para o sistema de gestão da qualidade, ou referência a eles;","i":1,"m":"b)"},{"k":"l","x":"os processos da organização e sua sequência e interações (entradas e saídas), incluindo o tipo e a extensão do controle de quaisquer processos terceirizados;","i":1,"m":"c)"},{"k":"l","x":"um documento (isto é, matriz) indicando onde dentro de sistema de gestão da qualidade da organização são abordados os requisitos específicos do cliente.","i":1,"m":"d)"},{"k":"n","x":"NOTA: Uma matriz de como os requisitos desta Norma de SGQ Automotiva são abordados pelos processos da organização pode ser utilizada para auxiliar com as ligações dos processos da organização a este SGQ Automotiva.","i":1}]},
+{"id":"7.5.2","t":"Criando e Atualizando","s":"7.5 Informação Documentada","b":[{"k":"p","x":"Ao criar e atualizar informação documentada, a organização deve assegurar apropriados(as):"},{"k":"l","x":"identificação e descrição (por exemplo: um título, data, autor ou número de referência);","m":"a)"},{"k":"l","x":"formato (por exemplo: linguagem, versão do software, gráficos) e meio (por exemplo: papel, eletrônico);","m":"b)"},{"k":"l","x":"análise crítica e aprovação quanto à adequação e suficiência.","m":"c)"}]},
+{"id":"7.5.3.1","t":"","s":"7.5 Informação Documentada","g":"7.5.3 Controle de Informação Documentada","b":[{"k":"p","x":"A informação documentada requerida pelo sistema de gestão da qualidade e por esta Norma deve ser controlada, para assegurar que:"},{"k":"l","x":"ela esteja disponível e adequada para uso, onde e quando ela for necessária;","m":"a)"},{"k":"l","x":"ela esteja protegida suficientemente (por exemplo, contra perda de confidencialidade, uso impróprio ou perda de integridade).","m":"b)"}]},
+{"id":"7.5.3.2","t":"","s":"7.5 Informação Documentada","b":[{"k":"p","x":"Para o controle de informação documentada, a organização deve abordar as seguintes atividades, como aplicável:"},{"k":"l","x":"distribuição, acesso, recuperação e uso;","m":"a)"},{"k":"l","x":"armazenamento e preservação, incluindo preservação da legibilidade;","m":"b)"},{"k":"l","x":"controle de alterações (por exemplo, controle de versões);","m":"c)"},{"k":"l","x":"retenção e disposição.","m":"d)"},{"k":"p","x":"A informação documentada de origem externa determinada pela organização como necessária para o planejamento e operação do sistema de gestão da qualidade deve ser identificada, como apropriado, e controlada."},{"k":"p","x":"Informação documentada retida como evidência de conformidade deve ser protegida contra alterações não intencionais."},{"k":"n","x":"NOTA Acesso pode implicar uma decisão sobre à permissão de somente ver a informação documentada ou a permissão e autoridade para ver e alterar a informação documentada."}]},
+{"id":"7.5.3.2.1","t":"Retenção de registro","s":"7.5 Informação Documentada","a":1,"b":[{"k":"p","x":"A organização deve definir, documentar e implementar uma política de retenção de registros. O controle de registros deve satisfazer os requisitos estatutários, regulamentares, organizacionais e do cliente.","i":1},{"k":"p","x":"As aprovações da peça de produção, registros de ferramental (incluindo manutenção e propriedade), registros de projeto de produto e processo, ordens de compra (se aplicável), ou contratos e emendas devem ser retidos pelo período de tempo em que o produto está ativo para os requisitos de produção e serviço, mais um ano calendário, salvo especificado em contrário pelo cliente ou agência regulatória.","i":1},{"k":"n","x":"NOTA: A informação documentada da aprovação da peça de produção pode incluir o produto aprovado, registros de equipamentos de teste aplicáveis, ou dados de aprovação de testes.","i":1}]},
+{"id":"7.5.3.2.2","t":"Especificações de engenharia","s":"7.5 Informação Documentada","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado descrevendo a análise crítica, distribuição e implementação de todas as normas/especificações de engenharia do cliente e as revisões relacionadas, baseado nas programações do cliente, conforme requerido.","i":1},{"k":"p","x":"Quando uma mudança de norma/especificação de engenharia resultar em mudança do projeto do produto consulte os requisitos da ISO 9001, Seção 8.3.6. Quando uma mudança de norma/especificação de engenharia resultar e uma mudança do processo de realização de produto consulte os requisitos na Seção 8.5.6.1. A organização deve manter um registro da data na qual cada mudança é implementada na produção. A implementação deve incluir os documentos atualizados.","i":1},{"k":"p","x":"A análise crítica deveria ser concluída dentro de 10 dias úteis após o recebimento da notificação de mudança de normas/especificações de engenharia.","i":1},{"k":"n","x":"NOTA: Uma mudança em tais normas/especificações pode requerer um registro atualizado da aprovação da peça de produção do cliente quando estas especificações são referenciadas no registro de projeto, ou se elas afetam documentos do processo de aprovação de peça de produção, como o plano de controle, a análise de risco (tais como FMEAs), etc.","i":1}]},
+{"id":"8.1","t":"Planejamento e Controle Operacionais","s":"8.1 Planejamento e Controle Operacionais","b":[{"k":"p","x":"A organização deve planejar, implementar e controlar os processos (ver 4.4) necessários para atender aos requisitos para provisão de produtos e serviços e para implementar as ações determinadas na Seção 6 ao:"},{"k":"l","x":"determinar os requisitos para os produtos e serviços;","m":"a)"},{"k":"l","x":"estabelecer critérios para:","m":"b)"},{"k":"l","x":"os processos;","m":"1)","d":1},{"k":"l","x":"a aceitação de produtos e serviços;","m":"2)","d":1},{"k":"l","x":"determinar os recursos necessários para alcançar conformidade com os requisitos do produto e serviço;","m":"c)"},{"k":"l","x":"implementar controle de processos de acordo com critérios;","m":"d)"},{"k":"l","x":"determinar e conservar informação documentada na extensão necessária para:","m":"e)"},{"k":"l","x":"ter confiança em que os processos foram conduzidos como planejado;","m":"1)","d":1},{"k":"l","x":"demonstrar a conformidade de produtos e serviços com seus requisitos.","m":"2)","d":1},{"k":"p","x":"A saída desse planejamento deve ser adequada para as operações da organização."},{"k":"p","x":"A organização deve controlar mudanças planejadas e analisar criticamente as consequências de mudanças não intencionais, tomando ações para mitigar quaisquer efeitos adversos, como necessário."},{"k":"p","x":"A organização deve assegurar que os processos terceirizados sejam controlados (ver 8.4)."}]},
+{"id":"8.1.1","t":"Planejamento e controle operacionais – suplemento","s":"8.1 Planejamento e Controle Operacionais","a":1,"b":[{"k":"p","x":"Ao planejar a realização do produto, os seguintes tópicos devem ser incluídos:","i":1},{"k":"l","x":"requisitos do produto e especificações técnicas do cliente;","i":1,"m":"a)"},{"k":"l","x":"requisitos de logística;","i":1,"m":"b)"},{"k":"l","x":"viabilidade de manufatura;","i":1,"m":"c)"},{"k":"l","x":"planejamento de projeto (ver ISO 9001, Seção 8.3.2);","i":1,"m":"d)"},{"k":"l","x":"critério de aceitação.","i":1,"m":"e)"},{"k":"p","x":"Os recursos identificados na ISO 9001, Seção 8.1.c), referem-se às atividades específicas de verificação, validação, monitoramento, medição, inspeção e teste requeridas para o produto e os critérios para a aceitação do produto.","i":1}]},
+{"id":"8.1.2","t":"Confidencialidade","s":"8.1 Planejamento e Controle Operacionais","a":1,"b":[{"k":"p","x":"A organização deve assegurar a confidencialidade dos produtos e projetos contratados pelo cliente em desenvolvimento, incluindo informações relacionadas ao produto.","i":1}]},
+{"id":"8.2.1","t":"Comunicação com o Cliente","s":"8.2 Requisitos para Produtos e Serviços","b":[{"k":"p","x":"A comunicação com o cliente deve incluir:"},{"k":"l","x":"prover informação relativa a produtos e serviços;","m":"a)"},{"k":"l","x":"lidar com consultas, contratos ou pedidos, incluído mudanças;","m":"b)"},{"k":"l","x":"obter retroalimentação do cliente relativa a produtos e serviços, incluindo reclamações do cliente;","m":"c)"},{"k":"l","x":"lidar ou controlar propriedade do cliente;","m":"d)"},{"k":"l","x":"estabelecer requisitos específicos para ações de contingência, quando pertinente.","m":"e)"}]},
+{"id":"8.2.1.1","t":"Comunicação com o cliente – suplemento","s":"8.2 Requisitos para Produtos e Serviços","a":1,"b":[{"k":"p","x":"A comunicação verbal ou escrita deve ser na linguagem acordada com o cliente. A organização deve ter a habilidade de comunicar as informações necessárias, incluindo os dados na linguagem e no formato da linguagem de computador especificada pelo cliente (por exemplo, dados de projeto assistido por computador, troca eletrônica de dados).","i":1}]},
+{"id":"8.2.2","t":"Determinação de Requisitos relativos a Produtos e Serviços","s":"8.2 Requisitos para Produtos e Serviços","b":[{"k":"p","x":"Ao determinar os requisitos para os produtos e serviços a serem oferecidos para clientes, a organização deve assegurar que:"},{"k":"l","x":"os requisitos para produtos e serviços estão definidos, incluindo:","m":"a)"},{"k":"l","x":"quaisquer requisitos estatutários e regulamentares aplicáveis;","m":"1)","d":1},{"k":"l","x":"aqueles considerados necessários pela organização;","m":"2)","d":1},{"k":"l","x":"a organização possa atender aos pleitos para os produtos e serviços que ela oferece.","m":"b)"}]},
+{"id":"8.2.2.1","t":"Determinação de requisitos relativos a produtos e serviços – suplemento","s":"8.2 Requisitos para Produtos e Serviços","a":1,"b":[{"k":"p","x":"Estes requisitos devem incluir a reciclagem, impacto ambiental e características identificadas como resultado do conhecimento do produto e dos processos de manufatura pela organização.","i":1},{"k":"p","x":"A conformidade com a ISO 9001, Seção 8.2.2 item a) 1), deve incluir, mas não se limitar ao seguinte: todas as regulamentações governamentais de segurança e ambientais aplicáveis, relacionadas com a aquisição, armazenamento, manuseio, reciclagem, eliminação ou disposição de material.","i":1}]},
+{"id":"8.2.3.1","t":"","s":"8.2 Requisitos para Produtos e Serviços","g":"8.2.3 Análise Crítica de Requisitos Relativos a Produtos e Serviços","b":[{"k":"p","x":"A organização deve assegurar que ela tenha capacidade de atender aos requisitos para produtos e serviços a serem oferecidos a clientes. A organização deve conduzir uma análise crítica antes de se comprometer a fornecer produtos e serviços a um cliente, para incluir:"},{"k":"l","x":"requisitos especificados pelo cliente, incluindo os requisitos de entrega e atividades de entrega e pós- entrega;","m":"a)"},{"k":"l","x":"requisitos não declarados pelo cliente, mas necessários para o uso especificado ou pretendido, quando conhecido;","m":"b)"},{"k":"l","x":"requisitos especificados pela organização;","m":"c)"},{"k":"l","x":"requisitos estatutários e regulamentares aplicáveis a produtos e serviços;","m":"d)"},{"k":"l","x":"requisitos de contrato ou pedido diferentes daqueles previamente expressos.","m":"e)"},{"k":"p","x":"A organização deve assegurar que os requisitos de contrato ou pedido divergentes daqueles previamente definidos sejam resolvidos."},{"k":"p","x":"Os requisitos do cliente devem ser confirmados pela organização antes da aceitação, quando o cliente não prover uma declaração documentada de seus requisitos."},{"k":"n","x":"NOTA Em algumas situações, como vendas pela internet, uma análise crítica formal para cada pedido é impraticável. Nesses casos, a análise crítica pode compreender as informações pertinentes ao produto, como catálogos."}]},
+{"id":"8.2.3.1.1","t":"Análise crítica de requisitos relativos a produtos e serviços – suplemento","s":"8.2 Requisitos para Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve reter evidência documentada de uma derroga autorizada pelo cliente nos requisitos estabelecidos na ISO 9001, Seção 8.2.3.1, para uma análise crítica formal.","i":1}]},
+{"id":"8.2.3.1.2","t":"Características especiais designadas pelo cliente","s":"8.2 Requisitos para Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve estar em conformidade com os requisitos do cliente para designação, documentação de aprovação e controle das características especiais.","i":1}]},
+{"id":"8.2.3.1.3","t":"Viabilidade de manufatura da organização","s":"8.2 Requisitos para Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve utilizar uma abordagem multidisciplinar para conduzir uma análise para determinar se é viável que os processos de manufatura da organização sejam capazes de produzir consistentemente produto que atenda todos os requisitos de engenharia e capacidade especificados pelo cliente. A organização deve conduzir esta análise de viabilidade para qualquer nova tecnologia de manufatura ou produto da organização e para qualquer mudança no projeto do processo de manufatura ou do produto.","i":1},{"k":"p","x":"Adicionalmente, a organização deveria validar através de corridas de produção, estudos de benchmarking ou outros métodos apropriados, a sua capacidade de realizar o produto de acordo com as especificações a uma taxa requerida.","i":1}]},
+{"id":"8.2.3.2","t":"","s":"8.2 Requisitos para Produtos e Serviços","b":[{"k":"p","x":"A organização deve reter informação documentada, como aplicável, sobre:"},{"k":"l","x":"os resultados da análise crítica;","m":"a)"},{"k":"l","x":"quaisquer novos requisitos para os produtos e serviços.","m":"b)"}]},
+{"id":"8.2.4","t":"Mudanças nos Requisitos para Produtos e Serviços","s":"8.2 Requisitos para Produtos e Serviços","b":[{"k":"p","x":"A organização deve assegurar que informação documentada pertinente seja emendada, e que as pessoas pertinentes sejam alertadas dos requisitos mudados, quando os requisitos para produtos e serviços forem mudados."}]},
+{"id":"8.3.1","t":"Generalidades","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","b":[{"k":"p","x":"A organização deve estabelecer, implementar e manter um processo de projeto e desenvolvimento que seja apropriado para assegurar a subsequente provisão de produtos e serviços."}]},
+{"id":"8.3.1.1","t":"Projeto e desenvolvimento de produtos e serviços – suplemento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"Os requisitos da ISO 9001, Seção 8.3.1, devem ser aplicados ao projeto e desenvolvimento do produto e do processo de manufatura e devem se concentrar mais na prevenção de erros do que na detecção.","i":1},{"k":"p","x":"A organização deve documentar o processo de projeto e desenvolvimento.","i":1}]},
+{"id":"8.3.2","t":"Planejamento de Projeto e Desenvolvimento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","b":[{"k":"p","x":"Na determinação dos estágios e controles para projeto e desenvolvimento, a organização deve considerar:"},{"k":"l","x":"a natureza, duração e complexidade das atividades de projeto e desenvolvimento;","m":"a)"},{"k":"l","x":"os estágios de processo requeridos, incluindo análises críticas de projeto e desenvolvimento aplicáveis;","m":"b)"},{"k":"l","x":"as atividades de verificação e validação de projeto e desenvolvimento requeridas;","m":"c)"},{"k":"l","x":"as responsabilidades e autoridades envolvidas no processo de projeto e desenvolvimento;","m":"d)"},{"k":"l","x":"os recursos internos e externos necessários para o projeto e desenvolvimento de produtos e serviços;","m":"e)"},{"k":"l","x":"a necessidade de controlar as interfaces entre pessoas envolvidas no processo de projeto e desenvolvimento;","m":"f)"},{"k":"l","x":"a necessidade de envolvimento de clientes e usuários no processo de projeto e desenvolvimento;","m":"g)"},{"k":"l","x":"os requisitos para a provisão subsequente de produtos e serviços;","m":"h)"},{"k":"l","x":"o nível de controle esperado para o processo de projeto e desenvolvimento por clientes e outras partes interessadas pertinentes;","m":"i)"},{"k":"l","x":"a informação documentada necessária, para demonstrar que os requistos de projeto e desenvolvimento foram atendidos.","m":"j)"}]},
+{"id":"8.3.2.1","t":"Planejamento do projeto e desenvolvimento – suplemento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve assegurar que o planejamento do projeto e desenvolvimento inclua todas as partes interessadas afetadas dentro da organização e, como apropriado, sua cadeia de fornecimento. Exemplos de áreas para o uso de uma abordagem multidisciplinar incluem, mas não se limitam ao seguinte:","i":1},{"k":"l","x":"gestão de projetos (por exemplo, APQP ou VDA-RGA);","i":1,"m":"a)"},{"k":"l","x":"atividades de projeto do produto e do processo de manufatura (por exemplo, DFM e DFA), tais como a consideração do uso de projetos e processos de manufatura alternativos;","i":1,"m":"b)"},{"k":"l","x":"desenvolvimento e análise crítica da análise de riscos do processo de manufatura (por exemplo, FMEAs, fluxogramas de processo, planos de controle e instruções de trabalho padrão).","i":1,"m":"c)"},{"k":"n","x":"NOTA: Uma abordagem multidisciplinar tipicamente inclui o projeto, a manufatura, a engenharia, a qualidade, a produção, a aquisição, o fornecedor, a manutenção e outras funções apropriadas da organização.","i":1}]},
+{"id":"8.3.2.2","t":"Habilidades para o projeto do produto","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve assegurar que o pessoal com responsabilidade pelo projeto do produto seja competente para alcançar os requisitos de projeto e seja hábil em ferramentas e técnicas de projeto do produto aplicáveis. Técnicas e ferramentas aplicáveis devem ser identificadas pela organização.","i":1},{"k":"n","x":"NOTA: Um exemplo de habilidades para o projeto do produto é a aplicação da base de dados digitalizados matematicamente.","i":1}]},
+{"id":"8.3.2.3","t":"Desenvolvimento de produtos com software embarcado","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve usar um processo para assegurar a qualidade de seus produtos com software embarcado desenvolvido internamente. Uma metodologia de avaliação de desenvolvimento de software deve ser utilizada para avaliar o processo de desenvolvimento de software da organização. Usando a priorização baseada em risco e o impacto potencial para o cliente, a organização deve reter informação documentada de uma autoavaliação da capacidade (capability) de desenvolvimento de software.","i":1},{"k":"p","x":"A organização deve incluir o desenvolvimento de software no escopo do se programa de auditoria interna (ver Seção 9.2.2.1).","i":1}]},
+{"id":"8.3.3","t":"Entradas de Projeto e Desenvolvimento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","b":[{"k":"p","x":"A organização deve determinar os requisitos essenciais para os tipos específicos de produtos e serviços a serem projetados e desenvolvidos. A organização deve considerar:"},{"k":"l","x":"requisitos funcionais e de desempenho;","m":"a)"},{"k":"l","x":"informação derivada de atividades similares de projeto e desenvolvimento anteriores;","m":"b)"},{"k":"l","x":"requisitos estatutários e regulamentares;","m":"c)"},{"k":"l","x":"normas ou códigos de prática que a organização tenha se comprometido a implementar;","m":"d)"},{"k":"l","x":"consequências potenciais de falhas devidas à natureza de produtos e serviços.","m":"e)"},{"k":"p","x":"Entradas devem ser adequadas aos propósitos do projeto e desenvolvimento, completas e sem ambiguidades."},{"k":"p","x":"Entradas conflitantes de projeto e desenvolvimento devem ser resolvidas."},{"k":"p","x":"A organização deve reter informação documentada das entradas de projeto e desenvolvimento."}]},
+{"id":"8.3.3.1","t":"Entradas de projeto do produto","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve identificar, documentar e analisar criticamente os requisitos de entrada de projeto do produto como um resultado da análise crítica de contrato. Os requisitos de entrada de projeto do produto incluem, mas não se limitam ao seguinte:","i":1},{"k":"l","x":"especificações do produto incluindo, mas não se limitando a características especiais (ver Seção 8.3.3.3);","i":1,"m":"a)"},{"k":"l","x":"requisitos de limites e interfaces;","i":1,"m":"b)"},{"k":"l","x":"identificação, rastreabilidade e embalagem;","i":1,"m":"c)"},{"k":"l","x":"consideração de alternativas de projeto;","i":1,"m":"d)"},{"k":"l","x":"avaliação de riscos nos requisitos de entrada e a habilidade da organização em mitigar/gerenciar estes riscos, incluindo os vindos da análise de viabilidade;","i":1,"m":"e)"},{"k":"l","x":"metas para a conformidade com os requisitos do produto incluindo preservação, confiabilidade, durabilidade, facilidade de serviços, saúde, segurança, ambiente, tempo de desenvolvimento e custo;","i":1,"m":"f)"},{"k":"l","x":"requisitos estatutários e regulamentares aplicáveis do país de destino identificados pelo cliente, se fornecidos;","i":1,"m":"g)"},{"k":"l","x":"requisitos de software embarcado.","i":1,"m":"h)"},{"k":"p","x":"A organização deve ter um processo para desdobrar as informações obtidas a partir de projetos anteriores, análise do produto da concorrência (benchmarking), realimentação de fornecedor, entrada interna, dados de campo e outras fontes relevantes para projetos atuais e futuros de natureza similar.","i":1},{"k":"n","x":"NOTA: Uma abordagem para considerar alternativas de projeto é o uso de curvas de correlação (trade-off).","i":1}]},
+{"id":"8.3.3.2","t":"Entradas de projeto do processo de manufatura","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve identificar, documentar e analisar criticamente os requisitos de entrada de projeto do processo de manufatura incluindo, mas não se limitando ao seguinte:","i":1},{"k":"l","x":"dados de saída de projeto do produto incluindo características especiais;","i":1,"m":"a)"},{"k":"l","x":"metas para a produtividade, capacidade (capability) de processo, tempo e custo;","i":1,"m":"b)"},{"k":"l","x":"tecnologias alternativas de manufatura;","i":1,"m":"c)"},{"k":"l","x":"requisitos de cliente, se houver;","i":1,"m":"d)"},{"k":"l","x":"experiência de desenvolvimentos anteriores;","i":1,"m":"e)"},{"k":"l","x":"novos materiais;","i":1,"m":"f)"},{"k":"l","x":"requisitos ergonômicos e de manuseio do produto; e","i":1,"m":"g)"},{"k":"l","x":"projeto para manufatura e projeto para montagem.","i":1,"m":"h)"},{"k":"p","x":"O projeto do processo de manufatura deve incluir o uso de métodos à prova de erro em um grau apropriado em relação à magnitude do(s) problema(s) e proporcional aos riscos encontrados.","i":1}]},
+{"id":"8.3.3.3","t":"Características especiais","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve usar uma abordagem multidisciplinar para estabelecer, documentar e implementar seu(s) processo(s) para identificar características especiais, incluindo aquelas determinadas pelo cliente e da análise de risco realizada pela organização e deve incluir o seguinte:","i":1},{"k":"l","x":"documentação de todas as características especiais nos desenhos (conforme requerido), análise de risco (tais como FMEA), planos de controle e instruções padronizadas de trabalho/operador; as características especiais sejam identificadas com marcações específicas sejam cascateadas através de cada um destes documentos;","i":1,"m":"a)"},{"k":"l","x":"desenvolvimento de estratégias de controle e monitoramento de características especiais de produtos e processos de produção;","i":1,"m":"b)"},{"k":"l","x":"aprovações especificadas pelo cliente, quando requeridas;","i":1,"m":"c)"},{"k":"l","x":"conformidade com as definições e símbolos especificados pelo cliente ou símbolos ou notações equivalentes da organização, conforme definido em uma tabela de conversão de símbolos. A tabela de conversão de símbolos deve ser submetida ao cliente, se requerida.","i":1,"m":"d)"}]},
+{"id":"8.3.4","t":"Controles de Projeto e Desenvolvimento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","b":[{"k":"p","x":"A organização deve aplicar controles para o processo de projeto e desenvolvimento para assegurar que:"},{"k":"l","x":"os resultados a serem alcançados estejam definidos;","m":"a)"},{"k":"l","x":"análises críticas sejam conduzidas para avaliar a capacidade de os resultados de projeto e desenvolvimento atenderem a requisitos;","m":"b)"},{"k":"l","x":"atividades de verificação sejam conduzidas para assegurar que as saídas de projeto e desenvolvimento atendam aos requisitos de entrada;","m":"c)"},{"k":"l","x":"atividades de validação sejam conduzidas para assegurar que os produtos e serviços resultantes atendam aos requisitos para a aplicação especificada ou uso pretendido;","m":"d)"},{"k":"l","x":"quaisquer ações necessárias sejam tomadas sobre os problemas determinados durante as análises críticas ou atividades de verificação e validação;","m":"e)"},{"k":"l","x":"informação documentada sobre essas atividades seja retida.","m":"f)"},{"k":"n","x":"NOTA Análises críticas de projeto e desenvolvimento, verificação e validação têm propósitos distintos. Elas podem ser conduzidas separadamente ou em qualquer combinação, como for adequado para os produtos e serviços da organização."}]},
+{"id":"8.3.4.1","t":"Monitoramento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"As medições em estágios especificados durante o projeto e o desenvolvimento de produtos e processos devem ser definidas, analisadas e relatadas com resultados resumidos, como uma entrada para a análise crítica da direção (ver Seção 9.3.2.1).","i":1},{"k":"p","x":"Quando requerido pelo cliente, as atividades de medições do desenvolvimento do produto e do processo devem ser relatadas ao cliente em estágios especificados, ou acordados, pelo cliente.","i":1},{"k":"n","x":"NOTA: Quando apropriado, estas medições podem incluir riscos da qualidade, custos, prazos, caminhos críticos e outras medições.","i":1}]},
+{"id":"8.3.4.2","t":"Validação do projeto e desenvolvimento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A validação do projeto e desenvolvimento deve ser realizada em conformidade com os requisitos do cliente, incluindo quaisquer normas regulamentares emitidas pela indústria ou por agências governamentais. O período da validação do projeto e desenvolvimento deve ser planejado em alinhamento com o período especificado pelo cliente, conforma aplicável.","i":1},{"k":"p","x":"Quando contratualmente acordado com o cliente, esta deve incluir a avaliação da interação do produto da organização, incluindo o software embarcado, dentro do sistema do produto do cliente final.","i":1}]},
+{"id":"8.3.4.3","t":"Programas de protótipo","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"Quando requerido pelo cliente, a organização deve ter um programa de protótipo e um plano de controle. A organização deve utilizar, sempre que possível, os mesmos fornecedores, ferramental e processos de manufatura, que serão usados na produção.","i":1},{"k":"p","x":"Todas as atividades de testes de desempenho devem ser monitoradas para serem concluídas no prazo e em conformidade aos requisitos.","i":1},{"k":"p","x":"Quando serviços são terceirizados, a organização deve incluir o tipo e a extensão do controle no escopo do seu sistema de gestão da qualidade para assegurar que os serviços terceirizados estejam em conformidade com os requisitos (ver ISO 9001, Seção 8.4).","i":1}]},
+{"id":"8.3.4.4","t":"Processo de aprovação do produto","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve estabelecer, implementar e manter um processo de aprovação do produto e da manufatura em conformidade com os requisitos definidos pelo(s) cliente(s).","i":1},{"k":"p","x":"A organização deve aprovar produtos e serviços externamente de acordo com a ISO 9001, Seção 8.4.3, antes da submissão da aprovação de sua peça para o cliente.","i":1},{"k":"p","x":"A organização deve obter uma aprovação de produto documentada antes da expedição, se querido pelo cliente. Deve ser retido registro de tal aprovação.","i":1},{"k":"n","x":"NOTA: Aprovação do produto deveria ser subsequente à verificação do processo de manufatura.","i":1}]},
+{"id":"8.3.5","t":"Saídas de Projeto e Desenvolvimento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","b":[{"k":"p","x":"A organização deve assegurar que as saídas de projeto e desenvolvimento:"},{"k":"l","x":"atendam aos requisitos de entrada;","m":"a)"},{"k":"l","x":"sejam adequadas para os processos subsequentes para a provisão de produtos e serviços;","m":"b)"},{"k":"l","x":"incluam ou referenciem requisitos de monitoramento e medição, como apropriado, e critérios de aceitação;","m":"c)"},{"k":"l","x":"especifiquem as características dos produtos e serviços que sejam essenciais para o propósito pretendido e sua provisão segura e apropriada.","m":"d)"},{"k":"p","x":"A organização deve reter informação documentada sobre as saídas de projeto e desenvolvimento."}]},
+{"id":"8.3.5.1","t":"Saídas de projeto e desenvolvimento – suplemento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"As saídas de projeto do produto devem ser expressas em termos que possam ser verificadas e validadas em relação aos requisitos de entrada de projeto do produto. A saída de projeto do produto deve incluir, mas não se limitar ao seguinte, como aplicável:","i":1},{"k":"l","x":"análise de risco do projeto (FMEA);","i":1,"m":"a)"},{"k":"l","x":"resultados dos estudos de confiabilidade;","i":1,"m":"b)"},{"k":"l","x":"características especiais do produto;","i":1,"m":"c)"},{"k":"l","x":"resultados da prova de erro do projeto do produto, como DFSS, DFMA e FTA;","i":1,"m":"d)"},{"k":"l","x":"definição de produtos, incluindo modelos 3D, pacotes de dados técnicos, informações para manufatura do produto e dimensionamento & tolerância geométrica (GD&T);","i":1,"m":"e)"},{"k":"l","x":"desenhos 2D, informações de manufatura do produto e dimensionamento & tolerância geométrica (GD&T);","i":1,"m":"f)"},{"k":"l","x":"resultados das análises críticas do projeto do produto;","i":1,"m":"g)"},{"k":"l","x":"diretrizes para diagnóstico do serviço e as instruções de reparo e para facilitar o serviço;","i":1,"m":"h)"},{"k":"l","x":"requisitos de peças para serviço;","i":1,"m":"i)"},{"k":"l","x":"requisitos de embalagem e rotulagem para expedição.","i":1,"m":"j)"},{"k":"n","x":"NOTA: Saídas de projeto internas deveriam incluir quaisquer problemas de engenharia, sendo resolvidos através de um processo de correlação (trade-off).","i":1}]},
+{"id":"8.3.5.2","t":"Saídas de projeto do processo de manufatura","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve documentar as saídas de projeto do processo de manufatura de maneira que permita a verificação em relação às entradas de projeto do processo de manufatura. A organização deve verificar as saídas em relação aos requisitos de entrada de projeto do processo de manufatura. As saídas de projeto do processo de manufatura devem incluir, mas não se limitar ao seguinte:","i":1},{"k":"l","x":"especificações e desenhos;","i":1,"m":"a)"},{"k":"l","x":"características especiais para o produto e o processo de manufatura;","i":1,"m":"b)"},{"k":"l","x":"identificação das variáveis de entrada do processo que impactam as características;","i":1,"m":"c)"},{"k":"l","x":"ferramental e equipamentos para produção e controle, incluindo estudos de capacidade (capability) de equipamento(s) e processo(s);","i":1,"m":"d)"},{"k":"l","x":"fluxograma do processo de manufatura/layout, incluindo a ligação com o produto, o processo e o ferramental;","i":1,"m":"e)"},{"k":"l","x":"análise de capacidade;","i":1,"m":"f)"},{"k":"l","x":"FMEA do processo de manufatura;","i":1,"m":"g)"},{"k":"l","x":"Planos e instruções de manutenção;","i":1,"m":"h)"},{"k":"l","x":"Plano de controle (ver Anexo A);","i":1,"m":"i)"},{"k":"l","x":"Trabalho padrão e instruções de trabalho;","i":1,"m":"j)"},{"k":"l","x":"critérios de aceitação de aprovação do processo;","i":1,"m":"k)"},{"k":"l","x":"dados para qualidade, confiabilidade, mantenabilidade e mensurabilidade;","i":1,"m":"l)"},{"k":"l","x":"resultados da identificação e verificação de prova de erros, quando apropriado;","i":1,"m":"m)"},{"k":"l","x":"métodos de detecção rápida, retroalimentação e correção de não conformidades de produto/processo de manufatura.","i":1,"m":"n)"}]},
+{"id":"8.3.6","t":"Mudanças de Projeto e Desenvolvimento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","b":[{"k":"p","x":"A organização deve identificar, analisar criticamente e controlar mudanças feitas durante, ou subsequentemente a, o projeto e desenvolvimento de produtos e serviços, na extensão necessária para assegurar que não haja impacto adverso sobre a conformidade com requisitos."},{"k":"p","x":"A organização deve reter informação documentada sobre:"},{"k":"l","x":"as mudanças de projeto e desenvolvimento;","m":"a)"},{"k":"l","x":"os resultados de análises críticas;","m":"b)"},{"k":"l","x":"autorização das mudanças;","m":"c)"},{"k":"l","x":"as ações tomadas para prevenir impactos adversos.","m":"d)"}]},
+{"id":"8.3.6.1","t":"Mudanças de projeto e desenvolvimento – suplemento","s":"8.3 Projeto e Desenvolvimento de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve avaliar o impacto potencial no ajuste, forma, função, desempenho e/ou durabilidade de todas as mudanças no projeto após a aprovação do produto, incluindo aquelas propostas pela organização ou por seus fornecedores. Estas mudanças devem ser validadas em relação aos requisitos do cliente e aprovadas internamente antes da implementação na produção.","i":1},{"k":"p","x":"Se requerido pelo cliente, a organização deve obter uma aprovação documentada, ou uma derroga documentada do cliente antes da implementação na produção.","i":1},{"k":"p","x":"Para produtos com software embarcado, a organização deve documentar o nível de revisão do software e do hardware como parte do registro da mudança.","i":1}]},
+{"id":"8.4.1","t":"Generalidades","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","b":[{"k":"p","x":"A organização deve assegurar que processos, produtos e serviços providos externamente estejam conformes com requisitos."},{"k":"p","x":"A organização deve determinar os controles a serem aplicados para os processos, produtos e serviços providos externamente quando:"},{"k":"l","x":"produtos e serviços de provedores externos forem destinados a incorporação nos produtos e serviços da própria organização;","m":"a)"},{"k":"l","x":"produtos e serviços forem providos diretamente para o(s) cliente(s) por provedores externos em nome da organização;","m":"b)"},{"k":"l","x":"um processo, ou parte de um processo, for provido por um provedor externo como um resultado de uma decisão da organização.","m":"c)"},{"k":"p","x":"A organização deve determinar e aplicar critérios para a avaliação, seleção, monitoramento de desempenho e reavaliação de provedores externos, baseados na sua capacidade de prover processos ou produtos e serviços de acordo com requisitos. A organização deve reter informação documentada dessas atividades e de quaisquer ações necessárioas decorrentes das avaliações."}]},
+{"id":"8.4.1.1","t":"Generalidades – suplemento","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve incluir todos os produtos e sérvios que afetam os requisitos do cliente tais como serviços de submontagem, sequenciamento, classificação, retrabalho e calibração no escopo de sua definição de produtos, processos e serviços providos externamente.","i":1}]},
+{"id":"8.4.1.2","t":"Processo de seleção do fornecedor","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado para seleção do fornecedor. O processo de seleção deve incluir:","i":1},{"k":"l","x":"uma avaliação de risco do fornecedor selecionado em relação à conformidade do produto e ao fornecimento ininterrupto de produto da organização a seus clientes;","i":1,"m":"a)"},{"k":"l","x":"desempenho de qualidade e de entrega relevantes;","i":1,"m":"b)"},{"k":"l","x":"uma avaliação do sistema de gestão de qualidade do fornecedor;","i":1,"m":"c)"},{"k":"l","x":"tomada de decisão multidisciplinar; e","i":1,"m":"d)"},{"k":"l","x":"uma avaliação das capacidades (capabilities) de desenvolvimento de software, se aplicável.","i":1,"m":"e)"},{"k":"p","x":"Outros critérios de seleção do fornecedor que deveriam ser considerados incluem o seguinte:","i":1},{"k":"p","x":"− volume de negócios automotivos (absoluto e em percentagem do total dos negócios); − estabilidade financeira; − complexidade do produto, material ou serviço comprado; − tecnologia requerida (produto ou processo);","i":1},{"k":"p","x":"− adequação dos recursos disponíveis (por exemplo, pessoas, infraestrutura); − capacidades (capabilities) de projeto e desenvolvimento (incluindo a gestão de projetos); − capacidade (capability) de manufatura; − processo de gestão de mudanças; − planejamento da continuidade de negócios (por exemplo, a preparação para desastres, planos de contingência); − processo de logística; − atendimento ao cliente.","i":1}]},
+{"id":"8.4.1.3","t":"Fontes direcionadas pelo cliente (também conhecido como “Directed-Buy”)","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"Quando especificado pelo cliente, a organização deve adquirir produtos, materiais ou serviços de fontes direcionadas pelo cliente.","i":1},{"k":"p","x":"Todos os requisitos da Seção 8.4 (exceto os requisitos da IATF 16949, Seção 8.4.1.2) são aplicáveis ao controle da organização das fontes direcionadas pelo cliente salvo acordos específicos definidos de outra forma, pelo contrato entre a organização e o cliente.","i":1}]},
+{"id":"8.4.2","t":"Tipo e Extensão do Controle","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","b":[{"k":"p","x":"A organização deve assegurar que processos, produtos e serviços providos externamente não afetem adversamente a capacidade da organização de entregar consistentemente produtos e serviços conformes para seus clientes."},{"k":"p","x":"A organização deve:"},{"k":"l","x":"assegurar que os processos providos externamente permaneçam sob o controle do seu sistema de gestão da qualidade;","m":"a)"},{"k":"l","x":"definir tanto os controles que ela pretende aplicar a um provedor externo como aqueles que ela pretende aplicar para às saídas resultantes;","m":"b)"},{"k":"l","x":"levar em consideração:","m":"c)"},{"k":"l","x":"o impacto potencial dos processos, produtos e serviços providos externamente sobre a capacidade da organização de atender consistentemente aos requisitos do cliente e aos requisitos estatutários e regulamentares;","m":"1)","d":1},{"k":"l","x":"a eficácia dos controles aplicados pelo provedor externo;","m":"2)","d":1},{"k":"l","x":"determinar a verificação, ou outra atividade, necessária para assegurar que os processos, produtos e serviços providos externamente atendam a requisitos.","m":"d)"}]},
+{"id":"8.4.2.1","t":"Tipo e extensão do controle – suplemento","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado para identificar processos terceirizados e selecionar os tipos e a extensão dos controles usados para verificar a conformidade de produtos, processos e serviços providos externamente, em relação a requisitos internos (organizacionais) e externos do cliente.","i":1},{"k":"p","x":"O processo deve incluir o critério e ações para aumentar ou reduzir os tipos e a extensão dos controles e atividades de desenvolvimento, baseado no desempenho do fornecedor e avaliação de riscos do produto, material ou serviço.","i":1}]},
+{"id":"8.4.2.2","t":"Requisitos estatutários e regulamentares","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve documentar seus processos para assegurar que produtos, processos e serviços comprados estejam em conformidade com os requisitos estatutários e regulamentares atualmente aplicáveis do país de recebimento, do país de expedição e do país de destino identificado pelo cliente, se fornecido.","i":1},{"k":"p","x":"Se o cliente definir controles especiais para certos produtos com requisitos estatutários e regulamentares, a organização deve assegurar que eles estejam implementados e mantidos como definido, incluindo nos fornecedores.","i":1}]},
+{"id":"8.4.2.3","t":"Desenvolvimento do sistema de gestão da qualidade do fornecedor","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve requerer de seus fornecedores de produtos e serviços automotivos, desenvolver, implementar e melhorar o sistema de gestão da qualidade certificado na ISO 9001, a menos que autorizado pelo cliente [por exemplo, item a) abaixo], com o objetivo final de se tornarem certificados nesta Norma de SGQ Automotiva. A menos que especificado em contrário pelo cliente, a seguinte sequência deve ser aplicada para alcançar este requisito:","i":1},{"k":"l","x":"conformidade com a ISO 9001 através de auditorias de segunda parte;","i":1,"m":"a)"},{"k":"l","x":"certificação na ISO 9001, através de auditorias de terceira parte; a menos que especificado em contrário pelo cliente, os fornecedores da organização deverão demonstrar a conformidade com a ISO 9001, mantendo uma certificação de terceira parte emitida por um organismo de certificação contendo uma marca de acreditação de um membro reconhecido da IAF MLA (International Accreditation Forum Multilateral Recognition Arrangement) e onde o escopo principal do organismo de acreditação incluir certificação de sistema de gestão na ISO/IEC 17021;","i":1,"m":"b)"},{"k":"l","x":"certificação na ISO 9001 em conformidade com outros requisitos de SGQ definidos pelo cliente (como nos Requisitos Mínimos de Sistema de Gestão da Qualidade Automotivo de Fornecedores Subfornecedor [MAQMSR] ou equivalente) através de auditorias de segunda parte;","i":1,"m":"c)"},{"k":"l","x":"certificação na ISO 9001 com a conformidade na IATF 16949 através de auditorias de segunda parte;","i":1,"m":"d)"},{"k":"l","x":"certificação na 16949 através de auditorias de terceira parte (certificação válida de terceira parte do fornecedor, na IATF 16949, por um organismo de certificação reconhecido pela IATF).","i":1,"m":"e)"}]},
+{"id":"8.4.2.3.1","t":"Software relacionado a produto automotivo ou produtos automotivos com software embarcado","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve requerer a seus fornecedores de software automotivo relacionados com o produto, ou produtos automotivos com software embarcado, implementar e manter um processo de garantia da qualidade de software para seus produtos.","i":1},{"k":"p","x":"Uma metodologia de avaliação do desenvolvimento de software deve ser utilizada para avaliar o processo de desenvolvimento de software do fornecedor. Usando a priorização baseada em risco e potencial impacto ao cliente, a organização deve requerer que o fornecedor retenha informações documentadas de uma autoavaliação de capacidade (capability) de desenvolvimento de software.","i":1}]},
+{"id":"8.4.2.4","t":"Monitoramento do fornecedor","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado e critérios para avaliar o desempenho do fornecedor para assegurar a conformidade de produtos, processos e serviços providos externamente em relação aos requisitos internos e externos do cliente.","i":1},{"k":"p","x":"No mínimo, os seguintes indicadores de desempenho do fornecedor devem ser monitorados:","i":1},{"k":"l","x":"conformidade do produto entregue com os requisitos;","i":1,"m":"a)"},{"k":"l","x":"rupturas com o cliente na planta de recebimento, incluindo bloqueio de pátio e interrupção de expedição;","i":1,"m":"b)"},{"k":"l","x":"desempenho do cronograma de entregas;","i":1,"m":"c)"},{"k":"l","x":"número de ocorrências de fretes especiais.","i":1,"m":"d)"},{"k":"p","x":"Se fornecido pelo cliente, a organização deve incluir também o seguinte, como apropriado, no seu monitoramento de desempenho do fornecedor:","i":1},{"k":"l","x":"notificações pelo cliente de situações especiais relacionadas com questões de qualidade ou entrega;","i":1,"m":"e)"},{"k":"l","x":"retornos de distribuidores, garantia, ações de campo e recalls.","i":1,"m":"f)"}]},
+{"id":"8.4.2.4.1","t":"Auditorias de segunda parte","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve incluir um processo de auditoria de segunda parte na sua abordagem de gestão do fornecedor. As auditorias de segunda parte podem ser utilizadas para o seguinte:","i":1},{"k":"l","x":"avaliação de risco do fornecedor;","i":1,"m":"a)"},{"k":"l","x":"monitoramento do fornecedor;","i":1,"m":"b)"},{"k":"l","x":"desenvolvimento do SGQ do fornecedor;","i":1,"m":"c)"},{"k":"l","x":"auditorias de produto;","i":1,"m":"d)"},{"k":"l","x":"auditorias de processo.","i":1,"m":"e)"},{"k":"p","x":"Com base numa análise de risco, incluindo os requisitos de segurança/regulamentares do produto, o desempenho do fornecedor e o nível de certificação do SGQ, a organização deve, no mínimo, documentar os critérios para determinar a necessidade, o tipo, a frequência e o escopo das auditorias de segunda parte.","i":1},{"k":"p","x":"A organização deve reter os registros dos relatórios da auditoria de segunda parte.","i":1},{"k":"p","x":"Se o escopo da auditoria de segunda parte é para avaliar o sistema de gestão de qualidade do fornecedor, então a abordagem deve ser consistente com a abordagem de processo automotiva.","i":1},{"k":"n","x":"NOTA: Diretrizes podem ser encontradas no Guia do Auditor da IATF e na ISO 19011.","i":1}]},
+{"id":"8.4.2.5","t":"Desenvolvimento do fornecedor","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve determinar a prioridade, tipo, extensão e o período de tempo das ações requeridas do desenvolvimento do fornecedor para seus fornecedores ativos. As entradas determinadas devem incluir, mas não se limitar ao seguinte:","i":1},{"k":"l","x":"questões de desempenho, identificadas através do monitoramento do fornecedor (ver Seção 8.4.2.4);","i":1,"m":"a)"},{"k":"l","x":"constatações da auditoria de segunda parte (ver Seção 8.4.2.4.1);","i":1,"m":"b)"},{"k":"l","x":"situação da certificação de terceira parte do sistema de gestão da qualidade;","i":1,"m":"c)"},{"k":"l","x":"análise de risco.","i":1,"m":"d)"},{"k":"p","x":"A organização deve implementar ações necessárias para resolver questões pendentes de desempenho (insatisfatório) e perseguir oportunidades para melhoria contínua.","i":1}]},
+{"id":"8.4.3","t":"Informação para Provedores Externos","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","b":[{"k":"p","x":"A organização deve assegurar a suficiência de requisitos antes da sua comunicação para o provedor externo."},{"k":"p","x":"A organização deve comunicar para provedores externos seus requisitos para:"},{"k":"l","x":"os processos, produtos e serviços a serem providos;","m":"a)"},{"k":"l","x":"a aprovação de:","m":"b)"},{"k":"l","x":"produtos e serviços;","m":"1)","d":1},{"k":"l","x":"métodos, processos e equipamentos;","m":"2)","d":1},{"k":"l","x":"liberação de produtos e serviços;","m":"3)","d":1},{"k":"l","x":"competência, incluindo qualquer qualificação de pessoas requerida;","m":"c)"},{"k":"l","x":"as interações do provedor externo com a organização;","m":"d)"},{"k":"l","x":"controle e monitoramento do desempenho do provedor externo a ser aplicado pela organização;","m":"e)"},{"k":"l","x":"atividades de verificação ou validação que a organização, ou seus clientes, pretendam desempenhar nas instalações do provedor externo.","m":"f)"}]},
+{"id":"8.4.3.1","t":"Informação para provedores externos – suplemento","s":"8.4 Controle de Processos, Produtos e Serviços Providos Externamente","a":1,"b":[{"k":"p","x":"A organização deve repassar todos os requisitos estatutários e regulamentares aplicáveis e características especiais do produto e do processo aos seus fornecedores e requerer que os fornecedores cascateiem todos os requisitos aplicáveis na cadeia de fornecimento ao local de manufatura.","i":1}]},
+{"id":"8.5.1","t":"Controle de Produção e de Provisão de Serviço","s":"8.5 Produção e Provisão de Serviço","a":2,"b":[{"k":"p","x":"A organização deve implementar produção e provisão de serviço sob condições controladas."},{"k":"p","x":"Condições controladas devem incluir, como aplicável:"},{"k":"l","x":"a disponibilidade de informação documentada que defina:","m":"a)"},{"k":"l","x":"as características dos produtos a serem produzidos, dos serviços a serem providos ou das atividades a serem desempenhadas;","m":"1)","d":1},{"k":"l","x":"os resultados a serem alcançados.","m":"2)","d":1},{"k":"l","x":"a disponibilidade e uso de recursos de monitoramento e medição adequados;","m":"b)"},{"k":"l","x":"a implementação de atividades de monitoramento e medição em estágios apropriados para verificar que critérios para controle de processos ou saídas e critérios de aceitação para produtos e serviços foram atendidos;","m":"c)"},{"k":"l","x":"o uso de infra-estrutura e ambiente adequados para a operação dos processos;","m":"d)"},{"k":"l","x":"a designação de pessoas competentes, incluindo qualquer qualificação requerida;","m":"e)"},{"k":"l","x":"a validação e revalidação periódica da capacidade de alcançar resultados planejados dos processos para produção e provisão de serviço, onde não for possível verificar a saída resultante por monitoramento ou medição subsequentes;","m":"f)"},{"k":"l","x":"a implementação de ações para prevenir o erro humano;","m":"g)"},{"k":"l","x":"a implementação de atividades de liberação, entrega e pós-entrega.","m":"h)"},{"k":"n","x":"NOTA: Infraestrutura adequada inclui equipamento de manufatura apropriado, requerido para assegurar a conformidade do produto. Recursos de monitoramento e medição incluem equipamento de monitoramento e medição apropriado, requerido para assegurar um controle eficaz dos processos de manufatura.","i":1}]},
+{"id":"8.5.1.1","t":"Plano de controle","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve desenvolver planos de controle (de acordo com o Anexo A) para o nível de sistema, subsistema, e componente e/ou material para o site relevante de manufatura e todo o produto fornecido, incluindo aqueles para processos produzindo materiais a granel, bem como peças. Planos de controle por família são aceitáveis para material a granel e peças similares usando um processo de manufatura comum.","i":1},{"k":"p","x":"A organização deve ter um plano de controle para pré-lançamento e produção que mostre as ligações e incorpore informações da análise de risco do projeto (se fornecida pelo cliente), do fluxograma de processo e das saídas da análise de risco do processo de manufatura (tal como FMEA).","i":1},{"k":"p","x":"A organização deve, se requerido pelo cliente, fornecer dados das medições e de conformidade coletados durante a execução tanto dos planos de controle de pré-lançamento como os de produção. A organização deve incluir no plano de controle:","i":1},{"k":"l","x":"controles usados para o controle do processo de manufatura, incluindo a verificação das preparações para os trabalhos (set-ups);","i":1,"m":"a)"},{"k":"l","x":"validação da primeira/última peça, conforme aplicável;","i":1,"m":"b)"},{"k":"l","x":"métodos para o monitoramento do controle exercido sobre as características especiais (ver Anexo A) definidas tanto pelo cliente quanto pela organização;","i":1,"m":"c)"},{"k":"l","x":"informação requerida pelo cliente, se houver;","i":1,"m":"d)"},{"k":"l","x":"plano de reação especificado (ver Anexo A); quando o produto não conforme for detectado, o processo tornar-se estatisticamente instável ou estatisticamente não capaz.","i":1,"m":"e)"},{"k":"p","x":"A organização deve analisar criticamente os planos de controle e atualizá-los conforme necessário, para qualquer um dos seguintes:","i":1},{"k":"l","x":"a organização determinar que tenha expedido produto não conforme ao cliente;","i":1,"m":"f)"},{"k":"l","x":"quando ocorrer qualquer mudança que afete o produto, o processo de manufatura, a medição, a logística, as fontes de fornecimento, mudanças no volume de produção ou a análise de risco (FMEA) (ver Anexo A);","i":1,"m":"g)"},{"k":"l","x":"depois de uma reclamação do cliente e a implementação da ação corretiva associada, quando aplicável;","i":1,"m":"h)"},{"k":"l","x":"em uma frequência definida com base em uma análise de risco.","i":1,"m":"i)"},{"k":"p","x":"Se requerido pelo cliente, a organização deve obter aprovação do cliente após análise crítica ou revisão do plano de controle.","i":1}]},
+{"id":"8.5.1.2","t":"Trabalho padronizado – instruções do operador e padrões visuais","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve assegurar que os documentos do trabalho padronizado sejam:","i":1},{"k":"l","x":"comunicados e entendidos pelos colaboradores responsáveis pela realização do trabalho;","i":1,"m":"a)"},{"k":"l","x":"legíveis;","i":1,"m":"b)"},{"k":"l","x":"apresentados em uma linguagem(ns) entendida(s) pelo pessoal responsável para segui-las;","i":1,"m":"c)"},{"k":"l","x":"acessíveis para o uso na(s) área(s) de trabalho designada(s).","i":1,"m":"d)"},{"k":"p","x":"Os documentos do trabalho padronizado também devem incluir as regras para segurança do operador.","i":1}]},
+{"id":"8.5.1.3","t":"Verificação das preparações para os trabalhos (set-ups)","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve:","i":1},{"k":"l","x":"verificar as preparações para o trabalho quando realizadas, tais como uma corrida inicial do trabalho, troca de material ou mudança de trabalho que requeira uma nova preparação;","i":1,"m":"a)"},{"k":"l","x":"manter informações documentadas para o pessoal de preparação;","i":1,"m":"b)"},{"k":"l","x":"usar métodos estatísticos de verificação, onde aplicável;","i":1,"m":"c)"},{"k":"l","x":"realizar a validação da primeira/última peça, conforme aplicável; onde apropriado, as primeiras peças deveriam ser retidas para comparação com as últimas peças; onde apropriado, as últimas peças deveriam ser retidas para comparação com as primeiras peças de corridas subsequentes;","i":1,"m":"d)"},{"k":"l","x":"reter registros de aprovação do processo e do produto após a preparação e a validação da primeira/última peça.","i":1,"m":"e)"}]},
+{"id":"8.5.1.4","t":"Verificação após parada (shutdown)","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve definir e implementar as ações necessárias para assegurar a conformidade do produto com os requisitos após um período de parada de produção planejado ou não planejado.","i":1}]},
+{"id":"8.5.1.5","t":"Manutenção produtiva total","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve desenvolver, implementar e manter um sistema documentado de manutenção produtiva total.","i":1},{"k":"p","x":"No mínimo, o sistema deve incluir o seguinte:","i":1},{"k":"l","x":"identificação dos equipamentos de processo necessários para produzir o produto em conformidade com o volume requerido;","i":1,"m":"a)"},{"k":"l","x":"disponibilidade de peças de reposição para os equipamentos identificados no item a);","i":1,"m":"b)"},{"k":"l","x":"provisão de recursos para a manutenção de máquinas, equipamentos e instalações;","i":1,"m":"c)"},{"k":"l","x":"embalagem e preservação de equipamentos, ferramental e dispositivos;","i":1,"m":"d)"},{"k":"l","x":"requisitos específicos do cliente aplicáveis;","i":1,"m":"e)"},{"k":"l","x":"objetivos de manutenção documentados, por exemplo: OEE (Eficácia Geral do Equipamento), MTBF (Tempo Médio Entre Falhas) e MTTR (Tempo Médio de Reparo) e métricas de conformidade da Manutenção Preventiva. O desempenho em relação aos objetivos de manutenção deve constituir numa entrada para a análise crítica da direção (ver ISO 9001, Seção 9.3);","i":1,"m":"f)"},{"k":"l","x":"análise crítica regular do plano e objetivos de manutenção e ter um plano de ação documentado para abordar ações corretivas onde os objetivos não são alcançados;","i":1,"m":"g)"},{"k":"l","x":"uso de métodos de manutenção preventiva;","i":1,"m":"h)"},{"k":"l","x":"uso de métodos de manutenção preditiva, conforme aplicável;","i":1,"m":"i)"},{"k":"l","x":"revisão periódica.","i":1,"m":"j)"}]},
+{"id":"8.5.1.6","t":"Gestão de ferramental da produção e manufatura, e ferramental e equipamento de teste e inspeção","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve prover recursos para as atividades de projeto, fabricação e verificação de ferramentas e dispositivos para a produção e materiais para serviço e para materiais a granel, conforme aplicável.","i":1},{"k":"p","x":"A organização deve estabelecer e implementar um sistema para a gestão do ferramental de produção, seja de propriedade da organização ou do cliente, incluindo:","i":1},{"k":"l","x":"instalações e pessoal para manutenção e reparo;","i":1,"m":"a)"},{"k":"l","x":"armazenamento e recuperação;","i":1,"m":"b)"},{"k":"l","x":"preparação (set-up);","i":1,"m":"c)"},{"k":"l","x":"programas de mudança de ferramenta para ferramentas deterioráveis;","i":1,"m":"d)"},{"k":"l","x":"documentação de modificação do projeto da ferramenta, incluindo nível de mudança de engenharia do produto;","i":1,"m":"e)"},{"k":"l","x":"modificação de ferramenta e revisão da documentação;","i":1,"m":"f)"},{"k":"l","x":"identificação da ferramenta, tais como número de série ou ativo; a situação, tais como produção, reparo ou disposição; a propriedade; e a localização.","i":1,"m":"g)"},{"k":"p","x":"A organização deve verificar que as ferramentas, equipamentos de manufatura e equipamentos de teste/inspeção, de propriedade do cliente sejam marcadas de forma permanente em um local visível, para que a propriedade e a aplicação de cada item possam ser determinadas.","i":1},{"k":"p","x":"A organização deve implementar um sistema para monitorar estas atividades se qualquer trabalho for terceirizado.","i":1}]},
+{"id":"8.5.1.7","t":"Programação de produção","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve assegurar que a produção está programada para atender aos pedidos/demandas do cliente, tais como Just-in-Time (JIT) e seja suportada por um sistema de informação que permita o acesso à informação da produção nos estágios chaves do processo e seja dirigida pelo pedido.","i":1},{"k":"p","x":"A organização deve incluir informações relevantes de planejamento durante a programação de produção, por exemplo, pedidos do cliente, desempenho do prazo de entrega do fornecedor, capacidade, carregamento compartilhado (estação multi-peça), prazo de execução, nível de estoque, manutenção preventiva e calibração.","i":1}]},
+{"id":"8.5.2","t":"Identificação e Rastreabilidade","s":"8.5 Produção e Provisão de Serviço","a":2,"b":[{"k":"p","x":"A organização deve usar meios adequados para identificar saídas quando isso for necessário assegurar a conformidade de produtos e serviços."},{"k":"p","x":"A organização deve identificar a situação das saídas com relação aos requisitos de monitoramento e medição ao longo da produção e provisão de serviço."},{"k":"p","x":"A organização deve controlar a identificação única das saídas quando a rastreabilidade for um requisito, e deve reter a informação documentada necessária para possibilitar rastreabilidade."},{"k":"n","x":"NOTA: A situação de inspeção e teste não é indicada pela localização do produto no fluxo de produção, a menos que inerentemente óbvio tal como o material em um processo de produção com transferência automática. Alternativas são permitidas se a situação está claramente identificada, documentada e alcança o propósito designado.","i":1}]},
+{"id":"8.5.2.1","t":"Identificação e rastreabilidade – suplemento","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"O objetivo da rastreabilidade é suportar a identificação clara de pontos de início e término do produto recebido pelo cliente ou do campo, que possa conter não conformidades relacionadas à qualidade e/ou segurança. Portanto, a organização deve implementar um processo de identificação e rastreabilidade conforme descrito abaixo.","i":1},{"k":"p","x":"A organização deve conduzir uma análise de requisitos de rastreabilidade internos, do cliente e regulamentares para todos os produtos automotivos, incluindo o desenvolvimento e a documentação de planos de rastreabilidade baseados nos níveis de risco ou severidade da falha para os colaboradores, clientes e consumidores. Estes planos devem definir os sistemas, processos e métodos de rastreabilidade apropriados para o produto, o processo e o local de manufatura que:","i":1},{"k":"l","x":"habilitem a organização a identificar o produto não conforme e/ou suspeito;","i":1,"m":"a)"},{"k":"l","x":"habilitem a organização a segregar o produto não conforme e/ou suspeito;","i":1,"m":"b)"},{"k":"l","x":"assegurem a capacidade de atender os requisitos de tempo de resposta do cliente e/ou regulamentares;","i":1,"m":"c)"},{"k":"l","x":"assegurem que a informação documentada é retida no formato (eletrônica, em papel, arquivo) que permita a organização atender aos requisitos de tempo de resposta;","i":1,"m":"d)"},{"k":"l","x":"assegurem a identificação serializada de produtos individuais, se especificado por normas do cliente ou regulamentares;","i":1,"m":"e)"},{"k":"l","x":"assegurem que os requisitos de identificação e rastreabilidade sejam estendidos para produtos providos externamente com características de segurança/regulamentares.","i":1,"m":"f)"}]},
+{"id":"8.5.3","t":"Propriedade Pertencente a Clientes ou Provedores Externos","s":"8.5 Produção e Provisão de Serviço","b":[{"k":"p","x":"A organização deve tomar cuidado com propriedade pertencente a clientes ou provedores externos, enquanto estiver sob o controle da organização ou sendo usada pela organização."},{"k":"p","x":"A organização deve identificar, verificar, proteger e salvaguardar propriedade de clientes ou provedores externos provida para uso ou incorporação nos produtos e serviços."},{"k":"p","x":"Quando a propriedade de um cliente ou provedor externo for perdida, danificada ou de outra maneira constatada inadequada para uso, a organização deve relatar isso para o cliente ou provedor externo e reter informação documentada sobre o que ocorreu."},{"k":"n","x":"NOTA Uma propriedade de cliente ou provedor externo pode incluir material, componentes, ferramentas e equipamentos, instalações de cliente, propriedade intelectual e dados pessoais."}]},
+{"id":"8.5.4","t":"Preservação","s":"8.5 Produção e Provisão de Serviço","b":[{"k":"p","x":"A organização deve preservar as saídas durante produção e provisão de serviço na extensão necessária, para assegurar conformidade com requisitos."},{"k":"n","x":"NOTA Preservação pode incluir identificação, manuseio, controle de contaminação, embalagem, armazenamento, transmissão ou transporte e proteção."}]},
+{"id":"8.5.4.1","t":"Preservação – suplemento","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"Preservação deve incluir identificação, manuseio, controle de contaminação, embalagem, armazenamento, transmissão ou transporte e proteção.","i":1},{"k":"p","x":"Preservação deve ser aplicada aos materiais e componentes de provedores externos e/ou internos desde o recebimento através do processamento, incluindo a expedição até a entrega/aceitação pelo cliente.","i":1},{"k":"p","x":"A fim de detectar a deterioração, a organização deve avaliar a intervalos planejados apropriados a condição do produto em estoque, o lugar/tipo de contêiner de armazenamento e o ambiente de armazenamento.","i":1},{"k":"p","x":"A organização deve usar um sistema de gestão de inventário para otimizar o giro de estoque ao longo do tempo e assegurar a rotação de estoque, tais como “primeiro que entra – primeiro que sai” (FIFO).","i":1},{"k":"p","x":"A organização deve assegurar que o produto obsoleto seja controlado de maneira semelhante ao produto não conforme.","i":1},{"k":"p","x":"As organizações devem estar em conformidade com os requisitos de preservação, embalagem, expedição e rotulagem, como providos por seus clientes.","i":1}]},
+{"id":"8.5.5","t":"Atividades Pós-entrega","s":"8.5 Produção e Provisão de Serviço","b":[{"k":"p","x":"A organização deve atender aos requisitos para atividades pós-entrega associadas com os produtos e serviços. Na determinação da extensão das atividades pós-entrega requeridas, a organização deve considerar:"},{"k":"l","x":"os requisitos estatutários e regulamentares;","m":"a)"},{"k":"l","x":"as consequências indesejáveis potenciais associadas com seus produtos e serviços;","m":"b)"},{"k":"l","x":"a natureza, uso e o tempo de vida pretendido de seus produtos e serviços;","m":"c)"},{"k":"l","x":"requisitos do cliente;","m":"d)"},{"k":"l","x":"retroalimentação do cliente.","m":"e)"},{"k":"n","x":"NOTA Atividades pós-entrega podem incluir ações sob provisões de garantia, obrigações contratuais como serviços de manutenção e serviços suplementares como reciclagem ou disposição final."}]},
+{"id":"8.5.5.1","t":"Realimentação de informação de serviço","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve assegurar que um processo para a comunicação de informações sobre preocupações de serviço nas atividades de manufatura, manuseio de material, logística, engenharia e projeto seja estabelecido, implementado e mantido.","i":1},{"k":"n","x":"NOTA 1: A intenção de adicionar “preocupações de serviço” nesta subcláusula é assegurar que a organização esteja consciente do(s) produto(s) e material(is) não conforme (s) que possa(m) ser identificado(s) no local do cliente ou em campo.","i":1},{"k":"n","x":"NOTA 2: “Preocupações de serviço” deveriam incluir os resultados da análise de teste da falha de campo (ver Seção 10.2.6) onde aplicável.","i":1}]},
+{"id":"8.5.5.2","t":"Contrato de serviço com o cliente","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"Quando houver um contrato de serviço com o cliente, a organização deve:","i":1},{"k":"l","x":"verificar se os centros de serviços relevantes estão em conformidade com os requisitos aplicáveis;","i":1,"m":"a)"},{"k":"l","x":"verificar a eficácia de quaisquer ferramentas ou equipamentos de medição para fins especiais;","i":1,"m":"b)"},{"k":"l","x":"assegurar que todo o pessoal de serviço está treinado nos requisitos aplicáveis.","i":1,"m":"c)"}]},
+{"id":"8.5.6","t":"Controle de Mudanças","s":"8.5 Produção e Provisão de Serviço","b":[{"k":"p","x":"A organização deve analisar criticamente e controlar mudanças para produção ou provisão de serviços na extensão necessária para assegurar continuamente conformidade com requisitos."},{"k":"p","x":"A organização deve reter informação documentada, que descreva os resultados das análises críticas de mudanças, as pessoas que autorizam a mudança e de quaisquer ações necessárias decorrentes da análise crítica."}]},
+{"id":"8.5.6.1","t":"Controle de mudanças – suplemento","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado para controlar e reagir às mudanças que impactam a realização do produto. Os efeitos de qualquer mudança, incluindo aquelas mudanças causadas pela organização, pelo cliente ou qualquer fornecedor, devem ser avaliados.","i":1},{"k":"p","x":"A organização deve:","i":1},{"k":"l","x":"definir as atividades de verificação e validação para assegurar a conformidade com os requisitos do cliente;","i":1,"m":"a)"},{"k":"l","x":"validar as mudanças antes da implementação;","i":1,"m":"b)"},{"k":"l","x":"documentar a evidência da análise de riscos relacionada;","i":1,"m":"c)"},{"k":"l","x":"reter registros de verificação e validação.","i":1,"m":"d)"},{"k":"p","x":"Mudanças, incluindo as efetuadas nos fornecedores, deveriam requerer uma corrida piloto de produção para verificação das mudanças (tais como mudanças no projeto da peça, local de manufatura ou processo de manufatura) para validar o impacto de quaisquer mudanças no processo de manufatura.","i":1},{"k":"p","x":"Quando requerido pelo cliente, a organização deve:","i":1},{"k":"l","x":"notificar o cliente de quaisquer mudanças de realização do produto planejadas após a aprovação mais recente do produto;","i":1,"m":"e)"},{"k":"l","x":"obter aprovação documentada, antes da implementação da mudança;","i":1,"m":"f)"},{"k":"l","x":"completar os requisitos adicionais de verificação ou identificação, tais como a corrida piloto de produção e validação do novo produto.","i":1,"m":"g)"}]},
+{"id":"8.5.6.1.1","t":"Mudança temporária nos controles do processo","s":"8.5 Produção e Provisão de Serviço","a":1,"b":[{"k":"p","x":"A organização deve identificar, documentar e manter uma lista dos controles de processo, incluindo a inspeção, medição, teste e dispositivos à prova de erro, que inclua o controle primário dos processos e os métodos aprovados de back-up ou alternativos.","i":1},{"k":"p","x":"A organização deve documentar o processo que gerencia o uso de métodos alternativos de controle. A organização deve incluir neste processo, baseado na análise de risco (tal como FMEA), a severidade e as aprovações internas a serem obtidas antes da implementação do método de controle de produção alternativo.","i":1},{"k":"p","x":"Antes da expedição do produto que foi inspecionado ou testado usando o método alternativo, se requerido, a organização deve obter aprovação do(s) cliente(s). A organização deve manter e periodicamente analisar criticamente a lista de métodos alternativos de controle de processo aprovados que são referenciados no plano de controle.","i":1},{"k":"p","x":"Instruções de trabalho padrão devem estar disponíveis para cada método de controle de processo alternativo. A organização deve analisar criticamente a operação dos controles alternativos do processo, no mínimo diariamente, para verificar a implementação do trabalho padronizado com o objetivo de retornar ao processo padrão, conforme definido pelo plano de controle, assim que possível. Exemplos de métodos incluem, mas não se limitam ao seguinte:","i":1},{"k":"l","x":"auditorias diárias focadas na qualidade (por exemplo, auditorias escalonadas de processo, conforme o caso),","i":1,"m":"a)"},{"k":"l","x":"reuniões diárias de liderança.","i":1,"m":"b)"},{"k":"p","x":"A verificação da reinicialização é documentada por um período definido, baseada na severidade e confirmação de que todas as características do dispositivo à prova de erros ou do processo estão efetivamente restabelecidas.","i":1},{"k":"p","x":"A organização deve implementar a rastreabilidade de todos os produtos produzidos enquanto quaisquer dispositivos de controle de processos ou processos alternativos estejam sendo usados (por exemplo, a verificação e a retenção da primeira peça e da última peça de cada turno).","i":1}]},
+{"id":"8.6","t":"Liberação de Produtos e Serviços","s":"8.6 Liberação de Produtos e Serviços","b":[{"k":"p","x":"A organização deve implementar arranjos planejados, em estágios apropriados, para verificar se os requisitos do produto e do serviço foram atendidos."},{"k":"p","x":"A liberação de produtos e serviços para o cliente não pode proceder até que os arranjos planejados forem satisfatoriamente concluídos, a menos que de outra forma tenham sido aprovados por autoridade pertinente e, como aplicável, pelo cliente."},{"k":"p","x":"A organização deve reter informação documentada sobre a liberação de produtos e serviços. A informação documentada deve incluir:"},{"k":"l","x":"evidência de conformidade com os critérios de aceitação;","m":"a)"},{"k":"l","x":"rastreabilidade à(s) pessoa(s) que autoriza(m) a liberação.","m":"b)"}]},
+{"id":"8.6.1","t":"Liberação de produtos e serviços – suplemento","s":"8.6 Liberação de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve assegurar que as disposições planejadas para verificar que os requisitos de produtos e serviços têm sido atendidos envolvem o plano de controle e estão documentadas como especificadas no plano de controle (ver Anexo A).","i":1},{"k":"p","x":"A organização deve assegurar que as disposições planejadas para liberação inicial de produtos e serviços envolvem a aprovação do produto ou serviço.","i":1},{"k":"p","x":"A organização deve assegurar que a aprovação do produto ou serviço é realizada após mudanças depois do lançamento inicial, de acordo com a ISO 9001, Seção 8.5.6.","i":1}]},
+{"id":"8.6.2","t":"Inspeção de layout e teste funcional","s":"8.6 Liberação de Produtos e Serviços","a":1,"b":[{"k":"p","x":"Uma inspeção de layout e uma verificação funcional em relação às normas de engenharia do cliente para material e desempenho, aplicáveis, devem ser realizadas para cada produto conforme especificado nos planos de controle. Os resultados devem estar disponíveis para análise crítica do cliente.","i":1},{"k":"n","x":"NOTA 1: Inspeção de layout é uma medição completa de todas as dimensões do produto mostradas no(s) registro(s) do projeto.","i":1},{"k":"n","x":"NOTA 2: A frequência de inspeção de layout é determinada pelo cliente.","i":1}]},
+{"id":"8.6.3","t":"Itens de aparência","s":"8.6 Liberação de Produtos e Serviços","a":1,"b":[{"k":"p","x":"Para organizações manufaturando peças designadas pelo cliente como “itens de aparência”, a organização deve fornecer o seguinte:","i":1},{"k":"l","x":"recursos apropriados, incluindo iluminação, para avaliação;","i":1,"m":"a)"},{"k":"l","x":"padrões de cores, granulação, polimento, brilho metálico, textura, distinção de imagem (DOI) e tecnologia háptica (sensibilidade ao toque), conforme apropriado;","i":1,"m":"b)"},{"k":"l","x":"manutenção e controle dos padrões de aparência e equipamentos de avaliação;","i":1,"m":"c)"},{"k":"l","x":"verificação que o pessoal que realiza as avaliações de aparência é competente e qualificado para fazê-las.","i":1,"m":"d)"}]},
+{"id":"8.6.4","t":"Verificação e aceitação da conformidade de produtos e serviços providos externamente","s":"8.6 Liberação de Produtos e Serviços","a":1,"b":[{"k":"p","x":"A organização deve ter um processo para assegurar a qualidade dos processos, produtos e serviços providos externamente utilizando um ou mais dos seguintes métodos:","i":1},{"k":"l","x":"recebimento e avaliação de dados estatísticos providos pelo fornecedor para a organização;","i":1,"m":"a)"},{"k":"l","x":"inspeção e/ou testes de recebimento, tais como amostragem baseada no desempenho;","i":1,"m":"b)"},{"k":"l","x":"avaliações ou auditorias de segunda parte ou terceira parte nos sites do fornecedor quando combinadas com os registros aceitáveis de conformidade aos requisitos do produto entregue;","i":1,"m":"c)"},{"k":"l","x":"avaliação da peça por um laboratório designado;","i":1,"m":"d)"},{"k":"l","x":"outro método acordado com o cliente.","i":1,"m":"e)"}]},
+{"id":"8.6.5","t":"Conformidade estatutária e regulamentar","s":"8.6 Liberação de Produtos e Serviços","a":1,"b":[{"k":"p","x":"Antes da liberação de produtos providos externamente para seu fluxo de produção, a organização deve confirmar e ser capaz de prover evidências que os processos, produtos e serviços providos externamente estão em conformidade com os mais recentes requisitos estatutários, regulamentares e outros aplicáveis aos países onde eles são manufaturados e aos países de destino identificados pelo cliente, se fornecido.","i":1}]},
+{"id":"8.6.6","t":"Critério de aceitação","s":"8.6 Liberação de Produtos e Serviços","a":1,"b":[{"k":"p","x":"Critério de aceitação deve ser definido pela organização e, onde apropriado ou requerido, aprovado pelo cliente. Para a amostragem de dados de atributo, o nível de aceitação deve ser zero defeito (ver Seção 9.1.1.1).","i":1}]},
+{"id":"8.7.1","t":"","s":"8.7 Controle de Saídas Não Conformes","b":[{"k":"p","x":"A organização deve assegurar que saídas que não estejam conformes com seus requisitos sejam identificadas e controladas para prevenir seu uso ou entrega não pretendido."},{"k":"p","x":"A organização deve tomar as ações apropriadas baseadas na natureza da não conformidade e em seus efeitos sobre a conformidade de produtos e serviços. Isso deve também se aplicar aos produtos e serviços não conformes detectados após a entrega de produtos, durante ou depois da provisão de serviços."},{"k":"p","x":"A organização deve lidar com saídas não conformes de um ou mais dos seguintes modos:"},{"k":"l","x":"correção;","m":"a)"},{"k":"l","x":"segregação, contenção, retorno ou a suspensão de provisão de produtos e serviços;","m":"b)"},{"k":"l","x":"informar o cliente;","m":"c)"},{"k":"l","x":"obtenção de autorização para aceitação sob concessão.","m":"d)"},{"k":"p","x":"A conformidade com os requisitos deve ser verificada quando saídas não conformes forem corrigidas."}]},
+{"id":"8.7.1.1","t":"Autorização para concessão do cliente","s":"8.7 Controle de Saídas Não Conformes","a":1,"b":[{"k":"p","x":"A organização deve obter uma concessão do cliente ou desvio permitido antes da continuidade do processamento sempre que o produto ou processo de manufatura for diferente daquele que atualmente está aprovado.","i":1},{"k":"p","x":"A organização deve obter uma autorização do cliente antes da continuidade do processamento para disposições “usar como está” e retrabalhar o produto não conforme. Se subcomponentes forem reutilizados no processo de manufatura, o reuso do subcomponente deve ser comunicado claramente ao cliente para uma permissão de concessão ou desvio.","i":1},{"k":"p","x":"A organização deve manter um registro da data de validade ou quantidade autorizada da concessão. A organização também deve assegurar a conformidade com a especificação e os requisitos originais ou substitutos quando a autorização expirar. O material expedido através de uma concessão deve ser apropriadamente identificado em cada contêiner (isto se aplica igualmente ao produto adquirido). A organização deve aprovar quaisquer solicitações de fornecedores antes da submissão ao cliente.","i":1}]},
+{"id":"8.7.1.2","t":"Controle de produto não conforme – processo especificado pelo cliente","s":"8.7 Controle de Saídas Não Conformes","a":1,"b":[{"k":"p","x":"A organização deve estar em conformidade com os controles especificados pelo cliente aplicáveis, para produto(s) não conforme(s).","i":1}]},
+{"id":"8.7.1.3","t":"Controle de produtos suspeitos","s":"8.7 Controle de Saídas Não Conformes","a":1,"b":[{"k":"p","x":"A organização deve assegurar que o produto com uma situação não identificada ou suspeita seja classificado e controlado como produto não conforme. A organização deve assegurar que todo o pessoal de manufatura apropriado recebe treinamento para contenção do produto não conforme e suspeito.","i":1}]},
+{"id":"8.7.1.4","t":"Controle de produto retrabalhado","s":"8.7 Controle de Saídas Não Conformes","a":1,"b":[{"k":"p","x":"A organização deve utilizar a metodologia de análise de risco (tal como FMEA) para avaliar os riscos no processo de retrabalho, antes de tomar uma decisão para retrabalhar o produto. Se requerido pelo cliente, a organização deve obter aprovação do cliente antes de iniciar o retrabalho do produto.","i":1},{"k":"p","x":"A organização deve ter um processo documentado para confirmar que o retrabalho esteja em conformidade com o plano de controle ou outras informações relevantes documentadas para verificar a conformidade com as especificações originais.","i":1},{"k":"p","x":"As instruções de desmontagem ou retrabalho, incluindo os requisitos de reinspeção e de rastreabilidade, devem estar disponíveis e serem utilizados pelo pessoal apropriado.","i":1},{"k":"p","x":"A organização deve reter informação documentada sobre a disposição do produto retrabalhado, incluindo a quantidade, disposição, data da disposição e informação de rastreabilidade aplicável.","i":1}]},
+{"id":"8.7.1.5","t":"Controle de produto reparado","s":"8.7 Controle de Saídas Não Conformes","a":1,"b":[{"k":"p","x":"A organização deve utilizar a metodologia de análise de risco (tal como FMEA) para avaliar os riscos no processo de reparo antes de uma decisão de reparar o produto. A organização deve obter aprovação do cliente antes de iniciar o reparo do produto.","i":1},{"k":"p","x":"A organização deve ter um processo documentado para confirmação do reparo de acordo com o plano de controle ou outra informação relevante documentada.","i":1},{"k":"p","x":"Instruções de desmontagem ou reparo, incluindo os requisitos de reinspeção e de rastreabilidade, devem estar acessíveis e serem utilizadas pelo pessoal apropriado.","i":1},{"k":"p","x":"A organização deve obter uma autorização documentada do cliente para concessão ao produto a ser reparado.","i":1},{"k":"p","x":"A organização deve reter informação documentada sobre a disposição do produto reparado, incluindo a quantidade, disposição, data da disposição e informação de rastreabilidade aplicável.","i":1}]},
+{"id":"8.7.1.6","t":"Notificação ao cliente","s":"8.7 Controle de Saídas Não Conformes","a":1,"b":[{"k":"p","x":"A organização deve notificar imediatamente o(s) cliente(s) no caso que o produto não conforme tenha sido expedido. A comunicação inicial deve ser seguida de documentação detalhada do caso.","i":1}]},
+{"id":"8.7.1.7","t":"Disposição de produto não conforme","s":"8.7 Controle de Saídas Não Conformes","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado para disposição de produto não conforme, não sujeito a retrabalho ou reparo. Para o produto que não atenda aos requisitos, a organização deve verificar que o produto a ser sucateado é inutilizado antes da sua disposição.","i":1},{"k":"p","x":"A organização não deve desviar o produto não conforme para o serviço ou outro uso sem a aprovação prévia do ciente.","i":1}]},
+{"id":"8.7.2","t":"","s":"8.7 Controle de Saídas Não Conformes","b":[{"k":"p","x":"A organização deve reter informação documentada que:"},{"k":"l","x":"descreva a não conformidade;","m":"a)"},{"k":"l","x":"descreva as ações tomadas;","m":"b)"},{"k":"l","x":"descreva as concessões obtidas;","m":"c)"},{"k":"l","x":"identifique a autoridade que decide a ação com relação à não conformidade.","m":"d)"}]},
+{"id":"9.1.1","t":"Generalidades","s":"9.1 Monitoramento, Medição, Análise e Avaliação","b":[{"k":"p","x":"A organização deve determinar:"},{"k":"l","x":"o que precisa ser monitorado e medido;","m":"a)"},{"k":"l","x":"os métodos para monitoramento, medição, análise e avaliação necessários para assegurar resultados válidos;","m":"b)"},{"k":"l","x":"quando o monitoramento e a medição devem ser realizados;","m":"c)"},{"k":"l","x":"quando os resultados de monitoramento e medição devem ser analisados e avaliados.","m":"d)"},{"k":"p","x":"A organização deve avaliar o desempenho e a eficácia do sistema de gestão da qualidade."},{"k":"p","x":"A organização deve reter informação documentada apropriada como evidência dos resultados."}]},
+{"id":"9.1.1.1","t":"Processos de monitoramento e medição da manufatura","s":"9.1 Monitoramento, Medição, Análise e Avaliação","a":1,"b":[{"k":"p","x":"A organização deve realizar estudos de processo em todos os novos processos de manufatura (incluindo montagem ou sequenciamento) para verificar a capacidade (capability) do processo e para fornecer entradas adicionais para o controle do processo, incluindo aquelas para características especiais.","i":1},{"k":"n","x":"NOTA: Para alguns processos de manufatura, pode não ser possível demonstrar a conformidade do produto através da capacidade (capability) do processo. Para estes processos, podem ser utilizados métodos alternativos tais como a conformidade do lote com a especificação.","i":1},{"k":"p","x":"A organização deve manter os resultados da capacidade (capability) ou desempenho do processo de manufatura, de acordo com o especificado pelos requisitos do processo de aprovação de peça do cliente. A organização deve verificar que o fluxograma do processo, PFMEA e plano de controle estão implementados, incluindo a aderência ao seguinte:","i":1},{"k":"l","x":"técnicas de medição;","i":1,"m":"a)"},{"k":"l","x":"planos de amostragem;","i":1,"m":"b)"},{"k":"l","x":"critério de aceitação;","i":1,"m":"c)"},{"k":"l","x":"registros dos valores de medição reais e/ou resultados de teste para dados por variáveis;","i":1,"m":"d)"},{"k":"l","x":"planos de reação e processo de escalonamento, quando os critérios de aceitação não são atendidos.","i":1,"m":"e)"},{"k":"p","x":"Os eventos significativos do processo tais como a mudança de ferramenta ou reparo de máquina devem ser registrados e retidos como informação documentada.","i":1},{"k":"p","x":"A organização deve iniciar um plano de reação indicado no plano de controle e avaliado em relação ao impacto na conformidade com as especificações das características que são estatisticamente não capazes ou são instáveis. Estes planos de reação devem incluir a contenção do produto e inspeção 100% conforme o caso. Um plano de ação corretiva deve ser desenvolvido e implementado pela organização, indicando as ações específicas, o prazo e as responsabilidades atribuídas, para assegurar que o processo se torne estável e estatisticamente capaz. Os planos devem ser analisados criticamente com o cliente e aprovados pelo mesmo, quando requerido.","i":1},{"k":"p","x":"A organização deve manter registros das datas que foram efetivadas as mudanças do processo.","i":1}]},
+{"id":"9.1.1.2","t":"Identificação de ferramentas estatísticas","s":"9.1 Monitoramento, Medição, Análise e Avaliação","a":1,"b":[{"k":"p","x":"A organização deve determinar o uso apropriado de ferramentas estatísticas. A organização deve verificar que as ferramentas estatísticas adequadas estão incluídas como parte do processo de planejamento avançado da qualidade do produto (ou equivalente) e incluídas na análise de riscos do projeto (tal como DFMEA) (onde aplicável), a análise de riscos do processo (tal como PFMEA) e o plano de controle.","i":1}]},
+{"id":"9.1.1.3","t":"Aplicação dos conceitos de estatística","s":"9.1 Monitoramento, Medição, Análise e Avaliação","a":1,"b":[{"k":"p","x":"Conceitos estatísticos, tais como variação, controle (estabilidade), capacidade (capability) do processo e as consequências do supercontrole, devem ser compreendidos e usados por colaboradores envolvidos na coleta, análise e gestão de dados estatísticos.","i":1}]},
+{"id":"9.1.2","t":"Satisfação do Cliente","s":"9.1 Monitoramento, Medição, Análise e Avaliação","b":[{"k":"p","x":"A organização deve monitorar a percepção de clientes do grau em que suas necessidades e expectativas foram atendidas. A organização deve determinar os métodos para obter, monitorar e analisar criticamente essa informação."},{"k":"n","x":"NOTA Exemplos de monitoramento das percepções de cliente podem incluir pesquisas com o cliente, retroalimentação do cliente sobre produtos ou serviços entregues, reuniões com clientes, análise de participação de mercado, elogios, pleitos de garantia e relatórios de distribuidor."}]},
+{"id":"9.1.2.1","t":"Satisfação do cliente – suplemento","s":"9.1 Monitoramento, Medição, Análise e Avaliação","a":1,"b":[{"k":"p","x":"A satisfação do cliente com a organização deve ser monitorada através da avaliação contínua de indicadores de desempenho internos e externos para assegurar a conformidade com as especificações do produto e do processo e outros requisitos do cliente.","i":1},{"k":"p","x":"Os indicadores de desempenho devem estar baseados em evidência objetiva e incluir, mas não se limitar ao seguinte:","i":1},{"k":"l","x":"desempenho de qualidade da peça entregue;","i":1,"m":"a)"},{"k":"l","x":"rupturas no cliente;","i":1,"m":"b)"},{"k":"l","x":"retornos de campo, recalls, e garantia (onde aplicável);","i":1,"m":"c)"},{"k":"l","x":"desempenho do cronograma de entrega (incluindo incidentes de fretes especiais);","i":1,"m":"d)"},{"k":"l","x":"notificações do cliente em relação a questões da qualidade ou entrega, incluindo situações especiais.","i":1,"m":"e)"},{"k":"p","x":"A organização deve monitorar o desempenho dos processos de manufatura para demonstrar a conformidade com os requisitos do cliente para a qualidade do produto e eficiência do processo.","i":1},{"k":"p","x":"O monitoramento deve incluir a análise crítica dos dados de desempenho do cliente, incluindo os portais on-line do cliente e os indicadores do cliente, quando providos.","i":1}]},
+{"id":"9.1.3","t":"Análise e Avaliação","s":"9.1 Monitoramento, Medição, Análise e Avaliação","b":[{"k":"p","x":"A organização deve analisar e avaliar dados e informações apropriados provenientes de monitoramento e medição."},{"k":"p","x":"Os resultados de análises devem ser usados para avaliar:"},{"k":"l","x":"conformidade de produtos e serviços;","m":"a)"},{"k":"l","x":"o grau de satisfação de cliente;","m":"b)"},{"k":"l","x":"o desempenho e a eficácia do sistema de gestão da qualidade;","m":"c)"},{"k":"l","x":"se o planejamento foi implementado eficazmente;","m":"d)"},{"k":"l","x":"a eficácia das ações tomadas para abordar os riscos e oportunidades;","m":"e)"},{"k":"l","x":"o desempenho dos provedores externos;","m":"f)"},{"k":"l","x":"a necessidade de melhorias no sistema de gestão da qualidade.","m":"g)"},{"k":"n","x":"NOTA Métodos para analisar dados podem incluir técnicas estatísticas."}]},
+{"id":"9.1.3.1","t":"Priorização","s":"9.1 Monitoramento, Medição, Análise e Avaliação","a":1,"b":[{"k":"p","x":"As tendências no desempenho operacional e da qualidade devem ser comparadas com o progresso em direção aos objetivos e levar a uma ação para dar suporte à priorização de ações para melhorar a satisfação do cliente.","i":1}]},
+{"id":"9.2.1","t":"","s":"9.2 Auditoria Interna","b":[{"k":"p","x":"A organização deve conduzir auditorias internas a intervalos planejados para prover informação sobre se o sistema de gestão da qualidade;"},{"k":"l","x":"está conforme com:","m":"a)"},{"k":"l","x":"os requisitos da própria organização para o seu sistema de gestão da qualidade;","m":"1)","d":1},{"k":"l","x":"os requisitos desta Norma ;","m":"2)","d":1},{"k":"l","x":"está implementado e mantido eficazmente.","m":"b)"}]},
+{"id":"9.2.2","t":"","s":"9.2 Auditoria Interna","b":[{"k":"p","x":"A organização deve:"},{"k":"l","x":"planejar, estabelecer, implementar e manter um programa de auditoria, incluindo a frequência, métodos, responsabilidades, requisitos para planejar e para relatar, o que deve levar em consideração a importância dos processos concernentes, mudanças que afetam a organização e os resultados de auditorias anteriores;","m":"a)"},{"k":"l","x":"definir os critérios de auditoria e escopo para cada auditoria;","m":"b)"},{"k":"l","x":"selecionar auditores e conduzir auditorias para assegurar a objetividade e a imparcialidade do processo de auditoria;","m":"c)"},{"k":"l","x":"assegurar que os resultados das auditorias sejam relatados para a gerência pertinente;","m":"d)"},{"k":"l","x":"executar correção e ações corretivas apropriadas sem demora indevida;","m":"e)"},{"k":"l","x":"reter informação documentada como evidência da implementação do programa de auditoria e dos resultados de auditoria.","m":"f)"},{"k":"n","x":"NOTA Ver ABNT NBR ISO 19001 para orientação."}]},
+{"id":"9.2.2.1","t":"Programa de auditoria interna","s":"9.2 Auditoria Interna","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado de auditoria interna. O processo deve incluir o desenvolvimento e a implementação de um programa de auditoria interna que cubra todo o sistema de gestão da qualidade incluindo as auditorias do sistema de gestão da qualidade, auditorias de processo de manufatura e auditorias do produto.","i":1},{"k":"p","x":"O programa de auditoria deve ser priorizado baseado no risco, tendências de desempenho interno e externo e criticidade do(s) processo(s).","i":1},{"k":"p","x":"Se a organização for responsável pelo desenvolvimento de software, a organização deve incluir as avaliações da capacidade (capability) do desenvolvimento de software no seu programa de auditoria interna.","i":1},{"k":"p","x":"A frequência das auditorias deve ser analisada criticamente e, quando apropriado, ajustada com base na ocorrência de mudanças de processo, não conformidades internas e externas, e/ou reclamações de clientes. A eficácia do programa de auditoria deve ser analisada criticamente como parte da análise crítica da direção.","i":1}]},
+{"id":"9.2.2.2","t":"Auditoria do sistema de gestão da qualidade","s":"9.2 Auditoria Interna","a":1,"b":[{"k":"p","x":"A organização deve auditar todos os processos do sistema de gestão de qualidade durante cada período de três anos calendário, de acordo com um programa anual, usando a abordagem de processo para verificar a conformidade com esta Norma de SGQ Automotiva. Integrado a estas auditorias, a organização deve amostrar requisitos específicos do cliente para o sistema de gestão da qualidade em relação a sua implementação eficaz.","i":1}]},
+{"id":"9.2.2.3","t":"Auditoria do processo de manufatura","s":"9.2 Auditoria Interna","a":1,"b":[{"k":"p","x":"A organização deve auditar todos os processos de manufatura ao longo de cada período de três anos calendário para determinar sua eficácia e eficiência usando as abordagens específicas do cliente requeridas para auditorias de processo. Onde não definidas pelo cliente, a organização deve determinar a abordagem a ser utilizada.","i":1},{"k":"p","x":"Dentro de cada plano de auditoria individual, cada processo de manufatura deve ser auditado em todos os turnos onde ele ocorre, incluindo a amostragem apropriada da troca de turno.","i":1},{"k":"p","x":"A auditoria do processo de manufatura deve incluir uma auditoria da implementação eficaz do processo de análise de riscos (tal como PFMEA), plano de controle e documentos associados.","i":1}]},
+{"id":"9.2.2.4","t":"Auditoria de produto","s":"9.2 Auditoria Interna","a":1,"b":[{"k":"p","x":"A organização deve auditar os produtos usando as abordagens específicas do cliente requeridas, em estágios apropriados de produção e entrega para verificar a conformidade com os requisitos especificados. Onde não definida pelo cliente, a organização deve definir a abordagem a ser utilizada.","i":1}]},
+{"id":"9.3.1","t":"Geralidades","s":"9.3 Análise Crítica pela Direção","b":[{"k":"p","x":"A Alta Direção deve analisar criticamente o sistema de gestão da qualidade da organização, a intervalos planejados, para assegurar sua contínua adequação, suficiência, eficácia e alinhamento com o direcionamento estratégico da organização."}]},
+{"id":"9.3.1.1","t":"Análise crítica da direção – suplemento","s":"9.3 Análise Crítica pela Direção","a":1,"b":[{"k":"p","x":"A análise crítica da direção deve ser conduzida pelo menos anualmente. A frequência da(s) análise(s) crítica(s) da direção deve ser aumentada com base no risco em relação à conformidade com os requisitos do cliente resultantes de mudanças internas ou externas impactando o sistema de gestão da qualidade e questões relacionadas ao desempenho.","i":1}]},
+{"id":"9.3.2","t":"Entradas da Análise Crítica pela Direção","s":"9.3 Análise Crítica pela Direção","b":[{"k":"p","x":"A análise crítica pela direção deve ser planejada e realizada levando em consideração:"},{"k":"l","x":"a situação de ações provenientes de análises críticas anteriores pela direção;","m":"a)"},{"k":"l","x":"mudanças em questões externas e internas que sejam pertinentes para o sistema de gestão da qualidade;","m":"b)"},{"k":"l","x":"informação sobre o desempenho e eficácia do sistema de gestão da qualidade, incluindo tendências relativas a:","m":"c)"},{"k":"l","x":"satisfação do cliente e retroalimentação das partes interessadas pertinentes;","m":"1)","d":1},{"k":"l","x":"extensão na qual os objetivos da qualidade foram alcançados;","m":"2)","d":1},{"k":"l","x":"desempenho de processo e conformidade de produtos e serviços;","m":"3)","d":1},{"k":"l","x":"não conformidades e ações corretivas;","m":"4)","d":1},{"k":"l","x":"resultados do monitoramento e medição;","m":"5)","d":1},{"k":"l","x":"resultados de auditoria;","m":"6)","d":1},{"k":"l","x":"desempenho de provedores externos;","m":"7)","d":1},{"k":"l","x":"a suficiência de recursos;","m":"d)"},{"k":"l","x":"a eficácia de ações tomadas para abordar riscos e oportunidades (ver 6.1);","m":"e)"},{"k":"l","x":"oportunidades de melhoria.","m":"f)"}]},
+{"id":"9.3.2.1","t":"Entradas da análise crítica da direção – suplemento","s":"9.3 Análise Crítica pela Direção","a":1,"b":[{"k":"p","x":"Entrada para análise crítica da direção deve incluir:","i":1},{"k":"l","x":"custo de má qualidade (custo de não conformidades internas e externas);","i":1,"m":"a)"},{"k":"l","x":"medições da eficácia do processo;","i":1,"m":"b)"},{"k":"l","x":"medições da eficiência do processo;","i":1,"m":"c)"},{"k":"l","x":"conformidade do produto;","i":1,"m":"d)"},{"k":"l","x":"avaliações da viabilidade de manufatura feitas para mudanças de operações existentes e para novas instalações ou novos produtos (ver Seção 7.1.3.1);","i":1,"m":"e)"},{"k":"l","x":"satisfação do cliente (ver ISO 9001, Seção 9.12);","i":1,"m":"f)"},{"k":"l","x":"análise crítica do desempenho em relação aos objetivos de manutenção;","i":1,"m":"g)"},{"k":"l","x":"desempenho da garantia (onde aplicável);","i":1,"m":"h)"},{"k":"l","x":"análise crítica dos indicadores do cliente (onde aplicável);","i":1,"m":"i)"},{"k":"l","x":"identificação de falhas de campo potenciais identificadas através das análises de risco (tal como FMEA);","i":1,"m":"j)"},{"k":"l","x":"falhas de campo reais e seu impacto sobre a segurança ou o ambiente.","i":1,"m":"k)"}]},
+{"id":"9.3.3","t":"Saídas de Análise Crítica pela Direção","s":"9.3 Análise Crítica pela Direção","b":[{"k":"p","x":"As saídas da análise crítica pela direção devem incluir decisões e ações relacionadas com:"},{"k":"l","x":"oportunidades para melhoria;","m":"a)"},{"k":"l","x":"qualquer necessidade de mudanças no sistema de gestão da qualidade;","m":"b)"},{"k":"l","x":"necessidade de recurso.","m":"c)"},{"k":"p","x":"A organização deve reter informação documentada como evidência dos resultados de análises críticas pela direção."}]},
+{"id":"9.3.3.1","t":"Saídas da análise crítica da direção – suplemento","s":"9.3 Análise Crítica pela Direção","a":1,"b":[{"k":"p","x":"A alta direção deve documentar e implementar um plano de ação quando as metas de desempenho do cliente não forem atendidas.","i":1}]},
+{"id":"10.1","t":"Geralidades","s":"10.1 Geralidades","b":[{"k":"p","x":"A organização deve determinar e selecionar oportunidades para melhoria e implementar quaisquer ações necessárias para atender a requisitos do cliente e aumentar a satisfação do cliente."},{"k":"p","x":"Essas devem incluir:"},{"k":"l","x":"melhorar produtos e serviços para atender a requisitos assim como para abordar futuras necessidades e expectativas;","m":"a)"},{"k":"l","x":"corrigir, prevenir ou reduzir efeitos indesejados;","m":"b)"},{"k":"l","x":"melhorar o desempenho e a eficácia do sistema de gestão da qualidade.","m":"c)"},{"k":"n","x":"NOTA Exemplos de melhoria podem incluir correção, ação corretiva, melhoria contínua, mudanças revolucionárias, inovação e reorganização."}]},
+{"id":"10.2.1","t":"","s":"10.2 Não Conformidade e Ação Corretiva","b":[{"k":"p","x":"Ao ocorrer uma não conformidade, incluindo as provenientes de reclamações, a organização deve:"},{"k":"l","x":"reagir à não conformidade e, como aplicável:","m":"a)"},{"k":"l","x":"tomar ações para controlá-la e corrigi-la;","m":"1)","d":1},{"k":"l","x":"lidar com as consequências;","m":"2)","d":1},{"k":"l","x":"avaliar a necessidade de ação para eliminar a(s) causa(s) da não conformidade, a fim de que ela não se repita ou ocorra em outro lugar:","m":"b)"},{"k":"l","x":"analisando criticamente e analisando a não conformidade;","m":"1)","d":1},{"k":"n","x":"NOTA BRASILEIRA Por convenção, o termo review foi traduzido como “análise crítica”. Consequentemente, nesse caso, a expressão “analisando criticamente e analisando” foi usada como tradução da expressão original reviewing and analysing."},{"k":"l","x":"determinando as causas da não conformidade;","m":"2)","d":1},{"k":"l","x":"determindando se não conformidades similares existem, ou se poderiam potencialmente ocorrer;","m":"3)","d":1},{"k":"l","x":"implementar qualquer ação necessária;","m":"c)"},{"k":"l","x":"analisar criticamente a eficácia de qualquer ação corretiva tomada;","m":"d)"},{"k":"l","x":"atualizar riscos e oportunidades determinados durante o planejamento, se necessário;","m":"e)"},{"k":"l","x":"realizar mudanças no sistema de gestão da qualidade, se necessário.","m":"f)"},{"k":"p","x":"Ações corretivas devem ser apropriadas aos efeitos das não conformidades encontradas."}]},
+{"id":"10.2.2","t":"","s":"10.2 Não Conformidade e Ação Corretiva","b":[{"k":"p","x":"A organização deve reter informação documentada como evidência:"},{"k":"l","x":"da natureza das não conformidades e quaisquer ações subsequentes executadas;","m":"a)"},{"k":"l","x":"dos resultados de qualquer ação corretiva.","m":"b)"}]},
+{"id":"10.2.3","t":"Solução de problema","s":"10.2 Não Conformidade e Ação Corretiva","a":1,"b":[{"k":"p","x":"A organização deve ter um processo(s) documentado(s) para solução de problemas incluindo:","i":1},{"k":"l","x":"abordagens definidas para vários tipos e escalas de problemas (por exemplo, desenvolvimento de novos produtos, questões atuais de manufatura, falhas de campo, constatações de auditoria);","i":1,"m":"a)"},{"k":"l","x":"contenção, ações interinas e atividades relacionadas necessárias para controle de saídas não conformes (ver ISO 9001, Seção 8.7);","i":1,"m":"b)"},{"k":"l","x":"análise de causa raiz, metodologia usada, análise e resultados;","i":1,"m":"c)"},{"k":"l","x":"implementação de ações corretivas sistêmicas, incluindo a consideração do impacto sobre processos e produtos similares;","i":1,"m":"d)"},{"k":"l","x":"verificação da eficácia das ações corretivas implementadas;","i":1,"m":"e)"},{"k":"l","x":"análise crítica e, onde necessário, atualização das informações documentadas apropriadas (por exemplo, PFMEA, plano de controle).","i":1,"m":"f)"},{"k":"p","x":"Onde o cliente tiver processos, ferramentas ou sistemas específicos prescritos para a solução de problemas, a organização deve usar esses processos, ferramentas ou sistemas a menos que de outra forma aprovado pelo cliente.","i":1}]},
+{"id":"10.2.4","t":"Prova de erro","s":"10.2 Não Conformidade e Ação Corretiva","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado para determinar o uso de metodologias apropriadas à prova de erro. Detalhes do método usado devem ser documentados no processo de análise de riscos (tal como PFMEA) e as frequências de teste devem ser documentadas no plano de controle.","i":1},{"k":"p","x":"O processo deve incluir o teste dos dispositivos à prova de erro em relação à falha ou falha simulada. Devem ser mantidos registros. Peças padrão (máster), quando usadas, devem ser identificadas, controladas, verificadas e calibradas sempre que possível. As falhas no dispositivo à prova de erro devem ter um plano de reação.","i":1}]},
+{"id":"10.2.5","t":"Sistemas de gestão da garantia","s":"10.2 Não Conformidade e Ação Corretiva","a":1,"b":[{"k":"p","x":"Quando a organização é requerida a fornecer garantia para seu(s) produto(s), a organização deve implementar um processo de gestão da garantia. A organização deve incluir no processo um método para a análise da peça em garantia, incluindo “nenhum problema encontrado” – NTF (no trouble found). Quando especificado pelo cliente, a organização deve implementar o processo de gestão da garantia requerido.","i":1}]},
+{"id":"10.2.6","t":"Análise das reclamações do cliente e do teste da falha de campo","s":"10.2 Não Conformidade e Ação Corretiva","a":1,"b":[{"k":"p","x":"A organização deve realizar a análise de reclamações de cliente e falhas de campo, incluindo quaisquer peças retornadas e deve iniciar a solução do problema e ação corretiva para prevenir a recorrência.","i":1},{"k":"p","x":"Onde solicitado pelo cliente, isto deve incluir a análise da interação do software embarcado do produto da organização dentro do sistema do produto do cliente final.","i":1},{"k":"p","x":"A organização deve comunicar os resultados de teste/análise para o cliente e, também, dentro da organização.","i":1}]},
+{"id":"10.3","t":"Melhoria contínua","s":"10.3 Melhoria contínua","b":[{"k":"p","x":"A organização deve melhorar continuamente a adequação, suficiência e eficácia do sistema de gestão da qualidade."},{"k":"p","x":"A organização deve considerar os resultados de análise e avaliação e as saídas da análise crítica pela direção para determinar se existem necessidades ou oportunidades que devem ser abordadas como parte da melhoria contínua."}]},
+{"id":"10.3.1","t":"Melhoria contínua – suplemento","s":"10.3 Melhoria contínua","a":1,"b":[{"k":"p","x":"A organização deve ter um processo documentado para melhoria contínua. A organização deve incluir neste processo o seguinte:","i":1},{"k":"l","x":"identificação da metodologia usada, os objetivos, a medição, a eficácia e informação documentada;","i":1,"m":"a)"},{"k":"l","x":"um plano de ação de melhoria do processo de manufatura com ênfase na redução da variação do processo e desperdício;","i":1,"m":"b)"},{"k":"l","x":"análise de riscos (tal como FMEA).","i":1,"m":"c)"},{"k":"n","x":"NOTA: Melhoria contínua é implementada uma vez que os processos de manufatura sejam estatisticamente capazes e estáveis, ou quando as características do produto sejam previsíveis e atendam aos requisitos do cliente.","i":1}]},
+{"id":"A.1","t":"Fases do plano de controle","s":"A.1 Fases do plano de controle","a":1,"b":[{"k":"p","x":"Um plano de controle cobre três fases distintas, como apropriado:","i":1},{"k":"l","x":"Protótipo: uma descrição das medições dimensionais, testes de material e de desempenho que irão ocorrer durante a construção do protótipo. A organização deve ter um plano de controle de protótipo, se requerido pelo cliente.","i":1,"m":"a)"},{"k":"l","x":"Pré-lançamento: uma descrição das medições dimensionais, testes de material e de desempenho que ocorrem após o protótipo e antes da produção regular. O pré-lançamento é definido como uma fase da produção no processo de realização do produto que pode ser necessária após a construção do protótipo.","i":1,"m":"b)"},{"k":"l","x":"Produção: documentação das características de produto/processo, controles de processo, testes e sistemas de medição que ocorrem durante a produção em massa.","i":1,"m":"c)"},{"k":"p","x":"Os planos de controle são estabelecidos no nível de número da peça (part number), mas em muitos casos, os planos de controle por família podem cobrir uma série de peças similares produzidas usando um processo comum. Os planos de controle são uma saída do plano de qualidade.","i":1},{"k":"n","x":"NOTA 1: É recomendável que a organização requeira de seus fornecedores que atendam os requisitos deste Anexo.","i":1},{"k":"n","x":"NOTA 2: Para alguns materiais a granel, os planos de controle não listam a maioria das informações de produção. Esta informação pode ser encontrada nos detalhes de formulação/receita do lote correspondente.","i":1}]},
+{"id":"A.2","t":"Elementos do plano de controle","s":"A.2 Elementos do plano de controle","a":1,"b":[{"k":"p","x":"Um plano de controle inclui, no mínimo, o seguinte conteúdo:","i":1},{"k":"h","x":"Dados gerais","i":1},{"k":"l","x":"número do plano de controle","i":1,"m":"a)"},{"k":"l","x":"data de emissão e data de revisão, quando houver","i":1,"m":"b)"},{"k":"l","x":"informação do cliente (ver requisitos do cliente)","i":1,"m":"c)"},{"k":"l","x":"nome da organização/designação do site","i":1,"m":"d)"},{"k":"l","x":"número(s) da peça","i":1,"m":"e)"},{"k":"l","x":"nome da peça/descrição","i":1,"m":"f)"},{"k":"l","x":"nível de mudança de engenharia","i":1,"m":"g)"},{"k":"l","x":"fase coberta (protótipo, pré-lançamento, produção)","i":1,"m":"h)"},{"k":"l","x":"contato chave","i":1,"m":"i)"},{"k":"l","x":"número da etapa da peça/processo","i":1,"m":"j)"},{"k":"l","x":"nome do processo/descrição da operação","i":1,"m":"k)"},{"k":"l","x":"grupo funcional/responsável da área","i":1,"m":"l)"},{"k":"h","x":"Controle do produto","i":1},{"k":"l","x":"características especiais relacionadas com o produto","i":1,"m":"a)"},{"k":"l","x":"outras características para controle (número, produto ou processo)","i":1,"m":"b)"},{"k":"l","x":"especificação/tolerância","i":1,"m":"c)"},{"k":"h","x":"Controle do processo","i":1},{"k":"l","x":"parâmetros do processo (incluindo os ajustes do processo e tolerâncias)","i":1,"m":"a)"},{"k":"l","x":"características especiais relacionadas com o processo","i":1,"m":"b)"},{"k":"l","x":"máquinas, gabaritos, dispositivos, ferramentas para manufatura (incluindo identificadores como apropriado)","i":1,"m":"c)"},{"k":"h","x":"Métodos","i":1},{"k":"l","x":"técnica de avaliação","i":1,"m":"a)"},{"k":"l","x":"prova de erro","i":1,"m":"b)"},{"k":"l","x":"tamanho e frequência da amostra","i":1,"m":"c)"},{"k":"l","x":"método de controle","i":1,"m":"d)"},{"k":"h","x":"Plano de reação","i":1},{"k":"l","x":"plano de reação (incluso ou referenciado)","i":1,"m":"a)"}]}
 ];

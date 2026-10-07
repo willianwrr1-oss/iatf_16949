@@ -1,6 +1,6 @@
 (()=>{
 'use strict';
-const APP_VERSION='1.1.0';
+const APP_VERSION='1.2.0';
 const DEL_HASH='a5b432ee0307be7fa23aa00461f54eee34ba9d45251b5504567d37a8da339dff';
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -57,6 +57,21 @@ const addLog=(a,action,detail='')=>a.log.push({ts:nowISO(),user:a.auditor||setti
 const guide=it=>{const g=(window.GUIDE||{})[it.id]||{};return{i:it.i||g.i||'',e:it.e||g.e||''};};
 function guideHTML(it){const g=guide(it);if(!g.i&&!g.e)return'';
  return`<div class="guide"><div class="gh">Orientação do app – não é texto da norma</div>${g.i?`<div class="gb"><b>Interpretação do requisito</b><p>${esc(g.i)}</p></div>`:''}${g.e?`<div class="gb"><b>Exemplos de evidência de atendimento</b><p>${esc(g.e)}</p></div>`:''}</div>`;}
+
+/* ---------- Texto da norma (blocos do PDF) ---------- */
+const TAG={1:'IATF',2:'ISO + IATF'};
+function normHTML(it){
+ if(!it.b)return it.q?`<p class="q qtxt">${esc(it.q)}</p>`:'';
+ return`<div class="norm"><div class="gh">Texto da norma IATF 16949:2016 – <i>itálico = exigência automotiva</i></div>${it.b.map(b=>{
+  const c=b.i?' ni':'';
+  if(b.k==='l')return`<div class="nl d${b.d||0}${c}"><b>${esc(b.m||'')}</b><span>${esc(b.x)}</span></div>`;
+  if(b.k==='n')return`<p class="nn${c}">${esc(b.x)}</p>`;
+  if(b.k==='h')return`<p class="nh${c}">${esc(b.x)}</p>`;
+  return`<p class="np${c}">${esc(b.x)}</p>`;}).join('')}</div>`;}
+function normText(it){
+ if(!it.b)return it.q||'';
+ return it.b.map(b=>(b.k==='l'?(b.d?'    ':'  ')+(b.m||'')+' ':'')+b.x).join('\n');}
+const itemText=it=>it.t+' '+normText(it);
 
 /* ---------- Cálculos ---------- */
 const blank=()=>({C:0,NCMAIOR:0,NCMENOR:0,OBS:0,OFI:0,NA:0,pend:0});
@@ -187,8 +202,8 @@ const evHTML=id=>{const l=evMap[id]||[];
  return`<div class="evlist">${l.map(e=>`<div class="ev" data-eid="${e.id}"><a href="#" class="open">${e.type.startsWith('image/')?`<img src="${urlOf(e)}" alt="">`:'<span class="pdf">PDF</span>'}</a><div class="evi"><b>${esc(e.name)}</b><span>${sizeTxt(e.size)} · ${fmt(e.createdAt)}</span>${e.hash?`<span class="hash" title="SHA-256">#${e.hash.slice(0,12)}</span>`:''}</div>${locked()?'':'<button type="button" class="rm" title="Remover">✕</button>'}</div>`).join('')||'<p class="muted small">Sem evidências anexadas.</p>'}</div>
  ${locked()?'':'<label class="btn small addev">📎 Anexar evidência<input type="file" class="fi" multiple accept="image/*,application/pdf" hidden></label>'}`;};
 function cardHTML(it){const d=cur.items[it.id]||{};const st=d.status;const L=locked();const n=(evMap[it.id]||[]).length;
- return`<details class="item" data-id="${esc(it.id)}"><summary><span class="cl">${esc(it.id)}</span><span class="tt">${esc(it.t)}</span>${it.u?'<span class="flag" title="Trecho não lido integralmente no PDF – conferir texto da norma">conferir</span>':''}<span class="evc">${n?'📎'+n:''}</span><span class="badge ${st?STATUS[st].k:'pend'}">${st?STATUS[st].l:'Pendente'}</span></summary>
- <div class="body"><p class="q">${esc(it.q)}</p>${guideHTML(it)}
+ return`<details class="item" data-id="${esc(it.id)}"><summary><span class="cl">${esc(it.id)}</span><span class="tt">${esc(it.t)}</span>${it.a?`<span class="tagi" title="${it.a===1?'Exigência automotiva (itálico na norma)':'Contém texto ISO 9001 e texto automotivo IATF'}">${TAG[it.a]}</span>`:''}${it.u?'<span class="flag" title="Trecho não lido integralmente no PDF – conferir texto da norma">conferir</span>':''}<span class="evc">${n?'📎'+n:''}</span><span class="badge ${st?STATUS[st].k:'pend'}">${st?STATUS[st].l:'Pendente'}</span></summary>
+ <div class="body">${normHTML(it)}${guideHTML(it)}
  <div class="chips">${Object.entries(STATUS).map(([k,v])=>`<button type="button" class="chip ${v.k} ${st===k?'on':''}" data-st="${k}" ${L?'disabled':''}>${v.l}</button>`).join('')}</div>
  <label>Comentários / constatação<textarea rows="3" class="cm" ${L?'disabled':''} placeholder="Descreva a evidência objetiva observada…">${esc(d.comment||'')}</textarea></label>
  <div class="act grid2 ${ACT.includes(st)?'':'hide'}"><label>Responsável pela ação<input class="resp" value="${esc(d.resp||'')}" ${L?'disabled':''}></label><label>Prazo<input type="date" class="prazo" value="${esc(d.prazo||'')}" ${L?'disabled':''}></label></div>
@@ -208,15 +223,16 @@ function tabCheck(){const chaps=[...new Set(cur.checklist.map(i=>chap(i.id)))];
  <div class="filters"><select id="fc"><option value="">Todas as cláusulas</option>${chaps.map(c=>`<option value="${esc(c)}">${esc(chapName(c))}</option>`).join('')}</select>
  <select id="fs"><option value="">Todas as situações</option><option value="pend">Pendentes</option><option value="NC">NC (maior e menor)</option>${Object.entries(STATUS).map(([k,v])=>`<option value="${k}">${v.l}</option>`).join('')}</select>
  <input id="fq" type="search" placeholder="Buscar cláusula ou texto…"></div>
- <div id="items">${cur.checklist.map((it,i)=>{const c=chap(it.id);const prev=cur.checklist[i-1];return(!prev||chap(prev.id)!==c?`<h3 class="chh" data-c="${esc(c)}">${esc(chapName(c))}</h3>`:'')+cardHTML(it);}).join('')}</div>`;
+ <div id="items">${cur.checklist.map((it,i)=>{const c=chap(it.id);const prev=cur.checklist[i-1];const newCh=!prev||chap(prev.id)!==c;const hs=(it.s&&(newCh||prev.s!==it.s)&&it.s.split(' ')[0]!==it.id)?`<h4 class="ssh" data-c="${esc(c)}" data-s="${esc(it.s)}">${esc(it.s)}</h4>`:'';const hg=it.g?`<h5 class="gsh" data-c="${esc(c)}" data-s="${esc(it.s||'')}">${esc(it.g)}</h5>`:'';return(newCh?`<h3 class="chh" data-c="${esc(c)}">${esc(chapName(c))}</h3>`:'')+hs+hg+cardHTML(it);}).join('')}</div>`;
  updateProg();
  const apply=()=>{const fc=$('#fc').value,fs=$('#fs').value,q=$('#fq').value.toLowerCase().trim();const vis={};
   $$('.item').forEach(el=>{const id=el.dataset.id,it=cur.checklist.find(x=>x.id===id),st=(cur.items[id]||{}).status||'pend';
    let ok=(!fc||chap(id)===fc);
    if(fs)ok=ok&&(fs==='NC'?(st==='NCMAIOR'||st==='NCMENOR'):st===fs);
-   if(q)ok=ok&&(id+' '+it.t+' '+it.q+' '+((cur.items[id]||{}).comment||'')).toLowerCase().includes(q);
-   el.hidden=!ok;if(ok)vis[chap(id)]=1;});
-  $$('.chh').forEach(h=>h.hidden=!vis[h.dataset.c]);};
+   if(q)ok=ok&&(id+' '+itemText(it)+' '+((cur.items[id]||{}).comment||'')).toLowerCase().includes(q);
+   el.hidden=!ok;if(ok){vis[chap(id)]=1;vis['s:'+(it.s||'')]=1;}});
+  $$('.chh').forEach(h=>h.hidden=!vis[h.dataset.c]);
+  $$('.ssh,.gsh').forEach(h=>h.hidden=!vis['s:'+h.dataset.s]);};
  ['fc','fs'].forEach(i=>$('#'+i).onchange=apply);$('#fq').oninput=apply;
  const saveSoon=debounce(()=>saveAudit(cur),400);
  const box=$('#items');
@@ -301,9 +317,9 @@ async function viewHistory(){const list=(await allAudits()).sort((x,y)=>y.create
 
 /* ---------- Exportar / Importar ---------- */
 async function exportAuditCSV(a){const evs=await getEvs(a.number);
- const rows=[['Auditoria','Cláusula','Título','Pergunta','Interpretação','Exemplos de evidência','Situação','Comentário','Responsável ação','Prazo','Nº evidências','Evidências','Atualizado em','Atualizado por']];
+ const rows=[['Auditoria','Cláusula','Título','Texto da norma','Interpretação','Exemplos de evidência','Situação','Comentário','Responsável ação','Prazo','Nº evidências','Evidências','Atualizado em','Atualizado por']];
  for(const it of a.checklist){const d=a.items[it.id]||{};const ev=evs.filter(e=>e.itemId===it.id);const g=guide(it);
-  rows.push([a.number,it.id,it.t,it.q,g.i,g.e,d.status?STATUS[d.status].l:'Pendente',d.comment||'',d.resp||'',d.prazo||'',ev.length,ev.map(e=>e.name).join(' | '),d.updatedAt||'',d.updatedBy||'']);}
+  rows.push([a.number,it.id,it.t,normText(it),g.i,g.e,d.status?STATUS[d.status].l:'Pendente',d.comment||'',d.resp||'',d.prazo||'',ev.length,ev.map(e=>e.name).join(' | '),d.updatedAt||'',d.updatedBy||'']);}
  download(a.number+'.csv',new Blob([toCSV(rows)],{type:'text/csv;charset=utf-8'}));}
 async function exportSummaryCSV(){const l=(await allAudits()).sort((x,y)=>x.createdAt.localeCompare(y.createdAt));
  const rows=[['Número','Data','Tipo','Processo','Setor','Turno','Auditor','Auditado','Status','Conformidade %','Conforme','NC maior','NC menor','Observação','OFI','N/A','Pendentes','Criada em','Concluída em']];
@@ -342,11 +358,11 @@ async function viewSettings(){const cl=await activeChecklist();const custom=!!(a
  app.innerHTML=`<h1>Configurações</h1>
  <form id="sf" class="card form"><h2>Empresa e usuário</h2><label>Nome da empresa<input name="company" value="${esc(settings.company)}"></label><label>Auditor padrão<input name="auditor" value="${esc(settings.auditor)}"></label><button class="btn primary">Salvar</button></form>
  <div class="card form"><h2>Checklist</h2><p>Ativo: <b>${esc(cl.version)}</b> · ${cl.items.length} itens ${custom?'(personalizado)':'(base)'}</p>
- <p class="muted small">Itens marcados como “conferir” não foram lidos integralmente no PDF da norma; revise-os. Para ajustar perguntas, interpretações e exemplos, ou incluir requisitos específicos do cliente (CSR), baixe o modelo, edite no Excel e importe (colunas: clausula;titulo;pergunta;interpretacao;exemplos). Auditorias já abertas mantêm o checklist com que foram criadas.</p>
+ <p class="muted small">O checklist base reproduz o texto integral da IATF 16949:2016 (cláusulas 4 a 10 e Anexo A), com todas as alíneas e notas. Para ajustar interpretações e exemplos, ou incluir requisitos específicos do cliente (CSR), baixe o modelo, edite no Excel e importe (colunas: clausula;titulo;texto;interpretacao;exemplos). Um checklist importado passa a mostrar o texto como parágrafo único, sem a formatação por alíneas. Auditorias já abertas mantêm o checklist com que foram criadas.</p>
  <div class="actions"><button class="btn" id="ckdl">Baixar checklist atual (CSV)</button><label class="btn">Importar CSV<input type="file" id="ckup" accept=".csv,text/csv" hidden></label>${custom?'<button class="btn" id="ckrs">Restaurar base</button>':''}</div></div>
  <div class="card form"><h2>Aplicativo</h2><p class="muted small">Versão ${APP_VERSION}. Os dados ficam armazenados neste aparelho (IndexedDB). Faça exportações periódicas como backup. Auditorias excluídas: ${del.length}${del.length?' (último: '+esc(del[del.length-1].number)+' em '+fmt(del[del.length-1].deletedAt)+')':''}.</p><button class="btn" id="persist">Solicitar armazenamento persistente</button></div>`;
  $('#sf').onsubmit=async e=>{e.preventDefault();settings={...settings,...Object.fromEntries(new FormData(e.target))};await setMeta('settings',settings);renderBrand();toast('Configurações salvas');};
- $('#ckdl').onclick=()=>download('checklist-iatf.csv',new Blob([toCSV([['clausula','titulo','pergunta','interpretacao','exemplos'],...cl.items.map(i=>{const g=guide(i);return[i.id,i.t,i.q,g.i,g.e];})])],{type:'text/csv;charset=utf-8'}));
+ $('#ckdl').onclick=()=>download('checklist-iatf.csv',new Blob([toCSV([['clausula','titulo','pergunta','interpretacao','exemplos'],...cl.items.map(i=>{const g=guide(i);return[i.id,i.t,normText(i),g.i,g.e];})])],{type:'text/csv;charset=utf-8'}));
  $('#ckup').onchange=async e=>{const f=e.target.files[0];if(!f)return;const rows=parseCSV(await f.text());
   const items=rows.slice(1).filter(r=>r[0]&&r[2]).map(r=>({id:r[0].trim(),t:(r[1]||'').trim(),q:r[2].trim(),i:(r[3]||'').trim(),e:(r[4]||'').trim()}));
   if(!items.length)return toast('Nenhum item válido (use: clausula;titulo;pergunta;interpretacao;exemplos)');
